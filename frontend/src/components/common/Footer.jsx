@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
 
 const Footer = () => {
@@ -35,12 +36,18 @@ const Footer = () => {
                     <div>
                         <h3 className="font-bold text-lg mb-6 text-white border-b border-white/10 pb-2 inline-block">Quick Links</h3>
                         <ul className="space-y-4">
-                            {["Home", "About Us", "Our Process", "Capabilities", "Contact"].map((link) => (
-                                <li key={link}>
-                                    <a href="#" className="text-slate-400 hover:text-accent transition-colors flex items-center gap-2 group">
+                            {[
+                                { name: "Home", path: "/" },
+                                { name: "About Us", path: "/about" },
+                                { name: "Our Process", path: "/process" },
+                                { name: "Capabilities", path: "/capabilities" },
+                                { name: "Contact", path: "/contact" }
+                            ].map((link) => (
+                                <li key={link.name}>
+                                    <Link to={link.path} className="text-slate-400 hover:text-accent transition-colors flex items-center gap-2 group">
                                         <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-accent transition-colors" />
-                                        {link}
-                                    </a>
+                                        {link.name}
+                                    </Link>
                                 </li>
                             ))}
                         </ul>

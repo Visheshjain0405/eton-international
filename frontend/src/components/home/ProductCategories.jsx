@@ -1,67 +1,8 @@
 import React, { useRef, useState } from "react";
 import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
 import { ArrowRight, Leaf, Stethoscope, Coffee } from "lucide-react";
-
-const categories = [
-    {
-        id: 1,
-        name: "Organic Fertilizer",
-        group: "Agriculture",
-        image: "https://i.pinimg.com/736x/85/90/e5/8590e5426aa0b17624e0dc8727cc3838.jpg",
-        desc: "Sustainable growth solutions",
-        subproducts: ["Vermi Compost", "Bio Potash", "Neem Cake"],
-        size: "large"
-    },
-    {
-        id: 2,
-        name: "Jaggery & Sweeteners",
-        group: "Food",
-        image: "https://i.pinimg.com/1200x/b9/11/af/b911af6b2b5a1c29e9e37db45d82596d.jpg",
-        desc: "Pure, natural sweetness",
-        subproducts: ["Cubes", "Powder", "Liquid"]
-    },
-    {
-        id: 3,
-        name: "Makhana",
-        group: "Food",
-        image: "https://i.pinimg.com/736x/bc/0d/a2/bc0da2fce4cf0cab4582ea83aadd3679.jpg",
-        desc: "Healthy superfood snacks",
-        subproducts: ["Raw", "Roasted", "Flavored"]
-    },
-    {
-        id: 4,
-        name: "Indian Spices",
-        group: "Food",
-        image: "https://i.pinimg.com/1200x/0e/70/ca/0e70ca1f4b145087c1bd23fb4f6aeb91.jpg",
-        desc: "Authentic flavors & aromas",
-        subproducts: ["Cardamom", "Turmeric", "Cumin"]
-    },
-    {
-        id: 5,
-        name: "Premium Coffee",
-        group: "Food",
-        image: "https://i.pinimg.com/1200x/d2/aa/34/d2aa347f6536e8bccf7769cebbdd0770.jpg",
-        desc: "Roasted beans & blends",
-        subproducts: ["Arabica", "Robusta", "Green Beans"]
-    },
-    {
-        id: 6,
-        name: "Dried Fruits & Veg",
-        group: "Food",
-        image: "https://i.pinimg.com/736x/dc/fe/f2/dcfef2b3a6e04b553d43db7e3f61bad0.jpg",
-        desc: "Nutrient-rich produce",
-        subproducts: ["Dehydrated Onion", "Garlic Powder"]
-    },
-    {
-        id: 7,
-        name: "Surgical Disposables",
-        group: "Medical",
-        image: "https://i.pinimg.com/1200x/fd/ec/a8/fdeca838f49db6852800fbd22896c612.jpg",
-        desc: "Certified medical supplies",
-        subproducts: ["Gloves", "Masks", "Gowns", "Syringes"],
-        size: "wide"
-    },
-];
+import { Link } from "react-router-dom";
+import { products as categories } from "../../data/products";
 
 // Advanced 3D Tilt Card Component
 const TiltCard = ({ children, className }) => {
@@ -212,58 +153,60 @@ const ProductCategories = () => {
                                 ${category.size === 'wide' && filter === 'All' ? 'sm:col-span-2 lg:col-span-2' : ''}
                             `}
                         >
-                            <SpotlightCard className="h-full w-full rounded-2xl bg-white shadow-md border-transparent hover:shadow-xl transition-all">
-                                {/* Image Info & Interaction */}
-                                <div className="absolute inset-0">
-                                    <img
-                                        src={category.image}
-                                        alt={category.name}
-                                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/40 to-transparent" />
-                                </div>
+                            <Link to={`/products/${category.slug}`}>
+                                <SpotlightCard className="h-full w-full rounded-2xl bg-white shadow-md border-transparent hover:shadow-xl transition-all">
+                                    {/* Image Info & Interaction */}
+                                    <div className="absolute inset-0">
+                                        <img
+                                            src={category.image}
+                                            alt={category.name}
+                                            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/40 to-transparent" />
+                                    </div>
 
-                                {/* Content */}
-                                <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                                    <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                        <div className="flex items-center justify-between mb-2">
-                                            <span className="text-accent text-xs font-bold uppercase tracking-wider bg-black/30 backdrop-blur-md px-2 py-1 rounded">
-                                                {category.group}
-                                            </span>
-                                            {/* Sub-products pill list (Advanced Feature) */}
-                                            <div className="flex gap-1 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                                                {/* Start showing arrow, on hover show sub-items? No, too crowded. 
-                                                    Let's show an icon relevant to group.
-                                                */}
-                                                {category.group === 'Medical' ? <Stethoscope className="text-white/60" size={16} /> :
-                                                    category.group === 'Food' ? <Coffee className="text-white/60" size={16} /> :
-                                                        <Leaf className="text-white/60" size={16} />
-                                                }
+                                    {/* Content */}
+                                    <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                                        <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                            <div className="flex items-center justify-between mb-2">
+                                                <span className="text-accent text-xs font-bold uppercase tracking-wider bg-black/30 backdrop-blur-md px-2 py-1 rounded">
+                                                    {category.group}
+                                                </span>
+                                                {/* Sub-products pill list (Advanced Feature) */}
+                                                <div className="flex gap-1 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                                                    {/* Start showing arrow, on hover show sub-items? No, too crowded. 
+                                                        Let's show an icon relevant to group.
+                                                    */}
+                                                    {category.group === 'Medical' ? <Stethoscope className="text-white/60" size={16} /> :
+                                                        category.group === 'Food' ? <Coffee className="text-white/60" size={16} /> :
+                                                            <Leaf className="text-white/60" size={16} />
+                                                    }
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <h3 className="font-heading text-2xl font-bold text-white mb-2 leading-tight">
-                                            {category.name}
-                                        </h3>
+                                            <h3 className="font-heading text-2xl font-bold text-white mb-2 leading-tight">
+                                                {category.name}
+                                            </h3>
 
-                                        <p className="text-slate-300 text-sm line-clamp-2 mb-4 group-hover:text-white transition-colors">
-                                            {category.desc}
-                                        </p>
+                                            <p className="text-slate-300 text-sm line-clamp-2 mb-4 group-hover:text-white transition-colors">
+                                                {category.desc}
+                                            </p>
 
-                                        {/* Advanced: Hover reveals sub-products or CTA */}
-                                        <div className="h-0 group-hover:h-auto overflow-hidden opacity-0 group-hover:opacity-100 transition-all duration-300">
-                                            <div className="pt-2 border-t border-white/20 flex flex-wrap gap-2">
-                                                {category.subproducts?.slice(0, 3).map(sub => (
-                                                    <span key={sub} className="text-[10px] text-white bg-white/10 px-2 py-0.5 rounded-full border border-white/10">
-                                                        {sub}
-                                                    </span>
-                                                ))}
-                                                {category.subproducts?.length > 3 && <span className="text-[10px] text-white px-1">...</span>}
+                                            {/* Advanced: Hover reveals sub-products or CTA */}
+                                            <div className="h-0 group-hover:h-auto overflow-hidden opacity-0 group-hover:opacity-100 transition-all duration-300">
+                                                <div className="pt-2 border-t border-white/20 flex flex-wrap gap-2">
+                                                    {category.subproducts?.slice(0, 3).map(sub => (
+                                                        <span key={sub} className="text-[10px] text-white bg-white/10 px-2 py-0.5 rounded-full border border-white/10">
+                                                            {sub}
+                                                        </span>
+                                                    ))}
+                                                    {category.subproducts?.length > 3 && <span className="text-[10px] text-white px-1">...</span>}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </SpotlightCard>
+                                </SpotlightCard>
+                            </Link>
                         </motion.div>
                     ))}
                 </motion.div>

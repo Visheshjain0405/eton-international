@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Menu, X, Globe, Phone, Mail, ChevronDown } from "lucide-react";
 
 const Navbar = () => {
@@ -54,13 +55,13 @@ const Navbar = () => {
             {/* Main Navbar */}
             <header
                 className={`w-full z-50 transition-all duration-300 ${scrolled
-                        ? "fixed top-0 bg-white/95 backdrop-blur-sm shadow-soft py-3"
-                        : "relative bg-white py-5"
+                    ? "fixed top-0 bg-white/95 backdrop-blur-sm shadow-soft py-3"
+                    : "relative bg-white py-5"
                     }`}
             >
                 <div className="container mx-auto px-4 flex items-center justify-between">
                     {/* Logo */}
-                    <a href="/" className="flex items-center gap-2 group">
+                    <Link to="/" className="flex items-center gap-2 group">
                         <div className="bg-primary text-white p-2 rounded-md group-hover:bg-accent transition-colors duration-300">
                             {/* Placeholder Icon for Logo */}
                             <Globe size={24} />
@@ -68,31 +69,31 @@ const Navbar = () => {
                         <div className="font-heading font-bold text-2xl tracking-tight text-primary">
                             Eteon<span className="text-accent">.</span>International
                         </div>
-                    </a>
+                    </Link>
 
                     {/* Desktop Navigation */}
                     <nav className="hidden lg:flex items-center gap-8 font-body font-medium">
                         {navLinks.map((link) => (
-                            <a
+                            <Link
                                 key={link.name}
-                                href={link.href}
+                                to={link.href}
                                 className={`text-textSecondary hover:text-accent transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all after:duration-300 hover:after:w-full ${scrolled ? "text-sm" : "text-base"
                                     }`}
                             >
                                 {link.name}
-                            </a>
+                            </Link>
                         ))}
                     </nav>
 
                     {/* Call to Action Button */}
                     <div className="hidden lg:block">
-                        <a
-                            href="/quote"
+                        <Link
+                            to="/quote"
                             className="bg-accent text-white px-6 py-2.5 rounded-md font-medium hover:bg-opacity-90 transition-all shadow-lg hover:shadow-accent/30 flex items-center gap-2"
                         >
                             <span>Get a Quote</span>
                             <ChevronDown className="rotate-[-90deg]" size={16} />
-                        </a>
+                        </Link>
                     </div>
 
                     {/* Mobile Menu Toggle */}
@@ -112,23 +113,23 @@ const Navbar = () => {
                 >
                     <div className="container mx-auto px-4 py-6 flex flex-col gap-4">
                         {navLinks.map((link) => (
-                            <a
+                            <Link
                                 key={link.name}
-                                href={link.href}
+                                to={link.href}
                                 className="text-textPrimary font-medium text-lg py-2 border-b border-slate-100 hover:text-accent hover:pl-2 transition-all"
                                 onClick={() => setIsOpen(false)}
                             >
                                 {link.name}
-                            </a>
+                            </Link>
                         ))}
                         <div className="mt-4 flex flex-col gap-4">
-                            <a
-                                href="/quote"
+                            <Link
+                                to="/quote"
                                 className="bg-accent text-white text-center py-3 rounded-md font-medium hover:bg-opacity-90 transition-all"
                                 onClick={() => setIsOpen(false)}
                             >
                                 Get a Quote
-                            </a>
+                            </Link>
                             <div className="flex flex-col gap-3 text-textMuted text-sm pt-4 border-t border-slate-100">
                                 <a href="mailto:info@eteon-international.com" className="flex items-center gap-2">
                                     <Mail size={16} /> info@eteon-international.com

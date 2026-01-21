@@ -78,45 +78,58 @@ const ExportProcess = () => {
 
                     {/* Left Side: Navigation List */}
                     <div className="lg:col-span-5 flex flex-col gap-3">
-                        {steps.map((step, idx) => (
-                            <div
-                                key={step.id}
-                                onClick={() => setActiveStep(idx)}
-                                className={`group cursor-pointer p-4 rounded-xl border transition-all duration-300 items-center flex gap-4 ${activeStep === idx
-                                    ? "bg-white border-transparent shadow-xl z-10 scale-[1.02]"
-                                    : "bg-transparent border-transparent hover:bg-slate-50"
-                                    }`}
-                            >
-                                <div className={`w-12 h-12 rounded-lg flex items-center justify-center transition-colors duration-300 flex-shrink-0 ${activeStep === idx
-                                    ? "bg-accent text-white shadow-lg shadow-accent/20"
-                                    : "bg-white text-slate-400 border border-slate-100 group-hover:border-accent/30 group-hover:text-accent"
-                                    }`}>
-                                    <step.icon size={22} strokeWidth={2} />
-                                </div>
+                        {steps.map((step, idx) => {
+                            const isLeft = idx % 2 === 0;
+                            const variants = {
+                                hidden: { opacity: 0, x: isLeft ? -50 : 50 },
+                                visible: { opacity: 1, x: 0 }
+                            };
 
-                                <div className="flex-1 min-w-0">
-                                    <h3 className={`font-bold text-lg truncate transition-colors ${activeStep === idx ? "text-primary" : "text-slate-500 group-hover:text-primary"
+                            return (
+                                <motion.div
+                                    key={step.id}
+                                    onClick={() => setActiveStep(idx)}
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={{ once: false, amount: 0.4 }}
+                                    variants={variants}
+                                    transition={{ duration: 0.5, delay: idx * 0.1 }}
+                                    className={`group cursor-pointer p-4 rounded-xl border transition-all duration-300 items-center flex gap-4 ${activeStep === idx
+                                        ? "bg-white border-transparent shadow-xl z-10 scale-[1.02]"
+                                        : "bg-transparent border-transparent hover:bg-slate-50"
+                                        }`}
+                                >
+                                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center transition-colors duration-300 flex-shrink-0 ${activeStep === idx
+                                        ? "bg-accent text-white shadow-lg shadow-accent/20"
+                                        : "bg-white text-slate-400 border border-slate-100 group-hover:border-accent/30 group-hover:text-accent"
                                         }`}>
-                                        {step.title}
-                                    </h3>
-                                    {/* Active Phase Indicator */}
-                                    {activeStep === idx && (
-                                        <motion.p
-                                            initial={{ opacity: 0, height: 0 }}
-                                            animate={{ opacity: 1, height: "auto" }}
-                                            className="text-xs font-bold text-accent mt-1"
-                                        >
-                                            Step 0{step.id} — Active Phase
-                                        </motion.p>
-                                    )}
-                                </div>
+                                        <step.icon size={22} strokeWidth={2} />
+                                    </div>
 
-                                <div className="text-slate-300">
-                                    <ChevronRight size={20} className={`transition-transform duration-300 ${activeStep === idx ? "text-accent translate-x-1" : "group-hover:translate-x-1"
-                                        }`} />
-                                </div>
-                            </div>
-                        ))}
+                                    <div className="flex-1 min-w-0">
+                                        <h3 className={`font-bold text-lg truncate transition-colors ${activeStep === idx ? "text-primary" : "text-slate-500 group-hover:text-primary"
+                                            }`}>
+                                            {step.title}
+                                        </h3>
+                                        {/* Active Phase Indicator */}
+                                        {activeStep === idx && (
+                                            <motion.p
+                                                initial={{ opacity: 0, height: 0 }}
+                                                animate={{ opacity: 1, height: "auto" }}
+                                                className="text-xs font-bold text-accent mt-1"
+                                            >
+                                                Step 0{step.id} — Active Phase
+                                            </motion.p>
+                                        )}
+                                    </div>
+
+                                    <div className="text-slate-300">
+                                        <ChevronRight size={20} className={`transition-transform duration-300 ${activeStep === idx ? "text-accent translate-x-1" : "group-hover:translate-x-1"
+                                            }`} />
+                                    </div>
+                                </motion.div>
+                            );
+                        })}
                     </div>
 
                     {/* Right Side: Image Display Carousel */}
