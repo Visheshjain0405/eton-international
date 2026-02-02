@@ -1,14 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Search, Box, Grid } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { ArrowUpRight, Search, Box } from 'lucide-react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { products } from '../data/products';
+import { Helmet } from 'react-helmet-async';
 
-const categories = ["All", "Agriculture", "Food", "Medical"];
+const categories = ["All", "Packaging", "Agriculture", "Medical"];
 
 const Products = () => {
+    const [searchParams] = useSearchParams();
     const [activeCategory, setActiveCategory] = useState("All");
     const [searchQuery, setSearchQuery] = useState("");
+
+    useEffect(() => {
+        const categoryParam = searchParams.get('category');
+        if (categoryParam && categories.includes(categoryParam)) {
+            setActiveCategory(categoryParam);
+        }
+    }, [searchParams]);
 
     const filteredProducts = products.filter(product => {
         const matchesCategory = activeCategory === "All" || product.group === activeCategory;
@@ -18,6 +27,10 @@ const Products = () => {
 
     return (
         <div className="bg-slate-50 min-h-screen font-body text-slate-800">
+            <Helmet>
+                <title>Product Catalog | Eteon International Trade Divisions</title>
+                <meta name="description" content="Browse our premium catalog of PP Packaging, Agro Textiles, Medical Supplies, and Fertilizers. High-quality export products for global industries." />
+            </Helmet>
 
             {/* HERO WITH IMAGE BACKGROUND */}
             <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden bg-slate-900 border-b border-slate-100">
@@ -74,8 +87,8 @@ const Products = () => {
                                 key={cat}
                                 onClick={() => setActiveCategory(cat)}
                                 className={`text-sm font-bold uppercase tracking-wider whitespace-nowrap transition-colors relative py-2 ${activeCategory === cat
-                                        ? "text-primary"
-                                        : "text-slate-500 hover:text-primary"
+                                    ? "text-primary"
+                                    : "text-slate-500 hover:text-primary"
                                     }`}
                             >
                                 {cat}
@@ -96,67 +109,66 @@ const Products = () => {
 
                 <motion.div
                     layout
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6"
                 >
                     <AnimatePresence>
                         {filteredProducts.map((product) => (
                             <motion.div
                                 layout
                                 key={product.id}
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.95 }}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 20 }}
                                 transition={{ duration: 0.4 }}
-                                className="group relative bg-[#0f172a] rounded-[2rem] overflow-hidden hover:shadow-2xl hover:shadow-slate-900/20 hover:-translate-y-1 transition-all duration-500"
+                                className="group bg-white rounded-3xl overflow-hidden border border-slate-200/60 hover:border-accent/30 hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-500 flex flex-col h-full"
                             >
-                                {/* Background Gradient Pattern on Card */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-slate-800/50 to-transparent pointer-events-none"></div>
-
-                                {/* Image Area */}
-                                <div className="relative h-72 overflow-hidden">
+                                {/* Image Container */}
+                                <div className="relative h-48 overflow-hidden">
                                     <img
                                         src={product.image}
                                         alt={product.name}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100"
+                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     />
-                                    {/* Gradient to Card Body - Fades to Dark Slate */}
-                                    <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/80 to-transparent"></div>
-
-                                    {/* Floating Category Tag - Dark Theme Variant */}
-                                    <div className="absolute top-4 right-4 bg-black/60 backdrop-blur border border-white/10 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-emerald-400">
+                                    {/* Glass Category Badge */}
+                                    <div className="absolute top-3 left-3 bg-white/70 backdrop-blur-md border border-white/20 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-widest text-primary shadow-sm">
                                         {product.group}
                                     </div>
+
+                                    {/* Hover Overlay */}
+                                    <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                 </div>
 
-                                {/* Content Body - Dark Text */}
-                                <div className="p-8 pt-0 relative z-10">
-                                    <div className="flex justify-between items-start mb-4">
-                                        <h3 className="text-2xl font-heading font-bold text-white group-hover:text-emerald-400 transition-colors pr-4 leading-tight">
+                                {/* Content Body */}
+                                <div className="p-4 flex flex-col flex-grow">
+                                    <div className="mb-3">
+                                        <h3 className="text-lg font-heading font-bold text-primary mb-1 group-hover:text-accent transition-colors line-clamp-1">
                                             {product.name}
                                         </h3>
-                                        {/* Action Button - White on Dark */}
-                                        <Link
-                                            to={`/products/${product.slug}`}
-                                            className="w-12 h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-white hover:bg-emerald-500 hover:border-emerald-500 hover:rotate-45 transition-all shadow-lg shadow-black/20 shrink-0"
-                                        >
-                                            <ArrowUpRight size={22} strokeWidth={2} />
-                                        </Link>
+                                        <p className="text-textSecondary text-xs leading-relaxed line-clamp-2">
+                                            {product.desc}
+                                        </p>
                                     </div>
 
-                                    <p className="text-slate-400 text-sm leading-relaxed mb-8 line-clamp-2 border-l-2 border-slate-700 pl-4">
-                                        {product.desc}
-                                    </p>
+                                    {/* Features / Specs */}
+                                    <div className="mt-auto space-y-3">
+                                        <div className="flex flex-wrap gap-1.5">
+                                            <div className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-slate-50 text-[9px] font-bold text-slate-500 uppercase tracking-tighter border border-slate-100">
+                                                <Box size={10} className="text-accent" />
+                                                <span>Bulk</span>
+                                            </div>
+                                            <div className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-50 text-[9px] font-bold text-emerald-600 uppercase tracking-tighter border border-emerald-100">
+                                                <div className="w-1 h-1 rounded-full bg-emerald-500" />
+                                                <span>Stock</span>
+                                            </div>
+                                        </div>
 
-                                    {/* Quick Spec Tags - Dark Mode Style */}
-                                    <div className="flex gap-3 border-t border-white/5 pt-6">
-                                        <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-bold text-slate-300">
-                                            <Box size={14} className="text-emerald-500" />
-                                            <span>Bulk Available</span>
-                                        </div>
-                                        <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs font-bold text-slate-300">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
-                                            <span>In Stock</span>
-                                        </div>
+                                        <Link
+                                            to={`/products/${product.slug}`}
+                                            className="flex items-center justify-center gap-2 w-full py-2.5 bg-slate-50 hover:bg-primary hover:text-white text-primary rounded-lg font-bold text-xs transition-all duration-300 group/btn"
+                                        >
+                                            View Details
+                                            <ArrowUpRight size={14} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                                        </Link>
                                     </div>
                                 </div>
                             </motion.div>

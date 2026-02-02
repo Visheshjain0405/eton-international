@@ -188,7 +188,7 @@ const BusinessInquiry = () => {
                                         <div className="space-y-2">
                                             <label className="text-sm font-bold text-primary ml-1">I'm interested in</label>
                                             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                                                {["Organic Fertilizer", "Jaggery & Sweeteners", "Makhana (Fox Nuts)", "Indian Spices", "Premium Coffee", "Dried Fruits & Veg", "Surgical Disposables", "Custom Sourcing"].map((opt) => (
+                                                {["PP Bags", "Organic Fertilizer", "Cow Dung Fertilizer", "Surgical Items", "Disposable Items", "Custom Sourcing"].map((opt) => (
                                                     <button
                                                         key={opt}
                                                         type="button"

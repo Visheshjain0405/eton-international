@@ -10,7 +10,7 @@ const slides = [
         cta: "Discover More",
     },
     {
-        image: "https://images.unsplash.com/photo-1494412651409-ae1e3ccb652d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        image: "https://i.pinimg.com/1200x/f2/32/6a/f2326aad4c4f77beaef072a45fed18ce.jpg",
         tagline: "Reliable Transport",
         title: "Efficiency in Every Mile We Travel",
         subtitle: "Our precision-driven logistics network ensures your cargo reaches its destination safely and on time, every time.",

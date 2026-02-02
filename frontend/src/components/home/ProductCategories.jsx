@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
-import { ArrowRight, Leaf, Stethoscope, Coffee } from "lucide-react";
+import { ArrowRight, Leaf, Stethoscope, Package } from "lucide-react";
 import { Link } from "react-router-dom";
 import { products as categories } from "../../data/products";
 
@@ -95,121 +95,106 @@ const SpotlightCard = ({ children, className = "" }) => {
     );
 };
 
-const ProductCategories = () => {
-    const [filter, setFilter] = useState("All");
+// ... (TiltCard and SpotlightCard components remain unchanged)
 
-    const filteredCategories = filter === "All"
-        ? categories
-        : categories.filter(c => c.group === filter);
+const ProductCategories = () => {
+    // Static Categories Definition
+    const categories = [
+        {
+            id: 1,
+            title: "PP Bags & Packaging",
+            group: "Packaging",
+            image: "https://www.ppbag.co/assets/uploads/2023/11/productdetil/fibc_1699518900.webp",
+            desc: "Woven sacks, tarpaulins, and industrial fabrics.",
+            icon: Package,
+            link: "/products?category=Packaging"
+        },
+        {
+            id: 2,
+            title: "Agriculture & Fertilizers",
+            group: "Agriculture",
+            image: "https://i.pinimg.com/736x/32/9d/0f/329d0f77909c292e2a5d13a19c3d8384.jpg",
+            desc: "Organic vermicompost and sustainable manure.",
+            icon: Leaf,
+            link: "/products?category=Agriculture"
+        },
+        {
+            id: 3,
+            title: "Medical & Surgical",
+            group: "Medical",
+            image: "https://i.pinimg.com/1200x/bc/ee/32/bcee32d169283a94850f145ca53cdab5.jpg",
+            desc: "Sterile gloves, masks, and hospital disposables.",
+            icon: Stethoscope,
+            link: "/products?category=Medical"
+        }
+    ];
 
     return (
         <section className="py-section bg-surface">
             <div className="container mx-auto px-4">
-                {/* Header & Filters */}
+                {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
                     <div className="max-w-xl">
                         <div className="inline-block px-3 py-1 mb-4 border border-accent/20 bg-accent/5 rounded-full text-accent font-medium text-sm tracking-wide uppercase">
                             Our Offerings
                         </div>
                         <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary mb-4">
-                            Premium Products
+                            Product Categories
                         </h2>
-                        <div className="flex flex-wrap gap-2 mt-4">
-                            {["All", "Agriculture", "Food", "Medical"].map(tab => (
-                                <button
-                                    key={tab}
-                                    onClick={() => setFilter(tab)}
-                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${filter === tab
-                                        ? "bg-primary text-white shadow-lg"
-                                        : "bg-white text-textSecondary hover:bg-slate-100 border border-slate-200"
-                                        }`}
-                                >
-                                    {tab}
-                                </button>
-                            ))}
-                        </div>
+                        <p className="text-textSecondary text-lg">
+                            Explore our specialized divisions serving global industries.
+                        </p>
                     </div>
 
-                    <button className="hidden md:flex items-center gap-2 text-primary font-medium hover:text-accent transition-colors group">
+                    <Link to="/products" className="hidden md:flex items-center gap-2 text-primary font-medium hover:text-accent transition-colors group">
                         View Full Catalog <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                    </button>
+                    </Link>
                 </div>
 
                 {/* Grid */}
-                <motion.div
-                    layout
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[300px]"
-                >
-                    {filteredCategories.map((category) => (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {categories.map((category, index) => (
                         <motion.div
-                            layout
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.9 }}
-                            transition={{ duration: 0.3 }}
                             key={category.id}
-                            className={`rounded-2xl overflow-hidden relative group cursor-pointer
-                                ${category.size === 'large' && filter === 'All' ? 'lg:row-span-2 lg:col-span-2' : ''}
-                                ${category.size === 'wide' && filter === 'All' ? 'sm:col-span-2 lg:col-span-2' : ''}
-                            `}
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.2 }}
+                            transition={{
+                                duration: 0.8,
+                                delay: index * 0.1,
+                                ease: [0.21, 0.47, 0.32, 0.98]
+                            }}
+                            whileHover={{ y: -10 }}
+                            className="rounded-3xl overflow-hidden relative group cursor-pointer h-[450px]"
                         >
-                            <Link to={`/products/${category.slug}`}>
-                                <SpotlightCard className="h-full w-full rounded-2xl bg-white shadow-md border-transparent hover:shadow-xl transition-all">
-                                    {/* Image Info & Interaction */}
-                                    <div className="absolute inset-0">
-                                        <img
-                                            src={category.image}
-                                            alt={category.name}
-                                            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/40 to-transparent" />
+                            <Link to={category.link}>
+                                <div className="absolute inset-0">
+                                    <img
+                                        src={category.image}
+                                        alt={category.title}
+                                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                                </div>
+
+                                <div className="absolute inset-x-0 bottom-0 p-8">
+                                    <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white mb-4 border border-white/20">
+                                        <category.icon size={24} />
                                     </div>
-
-                                    {/* Content */}
-                                    <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                                        <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                            <div className="flex items-center justify-between mb-2">
-                                                <span className="text-accent text-xs font-bold uppercase tracking-wider bg-black/30 backdrop-blur-md px-2 py-1 rounded">
-                                                    {category.group}
-                                                </span>
-                                                {/* Sub-products pill list (Advanced Feature) */}
-                                                <div className="flex gap-1 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                                                    {/* Start showing arrow, on hover show sub-items? No, too crowded. 
-                                                        Let's show an icon relevant to group.
-                                                    */}
-                                                    {category.group === 'Medical' ? <Stethoscope className="text-white/60" size={16} /> :
-                                                        category.group === 'Food' ? <Coffee className="text-white/60" size={16} /> :
-                                                            <Leaf className="text-white/60" size={16} />
-                                                    }
-                                                </div>
-                                            </div>
-
-                                            <h3 className="font-heading text-2xl font-bold text-white mb-2 leading-tight">
-                                                {category.name}
-                                            </h3>
-
-                                            <p className="text-slate-300 text-sm line-clamp-2 mb-4 group-hover:text-white transition-colors">
-                                                {category.desc}
-                                            </p>
-
-                                            {/* Advanced: Hover reveals sub-products or CTA */}
-                                            <div className="h-0 group-hover:h-auto overflow-hidden opacity-0 group-hover:opacity-100 transition-all duration-300">
-                                                <div className="pt-2 border-t border-white/20 flex flex-wrap gap-2">
-                                                    {category.subproducts?.slice(0, 3).map(sub => (
-                                                        <span key={sub} className="text-[10px] text-white bg-white/10 px-2 py-0.5 rounded-full border border-white/10">
-                                                            {sub}
-                                                        </span>
-                                                    ))}
-                                                    {category.subproducts?.length > 3 && <span className="text-[10px] text-white px-1">...</span>}
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <h3 className="text-3xl font-heading font-bold text-white mb-3 leading-tight">
+                                        {category.title}
+                                    </h3>
+                                    <p className="text-slate-300 mb-6 line-clamp-2">
+                                        {category.desc}
+                                    </p>
+                                    <div className="flex items-center gap-2 text-white font-bold text-sm uppercase tracking-wider group-hover:text-emerald-400 transition-colors">
+                                        Explore Products <ArrowRight size={16} />
                                     </div>
-                                </SpotlightCard>
+                                </div>
                             </Link>
                         </motion.div>
                     ))}
-                </motion.div>
+                </div>
             </div>
         </section>
     );

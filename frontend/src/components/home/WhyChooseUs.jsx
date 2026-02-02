@@ -68,32 +68,12 @@ const WhyChooseUs = () => {
                     >
                         <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white">
                             <img
-                                src="https://i.pinimg.com/1200x/0f/fe/8d/0ffe8d84cf2c6e96efb524a4ecdf54d6.jpg"
+                                src="https://i.pinimg.com/736x/ee/06/99/ee0699cd44ee2628b13522f083eb00d6.jpg"
                                 alt="Global Logistics Ship"
                                 className="w-full aspect-[4/5] object-cover hover:scale-105 transition-transform duration-700 ease-out"
                             />
-
                             {/* Overlay Gradient at bottom for text readability if needed */}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60"></div>
-
-                            {/* Integrated Stats Content at Bottom of Image */}
-                            <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                                <div className="flex items-center gap-4 mb-2">
-                                    <div className="p-3 bg-accent text-white rounded-xl shadow-lg shadow-accent/20">
-                                        <TrendingUp size={24} />
-                                    </div>
-                                    <div>
-                                        <p className="text-3xl font-bold">98%</p>
-                                        <p className="text-white/80 text-sm font-medium">Client Retention Rate</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Experience Badge - Clean & Professional */}
-                        <div className="absolute -top-6 -right-6 bg-white p-6 rounded-2xl shadow-xl border border-slate-100 flex flex-col items-center text-center w-32 h-32 justify-center z-20">
-                            <span className="text-4xl font-bold text-primary block">25+</span>
-                            <span className="text-xs font-bold text-textSecondary uppercase tracking-wider mt-1">Years Exp.</span>
                         </div>
 
                         {/* Decorative Dot Pattern */}

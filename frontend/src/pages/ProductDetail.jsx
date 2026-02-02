@@ -3,8 +3,10 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, CheckCircle2, Download, Package, Truck, ShieldCheck, Mail, AlertCircle } from 'lucide-react';
 import { getProductBySlug } from '../data/products';
+import { useQuote } from '../context/QuoteContext';
 
 const ProductDetail = () => {
+    const { openQuoteModal } = useQuote();
     const { id } = useParams(); // Note: id param will hold the slug because of router config rename later
     const [activeTab, setActiveTab] = useState("specs");
     const [product, setProduct] = useState(null);
@@ -89,6 +91,12 @@ const ProductDetail = () => {
                                 >
                                     Logistics
                                 </button>
+                                <button
+                                    onClick={() => setActiveTab("varieties")}
+                                    className={`pb-3 px-6 text-sm font-bold uppercase tracking-wider border-b-2 transition-all ${activeTab === "varieties" ? "border-accent text-accent" : "border-transparent text-slate-400 hover:text-primary"}`}
+                                >
+                                    Varieties
+                                </button>
                             </div>
 
                             <motion.div
@@ -143,6 +151,30 @@ const ProductDetail = () => {
                                         </div>
                                     </div>
                                 )}
+
+                                {activeTab === "varieties" && (
+                                    <div className="space-y-6">
+                                        <div>
+                                            <h4 className="flex items-center gap-2 font-bold text-primary mb-3">
+                                                <CheckCircle2 className="text-accent" size={18} /> Available Varieties
+                                            </h4>
+                                            {product.subproducts && product.subproducts.length > 0 ? (
+                                                <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                                    {product.subproducts.map((sub, idx) => (
+                                                        <li key={idx} className="flex items-center gap-3 p-3 rounded-lg bg-slate-50 border border-slate-100">
+                                                            <span className="w-2 h-2 rounded-full bg-accent shrink-0"></span>
+                                                            <span className="text-sm font-medium text-slate-700">{sub}</span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            ) : (
+                                                <div className="text-slate-400 text-sm italic">
+                                                    No specific varieties listed for this product. Please contact us for custom requirements.
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
                             </motion.div>
                         </div>
 
@@ -152,9 +184,12 @@ const ProductDetail = () => {
                                 <div className="font-bold text-primary">Interested in this product?</div>
                                 <div className="text-sm text-slate-500">Get a custom quote within 24 hours.</div>
                             </div>
-                            <Link to="/contact" className="bg-primary text-white px-6 py-3 rounded-full font-bold text-sm shadow-md hover:bg-primary/90 transition-all flex items-center gap-2">
+                            <button
+                                onClick={openQuoteModal}
+                                className="bg-primary text-white px-6 py-3 rounded-full font-bold text-sm shadow-md hover:bg-primary/90 transition-all flex items-center gap-2"
+                            >
                                 <Mail size={16} /> Request Quote
-                            </Link>
+                            </button>
                         </div>
 
                     </div>

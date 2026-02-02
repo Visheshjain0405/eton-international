@@ -113,23 +113,7 @@ const GlobalReach = () => {
                     ))}
                 </div>
 
-                {/* Stats Grid */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
-                    {[
-                        { icon: Globe2, label: "Countries Served", value: "25+" },
-                        { icon: Users, label: "Active Clients", value: "150+" },
-                        { icon: TrendingUp, label: "Annual Exports", value: "500T+" },
-                        { icon: MapPin, label: "Logistics Hubs", value: "12" },
-                    ].map((stat, idx) => (
-                        <div key={idx} className="flex flex-col items-center text-center p-6 bg-surface rounded-2xl hover:-translate-y-1 transition-transform border border-transparent hover:border-slate-200">
-                            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-accent shadow-sm mb-3">
-                                <stat.icon size={24} />
-                            </div>
-                            <span className="text-3xl font-bold text-primary mb-1">{stat.value}</span>
-                            <span className="text-sm text-textSecondary">{stat.label}</span>
-                        </div>
-                    ))}
-                </div>
+                {/* Stats Grid Removed per user request */}
 
             </div>
         </section>

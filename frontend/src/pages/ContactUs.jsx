@@ -1,10 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Send, Globe, MessageSquare } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const ContactUs = () => {
     return (
         <div className="w-full overflow-hidden bg-slate-50 font-body">
+            <Helmet>
+                <title>Contact Us | Eteon International Global Support</title>
+                <meta name="description" content="Get in touch with Eteon International for global trade inquiries, custom export quotes, or partnership opportunities. Our team is ready to assist you." />
+            </Helmet>
 
             {/* HERO SECTION */}
             <section className="relative py-20 lg:py-28 bg-white overflow-hidden">

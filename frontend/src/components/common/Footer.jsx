@@ -40,7 +40,7 @@ const Footer = () => {
                                 { name: "Home", path: "/" },
                                 { name: "About Us", path: "/about" },
                                 { name: "Our Process", path: "/process" },
-                                { name: "Capabilities", path: "/capabilities" },
+                                { name: "Global Reach", path: "/global-reach" },
                                 { name: "Contact", path: "/contact" }
                             ].map((link) => (
                                 <li key={link.name}>
@@ -57,12 +57,12 @@ const Footer = () => {
                     <div>
                         <h3 className="font-bold text-lg mb-6 text-white border-b border-white/10 pb-2 inline-block">Our Products</h3>
                         <ul className="space-y-4">
-                            {["Organic Fertilizer", "Jaggery & Sweeteners", "Makhana (Fox Nuts)", "Indian Spices", "Premium Coffee", "Dried Fruits & Veg", "Surgical Disposables"].map((item) => (
+                            {["PP Woven Sacks", "FIBC / Jumbo Bags", "Tarpaulins", "Shade Nets", "Vermicompost", "Surgical Items"].map((item) => (
                                 <li key={item}>
-                                    <a href="#" className="text-slate-400 hover:text-accent transition-colors flex items-center gap-2 group">
+                                    <Link to="/products" className="text-slate-400 hover:text-accent transition-colors flex items-center gap-2 group">
                                         <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity text-accent" />
                                         {item}
-                                    </a>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
@@ -78,7 +78,7 @@ const Footer = () => {
                                 </div>
                                 <div>
                                     <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Head Office</p>
-                                    <p className="text-slate-300 text-sm">123 Export Zone, GIDC,<br />Gujarat, India - 380001</p>
+                                    <p className="text-slate-300 text-sm">International Trade Tower,<br />New Delhi, India</p>
                                 </div>
                             </li>
                             <li className="flex items-start gap-4 group">
@@ -87,7 +87,7 @@ const Footer = () => {
                                 </div>
                                 <div>
                                     <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Phone</p>
-                                    <p className="text-slate-300 text-sm font-semibold">+91 98765 43210</p>
+                                    <p className="text-slate-300 text-sm font-semibold">+91 98765 00000</p>
                                 </div>
                             </li>
                             <li className="flex items-start gap-4 group">
@@ -96,7 +96,7 @@ const Footer = () => {
                                 </div>
                                 <div>
                                     <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Email</p>
-                                    <p className="text-slate-300 text-sm font-semibold">export@eteon.com</p>
+                                    <p className="text-slate-300 text-sm font-semibold">info@eteon-international.com</p>
                                 </div>
                             </li>
                         </ul>
@@ -110,9 +110,9 @@ const Footer = () => {
                         © {new Date().getFullYear()} Eteon International. All rights reserved.
                     </p>
                     <div className="flex gap-6 text-sm text-slate-500">
-                        <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-                        <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-                        <a href="#" className="hover:text-white transition-colors">Sitemap</a>
+                        <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+                        <Link to="/terms-conditions" className="hover:text-white transition-colors">Terms of Service</Link>
+                        <Link to="/cookies-policy" className="hover:text-white transition-colors">Cookies Policy</Link>
                     </div>
                 </div>
             </div>

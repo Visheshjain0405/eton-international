@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, Globe, Phone, Mail, ChevronDown } from "lucide-react";
+import { useQuote } from "../../context/QuoteContext";
 
 const Navbar = () => {
+    const { openQuoteModal } = useQuote();
     const [isOpen, setIsOpen] = useState(false);
+    const [showProductsDropdown, setShowProductsDropdown] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+
+    const categories = [
+        { name: "Packaging", slug: "Packaging" },
+        { name: "Agriculture", slug: "Agriculture" },
+        { name: "Medical", slug: "Medical" },
+    ];
 
     // Handle scroll effect
     useEffect(() => {
@@ -22,7 +31,6 @@ const Navbar = () => {
     const navLinks = [
         { name: "Home", href: "/" },
         { name: "About Us", href: "/about" },
-        { name: "Products", href: "/products" },
         { name: "Global Reach", href: "/global-reach" },
         { name: "Process", href: "/process" },
         { name: "Contact", href: "/contact" },
@@ -73,7 +81,61 @@ const Navbar = () => {
 
                     {/* Desktop Navigation */}
                     <nav className="hidden lg:flex items-center gap-8 font-body font-medium">
-                        {navLinks.map((link) => (
+                        <Link
+                            to="/"
+                            className={`text-textSecondary hover:text-accent transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all after:duration-300 hover:after:w-full ${scrolled ? "text-sm" : "text-base"}`}
+                        >
+                            Home
+                        </Link>
+                        <Link
+                            to="/about"
+                            className={`text-textSecondary hover:text-accent transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all after:duration-300 hover:after:w-full ${scrolled ? "text-sm" : "text-base"}`}
+                        >
+                            About Us
+                        </Link>
+
+                        {/* Products Dropdown */}
+                        <div
+                            className="relative"
+                            onMouseEnter={() => setShowProductsDropdown(true)}
+                            onMouseLeave={() => setShowProductsDropdown(false)}
+                        >
+                            <button
+                                className={`flex items-center gap-1 text-textSecondary hover:text-accent transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all after:duration-300 hover:after:w-full ${scrolled ? "text-sm" : "text-base"}`}
+                            >
+                                Products <ChevronDown size={14} className={`transition-transform duration-300 ${showProductsDropdown ? "rotate-180" : ""}`} />
+                            </button>
+
+                            {/* Dropdown Menu - Added a wrapper with pt-4 to bridge the hover gap */}
+                            <div
+                                className={`absolute left-0 top-full pt-4 w-56 transition-all duration-300 z-50 ${showProductsDropdown ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-2 pointer-events-none"}`}
+                            >
+                                <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-slate-100 p-2 flex flex-col">
+                                    <Link
+                                        to="/products"
+                                        className="px-4 py-2.5 text-sm text-textSecondary hover:bg-slate-50 hover:text-accent rounded-lg transition-colors font-semibold border-b border-slate-50 mb-1"
+                                        onClick={() => setShowProductsDropdown(false)}
+                                    >
+                                        All Products
+                                    </Link>
+                                    <div className="px-4 py-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                                        Categories
+                                    </div>
+                                    {categories.map((cat) => (
+                                        <Link
+                                            key={cat.slug}
+                                            to={`/products?category=${cat.slug}`}
+                                            className="px-4 py-2 text-sm text-textSecondary hover:bg-slate-50 hover:text-accent rounded-lg transition-colors"
+                                            onClick={() => setShowProductsDropdown(false)}
+                                        >
+                                            {cat.name}
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        {navLinks.slice(2).map((link) => (
                             <Link
                                 key={link.name}
                                 to={link.href}
@@ -87,13 +149,13 @@ const Navbar = () => {
 
                     {/* Call to Action Button */}
                     <div className="hidden lg:block">
-                        <Link
-                            to="/quote"
+                        <button
+                            onClick={openQuoteModal}
                             className="bg-accent text-white px-6 py-2.5 rounded-md font-medium hover:bg-opacity-90 transition-all shadow-lg hover:shadow-accent/30 flex items-center gap-2"
                         >
                             <span>Get a Quote</span>
                             <ChevronDown className="rotate-[-90deg]" size={16} />
-                        </Link>
+                        </button>
                     </div>
 
                     {/* Mobile Menu Toggle */}
@@ -108,28 +170,75 @@ const Navbar = () => {
 
                 {/* Mobile Menu Dropdown */}
                 <div
-                    className={`lg:hidden absolute top-full left-0 w-full bg-white shadow-lg overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                    className={`lg:hidden absolute top-full left-0 w-full bg-white shadow-lg overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"
                         }`}
                 >
-                    <div className="container mx-auto px-4 py-6 flex flex-col gap-4">
-                        {navLinks.map((link) => (
+                    <div className="container mx-auto px-4 py-6 flex flex-col gap-2">
+                        <Link
+                            to="/"
+                            className="text-textPrimary font-medium text-lg py-2 hover:text-accent transition-all"
+                            onClick={() => setIsOpen(false)}
+                        >
+                            Home
+                        </Link>
+                        <Link
+                            to="/about"
+                            className="text-textPrimary font-medium text-lg py-2 hover:text-accent transition-all"
+                            onClick={() => setIsOpen(false)}
+                        >
+                            About Us
+                        </Link>
+
+                        {/* Mobile Products Section */}
+                        <div className="py-2">
+                            <button
+                                className="flex items-center justify-between w-full text-textPrimary font-medium text-lg py-2 text-left"
+                                onClick={() => setShowProductsDropdown(!showProductsDropdown)}
+                            >
+                                <span>Products</span>
+                                <ChevronDown size={20} className={`transition-transform ${showProductsDropdown ? "rotate-180" : ""}`} />
+                            </button>
+                            <div className={`pl-4 flex flex-col gap-2 overflow-hidden transition-all duration-300 ${showProductsDropdown ? "max-h-60 mt-2 opacity-100" : "max-h-0 opacity-0"}`}>
+                                <Link
+                                    to="/products"
+                                    className="text-textSecondary font-medium py-1.5 hover:text-accent text-base"
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    All Products
+                                </Link>
+                                {categories.map((cat) => (
+                                    <Link
+                                        key={cat.slug}
+                                        to={`/products?category=${cat.slug}`}
+                                        className="text-textSecondary py-1.5 hover:text-accent text-base"
+                                        onClick={() => setIsOpen(false)}
+                                    >
+                                        {cat.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+
+                        {navLinks.slice(2).map((link) => (
                             <Link
                                 key={link.name}
                                 to={link.href}
-                                className="text-textPrimary font-medium text-lg py-2 border-b border-slate-100 hover:text-accent hover:pl-2 transition-all"
+                                className="text-textPrimary font-medium text-lg py-2 hover:text-accent transition-all"
                                 onClick={() => setIsOpen(false)}
                             >
                                 {link.name}
                             </Link>
                         ))}
                         <div className="mt-4 flex flex-col gap-4">
-                            <Link
-                                to="/quote"
+                            <button
+                                onClick={() => {
+                                    setIsOpen(false);
+                                    openQuoteModal();
+                                }}
                                 className="bg-accent text-white text-center py-3 rounded-md font-medium hover:bg-opacity-90 transition-all"
-                                onClick={() => setIsOpen(false)}
                             >
                                 Get a Quote
-                            </Link>
+                            </button>
                             <div className="flex flex-col gap-3 text-textMuted text-sm pt-4 border-t border-slate-100">
                                 <a href="mailto:info@eteon-international.com" className="flex items-center gap-2">
                                     <Mail size={16} /> info@eteon-international.com

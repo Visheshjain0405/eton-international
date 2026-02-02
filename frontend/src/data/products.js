@@ -1,134 +1,406 @@
 export const products = [
+    // --- PACKAGING (PP PRODUCTS & AGRO TEXTILES) ---
     {
-        id: 1,
-        slug: "organic-fertilizer",
-        name: "Organic Fertilizer",
+        id: 101,
+        slug: "pp-woven-sacks",
+        name: "PP/HDPE Woven Sacks",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://www.ppbag.co/assets/uploads/2023/11/productdetil/pp-hdpe-woven-sack-bag_1699519557.webp",
+        desc: "Standard industrial packaging",
+        description: "High-strength Polypropylene (PP) and High-Density Polyethylene (HDPE) woven sacks, ideal for packaging grain, sugar, flour, and industrial chemicals. Available in laminated and unlaminated options.",
+        specs: [{ label: "Material", value: "PP/HDPE" }, { label: "Capacity", value: "5kg - 50kg" }, { label: "Print", value: "Flexo/Offset" }],
+        packaging: ["Bales", "Pallets"]
+    },
+    {
+        id: 102,
+        slug: "woven-fabric-rolls",
+        name: "Woven Fabric Rolls",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://www.ppbag.co/assets/uploads/2023/11/productdetil/pp-hdpe-woven-fabric-rolls_1699519198.webp",
+        desc: "Unconverted woven fabric",
+        description: "Continuous rolls of woven PP/HDPE fabric used for manufacturing bags, tarpaulins, and other textile applications. Available in various widths and GSM.",
+        specs: [{ label: "Width", value: "Custom" }, { label: "GSM", value: "40 - 200+" }, { label: "Color", value: "Any" }],
+        packaging: ["Rolls"]
+    },
+    {
+        id: 103,
+        slug: "bopp-laminated-bags",
+        name: "BOPP Laminated Bags",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://www.ppbag.co/assets/uploads/2023/11/productdetil/bopp-sack-bag_1700718325.webp",
+        desc: "High-quality printed bags",
+        description: "Biaxially Oriented Polypropylene (BOPP) laminated bags offer superior photographic printing quality, making them perfect for retail consumer brands like rice, flour, and pet food.",
+        specs: [{ label: "Layers", value: "PP Woven + BOPP Film" }, { label: "Finish", value: "Gloss/Matte" }, { label: "Print", value: "Rotogravure" }],
+        packaging: ["Bales"]
+    },
+    {
+        id: 104,
+        slug: "block-bottom-bags",
+        name: "Block Bottom Bags",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://www.ppbag.co/assets/uploads/2023/11/productdetil/block-bottom-valve-bag_1699519063.webp",
+        desc: "Leak-proof valve bags",
+        description: "AD Star type block bottom bags designed for automated filling. No stitching implies almost zero leakage, ideal for cement and fine powders.",
+        specs: [{ label: "Valve", value: "Self-closing" }, { label: "Shape", value: "Brick/Box" }, { label: "Usage", value: "Cement/Putty" }],
+        packaging: ["Pallets"]
+    },
+    {
+        id: 105,
+        slug: "pp-shopping-bags",
+        name: "PP Woven Shopping Bags",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://www.ppbag.co/assets/uploads/2025/05/productdetil/pp-woven-shopping-bag_1747393520.webp",
+        desc: "Reusable retail bags",
+        description: "Eco-friendly, reusable shopping bags made from durable PP woven fabric. Customizable with high-quality branding for supermarkets and retail stores.",
+        specs: [{ label: "Handle", value: "Webbing/Loop" }, { label: "Capacity", value: "10-20kg" }, { label: "Feature", value: "Reusable" }],
+        packaging: ["Cartons"]
+    },
+    {
+        id: 106,
+        slug: "tarpaulins",
+        name: "Tarpaulins",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://www.ppbag.co/assets/uploads/2023/11/productdetil/tarpulin_1699519147.webp",
+        desc: "Waterproof protective sheets",
+        description: "Heavy-duty waterproof tarpaulins for protecting goods, vehicles, and construction sites from rain and sun. Reinforced with grommets.",
+        specs: [{ label: "Waterproof", value: "100%" }, { label: "GSM", value: "70 - 300+" }, { label: "UV Treated", value: "Yes" }],
+        packaging: ["Bales"]
+    },
+    {
+        id: 107,
+        slug: "fibc-jumbo-bags",
+        name: "FIBC (Jumbo Bags)",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://www.ppbag.co/assets/uploads/2023/11/productdetil/fibc_1699518900.webp",
+        desc: "Bulk cargo containers",
+        description: "Flexible Intermediate Bulk Containers (FIBC) for transporting 500kg to 2000kg of material like sand, chemicals, and minerals. Available in various loops and spout configurations.",
+        specs: [{ label: "SWL", value: "500-2000kg" }, { label: "SF", value: "5:1 / 6:1" }, { label: "Type", value: "U-Panel/Circular" }],
+        packaging: ["Pallets"]
+    },
+    {
+        id: 108,
+        slug: "sling-bags",
+        name: "Sling Bags",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://www.ppbag.co/assets/uploads/2023/11/productdetil/sling-bag_1699519253.webp",
+        desc: "Unitized handling sacks",
+        description: "Large open bags with lifting loops designed to hold multiple smaller sacks (e.g., 50kg cement bags) for efficient port handling and loading.",
+        specs: [{ label: "Capacity", value: "1-2 Tons" }, { label: "Base", value: "Flat/reinforced" }],
+        packaging: ["Bales"]
+    },
+    {
+        id: 109,
+        slug: "silt-fence",
+        name: "Silt Fence",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://www.ppbag.co/assets/uploads/2023/11/productdetil/silt-fence_1699519269.webp",
+        desc: "Sediment control",
+        description: "A temporary barrier used on construction sites to prevent sediment from leaving the site. Made from porous woven fabric.",
+        specs: [{ label: "UV Stability", value: "500+ Hours" }, { label: "Flow Rate", value: "Standard" }],
+        packaging: ["Rolls"]
+    },
+    {
+        id: 110,
+        slug: "shade-nets",
+        name: "Shade Nets",
+        group: "Packaging", // Or Agriculture, keeping in Packaging per user group based on structure
+        category: "Packaging",
+        image: "https://kirtiexports.in/wp-content/uploads/2025/05/SHADE-NET.webp",
+        desc: "Agricultural sun protection",
+        description: "Knitted HDPE nets providing partial shade (30%-90%) to crops, nurseries, and greenhouses. Protects against excessive heat and wind.",
+        specs: [{ label: "Shade Factor", value: "30% - 90%" }, { label: "Color", value: "Green/Black" }],
+        packaging: ["Rolls"]
+    },
+    {
+        id: 111,
+        slug: "lumber-wrap",
+        name: "Lumber Wrap",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://www.ppbag.co/assets/uploads/2023/11/productdetil/lumber-wrap_1699519291.webp",
+        desc: "Timber protection",
+        description: "Heavy-duty coated woven fabric designed to protect lumber and wood products during transit and storage.",
+        specs: [{ label: "Coating", value: "Anti-slip" }, { label: "Print", value: "Custom Logo" }],
+        packaging: ["Rolls"]
+    },
+    {
+        id: 112,
+        slug: "ground-cover",
+        name: "Ground Cover / Weed Mat",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://kirtiexports.in/wp-content/uploads/2025/05/hero-image-1-1.jpg",
+        desc: "Weed control fabric",
+        description: "Permeable woven fabric placed on soil to suppress weed growth while allowing water and nutrients to pass through. Essential for nurseries and landscaping.",
+        specs: [{ label: "UV Treated", value: "Yes" }, { label: "Permeability", value: "High" }],
+        packaging: ["Rolls"]
+    },
+    {
+        id: 113,
+        slug: "geo-textiles",
+        name: "Geo Textiles",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://www.ppbag.co/assets/uploads/2023/11/productdetil/geo-textiles_1699519307.webp",
+        desc: "Civil engineering fabric",
+        description: "Permeable fabrics used to separate, filter, reinforce, protect, or drain. Used in road construction, drainage systems, and erosion control.",
+        specs: [{ label: "Type", value: "Woven/Non-woven" }, { label: "Strength", value: "High Tensile" }],
+        packaging: ["Rolls"]
+    },
+    {
+        id: 114,
+        slug: "dunnage-bags",
+        name: "Dunnage Bags",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://www.ppbag.co/assets/uploads/2023/11/productdetil/dunnage-bag_1699519103.webp",
+        desc: "Cargo stabilization",
+        description: "Inflatable bags used to fill voids, brace loads, and absorb impact in shipping containers and trucks.",
+        specs: [{ label: "Material", value: "Paper/PP" }, { label: "Valve", value: "Fast fill" }],
+        packaging: ["Cartons"]
+    },
+    {
+        id: 115,
+        slug: "leno-bags",
+        name: "Leno / Mesh Bags",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://www.ppbag.co/assets/uploads/2024/01/productdetil/leno-bag_1705491191.webp",
+        desc: "Breathable produce bags",
+        description: "Open-weave mesh bags providing excellent ventilation. Perfect for packaging onions, potatoes, garlic, and citrus fruits.",
+        specs: [{ label: "Visibility", value: "High" }, { label: "Airflow", value: "Maximum" }],
+        packaging: ["Bales"]
+    },
+    // Adding remaining Industrial/Agro items from list
+    {
+        id: 116,
+        slug: "hdpe-woven-pipes",
+        name: "HDPE Woven Pipes",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://kirtiexports.in/wp-content/uploads/2025/05/hero-image-1.jpg",
+        desc: "Flexible irrigation",
+        description: "Flexible woven pipes used for irrigation and water delivery in agricultural fields. Easy to install and relocate.",
+        specs: [{ label: "Diameter", value: "Various" }, { label: "Pressure", value: "Low/Medium" }],
+        packaging: ["Rolls"]
+    },
+    {
+        id: 117,
+        slug: "grow-bags",
+        name: "HDPE Grow Bags",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://kirtiexports.in/wp-content/uploads/2025/05/HERO-IMAGE-2-2.jpg",
+        desc: "Portable planting",
+        description: "Durable HDPE woven bags for growing plants, herbs, and small trees. UV stabilized for long outdoor life.",
+        specs: [{ label: "Life", value: "3-5 Years" }, { label: "Drainage", value: "Yes" }],
+        packaging: ["Bales"]
+    },
+    {
+        id: 118,
+        slug: "mulch-films",
+        name: "Mulch Films",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://kirtiexports.in/wp-content/uploads/2025/05/Hole-Silver-Black-Mulch-Plastic-Mulch-Film-Agriculture.webp",
+        desc: "Soil protection film",
+        description: "Agricultural plastic film used to modify soil temperature, limit weed growth, and prevent moisture loss.",
+        specs: [{ label: "Thickness", value: "15-100 Microns" }, { label: "Color", value: "Silver/Black" }],
+        packaging: ["Rolls"]
+    },
+    {
+        id: 119,
+        slug: "vermicompost-beds",
+        name: "Vermicompost Bed",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://kirtiexports.in/wp-content/uploads/2025/05/HERO-IMAGE-2-6.jpg",
+        desc: "Organic composter",
+        description: "Portable HDPE woven beds designed for vermicomposting. Durable, easy to install, and provides aeration for worms.",
+        specs: [{ label: "Material", value: "HDPE Woven" }, { label: "UV", value: "Stabilized" }],
+        packaging: ["Bales"]
+    },
+    {
+        id: 120,
+        slug: "tarpaulin-fabric",
+        name: "Tarpaulin Fabric",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://www.ppbag.co/assets/uploads/2023/11/productdetil/tarpaulin-fabric_1699519240.webp",
+        desc: "High-grade waterproof fabric",
+        description: "Heavy-duty HDPE/PP woven fabric laminated for water resistance. Ideal for manufacturing tarpaulins, covers, and tents.",
+        specs: [{ label: "Width", value: "Up to 12ft" }, { label: "GSM", value: "100-400" }, { label: "UV", value: "Treated" }],
+        packaging: ["Rolls"]
+    },
+    {
+        id: 121,
+        slug: "pp-woven-sheet",
+        name: "PP/HDPE Woven Sheet",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://www.ppbag.co/assets/uploads/2023/11/productdetil/pp-hdpe-woven-sheet_1699519012.webp",
+        desc: "Multipurpose woven sheets",
+        description: "Flat woven sheets made from high-strength PP/HDPE tapes. Used for wrapping, covering, and varied industrial applications.",
+        specs: [{ label: "Strength", value: "High Tensile" }, { label: "Color", value: "Custom" }],
+        packaging: ["Bales/Rolls"]
+    },
+    {
+        id: 122,
+        slug: "anti-insect-nets",
+        name: "Anti Insect Nets",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://kirtiexports.in/wp-content/uploads/2026/01/IMG_7554.jpg",
+        desc: "Crop protection mesh",
+        description: "Fine mesh nets designed to protect crops from insect pests while allowing air and sunlight to pass through. UV stabilized for durability.",
+        specs: [{ label: "Mesh Size", value: "40/50 Mesh" }, { label: "Material", value: "HDPE Monofilament" }],
+        packaging: ["Rolls"]
+    },
+    {
+        id: 123,
+        slug: "woven-shade-nets",
+        name: "Woven Shade Nets",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://kirtiexports.in/wp-content/uploads/2026/01/1.jpg",
+        desc: "Durable woven shading",
+        description: "Heavy-duty woven shade fabric offering superior strength and longevity. Ideal for car parks, construction sites, and agricultural shading.",
+        specs: [{ label: "Weave", value: "Flat/Tape" }, { label: "Shading", value: "50% - 95%" }],
+        packaging: ["Rolls"]
+    },
+    {
+        id: 124,
+        slug: "anti-thrip-nets",
+        name: "Anti Thrip Nets",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://kirtiexports.in/wp-content/uploads/2026/01/1-1.jpg",
+        desc: "Micro-mesh protection",
+        description: "Specialized ultra-fine netting designed specifically to block thrips and other tiny pests in greenhouses and polyhouses.",
+        specs: [{ label: "Protection", value: "High" }, { label: "Light Trans", value: "Optimized" }],
+        packaging: ["Rolls"]
+    },
+    {
+        id: 125,
+        slug: "silage-films",
+        name: "Silage Films",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://kirtiexports.in/wp-content/uploads/2025/05/HERO-IMAGE-1-4.jpg",
+        desc: "Fodder preservation",
+        description: "High-quality stretch film for wrapping silage bales. Ensures airtight sealing to preserve nutritional value of animal feed.",
+        specs: [{ label: "Stretch", value: "High" }, { label: "UV Stable", value: "12 Months" }],
+        packaging: ["Rolls/Box"]
+    },
+    {
+        id: 126,
+        slug: "silage-bags",
+        name: "Silage Bags",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://kirtiexports.in/wp-content/uploads/2025/05/HERO-IMAGE-1d.png",
+        desc: "Grain & Fodder Storage",
+        description: "Large tube bags for storing silage, grains, and compost. Provides anaerobic environment for superior feed preservation.",
+        specs: [{ label: "Diameter", value: "8ft - 12ft" }, { label: "Thickness", value: "Heavy Duty" }],
+        packaging: ["Box/Pallet"]
+    },
+    {
+        id: 127,
+        slug: "ldpe-nursery-bags",
+        name: "LDPE Nursery Bag",
+        group: "Packaging",
+        category: "Packaging",
+        image: "https://kirtiexports.in/wp-content/uploads/2025/05/HERO-IMAGE-2-3.jpg",
+        desc: "Plant propagation bags",
+        description: "Black LDPE poly bags with drainage holes, widely used for growing saplings and nursery plants. Economical and effective.",
+        specs: [{ label: "Material", value: "LDPE" }, { label: "Thickness", value: "Custom" }],
+        packaging: ["Bales"]
+    },
+
+    // --- AGRICULTURE (FERTILIZERS) ---
+    {
+        id: 201,
+        slug: "vermicompost",
+        name: "Vermicompost",
         group: "Agriculture",
-        category: "Agriculture", // maintaining compatibility with 'category' field usage
-        image: "https://i.pinimg.com/736x/85/90/e5/8590e5426aa0b17624e0dc8727cc3838.jpg",
-        desc: "Sustainable growth solutions",
-        description: "High-quality organic fertilizer designed to enhance soil health and crop yield. Produced from natural sources, it ensures sustainable farming practices without harmful chemicals.",
-        subproducts: ["Vermi Compost", "Bio Potash", "Neem Cake"],
-        size: "large",
-        specs: [
-            { label: 'Composition', value: '100% Organic' },
-            { label: 'Moisture', value: '15-20%' },
-            { label: 'Nitrogen', value: '1.5% min' },
-            { label: 'Phosphorus', value: '0.5% min' }
-        ],
-        packaging: ['50kg Bags', 'Bulk Tonne Bags', 'Custom Branding'],
-        certifications: ['Organic Certified', 'Eco-Friendly']
+        category: "Agriculture",
+        image: "https://i.pinimg.com/1200x/ed/d3/65/edd365f407ef16ad7dfabc6a2fafe897.jpg",
+        desc: "Nutrient-rich worm castings",
+        description: "Premium grade vermicompost produced using earthworms. Improves soil structure, water retention, and microbial activity.",
+        specs: [{ label: "Organic C", value: "High" }, { label: "Moisture", value: "20%" }],
+        packaging: ["50kg Bags"]
     },
     {
-        id: 2,
-        slug: "jaggery-sweeteners",
-        name: "Jaggery & Sweeteners",
-        group: "Food",
-        category: "Food",
-        image: "https://i.pinimg.com/1200x/b9/11/af/b911af6b2b5a1c29e9e37db45d82596d.jpg",
-        desc: "Pure, natural sweetness",
-        description: "Traditional unrefined sugar (Jaggery) known for its rich flavor and health benefits. Sourced from the finest sugarcane crops.",
-        subproducts: ["Cubes", "Powder", "Liquid"],
-        specs: [
-            { label: 'Source', value: 'Sugarcane' },
-            { label: 'Form', value: 'Solid/Powder' },
-            { label: 'Color', value: 'Golden Brown' },
-            { label: 'Additives', value: 'None' }
-        ],
-        packaging: ['500g Box', '1kg Pouch', '10kg Bulk'],
-        certifications: ['FSSAI', 'Organic']
+        id: 202,
+        slug: "cow-dung",
+        name: "Dried Cow Dung",
+        group: "Agriculture",
+        category: "Agriculture",
+        image: "https://i.pinimg.com/736x/7b/9d/c9/7b9dc9bbf53de1638fe641d2f8744a6f.jpg",
+        desc: "Natural manure",
+        description: "Sun-dried cow dung cake/powder. Traditional manufacturing fuel or excellent natural fertilizer when composted.",
+        specs: [{ label: "Purity", value: "100% Natural" }, { label: "Form", value: "Cake/Powder" }],
+        packaging: ["Sacks"]
     },
+
+    // --- MEDICAL ---
     {
-        id: 3,
-        slug: "makhana",
-        name: "Makhana",
-        group: "Food",
-        category: "Food",
-        image: "https://i.pinimg.com/736x/bc/0d/a2/bc0da2fce4cf0cab4582ea83aadd3679.jpg",
-        desc: "Healthy superfood snacks",
-        description: "Premium Fox Nuts (Makhana), a nutrient-dense superfood perfect for healthy snacking. Low in calories and high in protein.",
-        subproducts: ["Raw", "Roasted", "Flavored"],
-        specs: [
-            { label: 'Grade', value: '5A Premium' },
-            { label: 'Size', value: '20mm+' },
-            { label: 'Moisture', value: '5% max' }
-        ],
-        packaging: ['250g Pack', '10kg Wholesale Sack'],
-        certifications: ['FSSAI', 'FDA']
-    },
-    {
-        id: 4,
-        slug: "indian-spices",
-        name: "Indian Spices",
-        group: "Food",
-        category: "Food",
-        image: "https://i.pinimg.com/1200x/0e/70/ca/0e70ca1f4b145087c1bd23fb4f6aeb91.jpg",
-        desc: "Authentic flavors & aromas",
-        description: "Aromatic and potent Indian spices sourced directly from plantations. Includes Turmeric, Cardamom, Cumin, and more.",
-        subproducts: ["Cardamom", "Turmeric", "Cumin"],
-        specs: [
-            { label: 'Origin', value: 'Kerala/Andhra' },
-            { label: 'Purity', value: '99%' },
-            { label: 'Aroma', value: 'Strong/Natural' }
-        ],
-        packaging: ['Retail Packs', 'Bulk Exports'],
-        certifications: ['Spices Board', 'ISO']
-    },
-    {
-        id: 5,
-        slug: "premium-coffee",
-        name: "Premium Coffee",
-        group: "Food",
-        category: "Food",
-        image: "https://i.pinimg.com/1200x/d2/aa/34/d2aa347f6536e8bccf7769cebbdd0770.jpg",
-        desc: "Roasted beans & blends",
-        description: "Exquisite coffee beans selected from the high-altitude estates of Coorg and Chikmagalur. Available in Arabica and Robusta varieties.",
-        subproducts: ["Arabica", "Robusta", "Green Beans"],
-        specs: [
-            { label: 'Roast', value: 'Medium/Dark' },
-            { label: 'Grade', value: 'AAA' },
-            { label: 'Moisture', value: '11-12%' }
-        ],
-        packaging: ['Jute Bags', 'Vacuum Packs'],
-        certifications: ['Coffee Board', 'Rainforest Alliance']
-    },
-    {
-        id: 6,
-        slug: "dried-fruits-veg",
-        name: "Dried Fruits & Veg",
-        group: "Food",
-        category: "Food",
-        image: "https://i.pinimg.com/736x/dc/fe/f2/dcfef2b3a6e04b553d43db7e3f61bad0.jpg",
-        desc: "Nutrient-rich produce",
-        description: "Dehydrated fruits and vegetables that retain their nutritional value and flavor. Long shelf life and easy to transport.",
-        subproducts: ["Dehydrated Onion", "Garlic Powder"],
-        specs: [
-            { label: 'Drying Method', value: 'Air/Freeze Dried' },
-            { label: 'Shelf Life', value: '12 Months' },
-            { label: 'Rehydration', value: 'Fast' }
-        ],
-        packaging: ['Moisture-proof Bags', 'Cartons'],
-        certifications: ['HACCP', 'FSSAI']
-    },
-    {
-        id: 7,
-        slug: "surgical-disposables",
-        name: "Surgical Disposables",
+        id: 301,
+        slug: "surgical-gloves",
+        name: "Surgical Gloves",
         group: "Medical",
         category: "Medical",
-        image: "https://i.pinimg.com/1200x/fd/ec/a8/fdeca838f49db6852800fbd22896c612.jpg",
-        desc: "Certified medical supplies",
-        description: "High-grade medical consumables including gloves, masks, and gowns. Manufactured under strict sterile conditions.",
-        subproducts: ["Gloves", "Masks", "Gowns", "Syringes"],
-        size: "wide",
-        specs: [
-            { label: 'Material', value: 'Latex/Nitrile/Non-woven' },
-            { label: 'Sterility', value: 'EO Sterilized' },
-            { label: 'Standards', value: 'CE/FDA' }
-        ],
-        packaging: ['Sterile Packs', 'Bulk Cartons'],
-        certifications: ['CE', 'ISO 13485']
+        image: "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?q=80&w=800&auto=format&fit=crop",
+        desc: "Sterile hand protection",
+        description: "High-sensitivity latex or nitrile surgical gloves. Powdered or powder-free options available.",
+        specs: [{ label: "Material", value: "Latex/Nitrile" }, { label: "Grade", value: "Sterile" }],
+        packaging: ["Box of 100"]
     },
+    {
+        id: 302,
+        slug: "face-masks",
+        name: "Face Masks",
+        group: "Medical",
+        category: "Medical",
+        image: "https://i.pinimg.com/736x/bf/71/64/bf7164bc12744784771766583c50fa60.jpg",
+        desc: "Respiratory protection",
+        description: "3-Ply or N95 disposable face masks. High filtration efficiency and comfortable fit.",
+        specs: [{ label: "Filter", value: "BFE > 95%" }, { label: "Layers", value: "3 or 5" }],
+        packaging: ["Box of 50"]
+    },
+    {
+        id: 303,
+        slug: "disposable-gowns",
+        name: "Disposable Gowns",
+        group: "Medical",
+        category: "Medical",
+        image: "https://i.pinimg.com/736x/92/82/c3/9282c30931350d8cfa12a4b896c40a8c.jpg",
+        desc: "Protective body wear",
+        description: "Non-woven isolation gowns for medical personnel. Fluid resistant and breathable.",
+        specs: [{ label: "GSM", value: "25-60" }, { label: "Type", value: "PP/SMS" }],
+        packaging: ["Carton"]
+    },
+    {
+        id: 304,
+        slug: "shoe-covers",
+        name: "Shoe Covers",
+        group: "Medical",
+        category: "Medical",
+        image: "https://i.pinimg.com/1200x/85/e0/d7/85e0d745b77d92b05ebf548e6ddc5cc2.jpg",
+        desc: "Hygiene foot protection",
+        description: "Disposable PE/PP shoe covers to maintain sterile environments.",
+        specs: [{ label: "Size", value: "Universal" }, { label: "Anti-skid", value: "Yes" }],
+        packaging: ["Pack of 100"]
+    }
 ];
 
 export const getProductBySlug = (slug) => {

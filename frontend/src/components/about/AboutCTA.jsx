@@ -2,8 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Phone, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useQuote } from '../../context/QuoteContext';
 
 const AboutCTA = () => {
+    const { openQuoteModal } = useQuote();
+
     return (
         <section className="py-24 bg-white relative overflow-hidden">
             <div className="container mx-auto px-4">
@@ -27,12 +30,12 @@ const AboutCTA = () => {
                                 </p>
 
                                 <div className="flex flex-wrap gap-4 mb-8">
-                                    <Link
-                                        to="/contact"
+                                    <button
+                                        onClick={openQuoteModal}
                                         className="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-full font-bold transition-all hover:bg-primary/90 hover:scale-105 shadow-lg shadow-primary/20"
                                     >
                                         Get a Quote <ArrowRight size={18} />
-                                    </Link>
+                                    </button>
                                     <a
                                         href="mailto:contact@eteon.com"
                                         className="inline-flex items-center gap-2 bg-white text-primary border border-slate-200 px-8 py-4 rounded-full font-bold transition-all hover:bg-slate-50 hover:border-slate-300"
@@ -60,8 +63,8 @@ const AboutCTA = () => {
 
                     </div>
                 </div>
-            </div>
-        </section>
+            </div >
+        </section >
     );
 };
 

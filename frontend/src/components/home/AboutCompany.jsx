@@ -42,12 +42,12 @@ const AboutCompany = () => {
                         className="w-full lg:w-1/2 relative"
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{ once: false, amount: 0.3 }}
+                        viewport={{ once: true, amount: 0.3 }}
                         variants={imageVariants}
                     >
                         <div className="relative z-10 rounded-2xl overflow-hidden shadow-xl group">
                             <motion.img
-                                src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                                src="https://i.pinimg.com/736x/d3/c3/a9/d3c3a9773dbf4a1131bc1644f3631238.jpg"
                                 alt="Warehouse operations"
                                 className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                                 whileHover={{ scale: 1.05 }}
@@ -56,40 +56,9 @@ const AboutCompany = () => {
                             <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                         </div>
 
-                        {/* Overlay Card - Floating Animation */}
-                        <motion.div
-                            className="absolute -bottom-10 -right-10 z-20 hidden lg:block bg-white p-6 rounded-xl shadow-card border border-slate-100 max-w-xs"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: false }}
-                            transition={{ delay: 0.5, duration: 0.6 }}
-                            whileHover={{ y: -5 }}
-                        >
-                            <div className="flex items-center gap-4 mb-4">
-                                <div className="bg-primary/10 p-3 rounded-full text-primary">
-                                    <Award size={32} />
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-3xl text-primary">25+</h4>
-                                    <p className="text-sm text-textSecondary font-medium">Years of Experience</p>
-                                </div>
-                            </div>
-                            <p className="text-textMuted text-sm leading-relaxed">
-                                delivering excellence in international logistics and supply chain management.
-                            </p>
-                        </motion.div>
-
-                        {/* Decorative pattern */}
-                        <motion.div
-                            className="absolute -top-10 -left-10 w-40 h-40 bg-accent/5 rounded-full blur-3xl -z-10"
-                            animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
-                            transition={{ duration: 5, repeat: Infinity }}
-                        ></motion.div>
-                        <motion.div
-                            className="absolute bottom-10 right-10 w-60 h-60 bg-primary/5 rounded-full blur-3xl -z-10"
-                            animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
-                            transition={{ duration: 7, repeat: Infinity, delay: 1 }}
-                        ></motion.div>
+                        {/* Decorative pattern - Static for performance */}
+                        <div className="absolute -top-10 -left-10 w-40 h-40 bg-accent/5 rounded-full blur-3xl -z-10" />
+                        <div className="absolute bottom-10 right-10 w-60 h-60 bg-primary/5 rounded-full blur-3xl -z-10" />
                     </motion.div>
 
                     {/* Right Column - Content */}
@@ -115,7 +84,7 @@ const AboutCompany = () => {
 
                         <motion.div variants={itemVariants} className="grid sm:grid-cols-2 gap-6 mb-10">
                             {[
-                                { icon: Globe, title: "Global Network", text: "Partners across 50+ countries" },
+                                { icon: Globe, title: "Global Network", text: "Expanding Global Network" },
                                 { icon: Users, title: "Expert Team", text: "Dedicated specialists for every sector" },
                                 { icon: CheckCircle, title: "Compliance Ready", text: "Example handling of customs & regulations" },
                                 { icon: Award, title: "Quality Assured", text: "ISO certified processes & safety" },
