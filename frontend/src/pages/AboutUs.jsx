@@ -19,10 +19,10 @@ const AboutUs = () => {
             </Helmet>
             <AboutHero />
             <CompanyProfile />
-            <BusinessPhilosophy />
-            <QualityCompliance />
+            {/* <BusinessPhilosophy /> */}
+            {/* <QualityCompliance /> */}
             <VisionMission />
-            <Leadership />
+            {/* <Leadership /> */}
             <GlobalOutlook />
             <AboutCTA />
         </div>

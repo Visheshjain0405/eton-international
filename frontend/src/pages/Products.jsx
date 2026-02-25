@@ -37,12 +37,12 @@ const Products = () => {
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2670&auto=format&fit=crop"
-                        alt="Global Logistics Background"
-                        className="w-full h-full object-cover opacity-80"
+                        src="https://www.ppbag.co/assets/uploads/2024/08/slider/banner-2_1723178585.webp"
+                        alt="Global Trade and Industrial Background"
+                        className="w-full h-full object-cover opacity-60"
                     />
                     {/* Dark Gradient Overlay for text readability */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-slate-900/40"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/80 to-slate-900/40"></div>
                 </div>
 
                 <div className="container mx-auto px-4 relative z-10">

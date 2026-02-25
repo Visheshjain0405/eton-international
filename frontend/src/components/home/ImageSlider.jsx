@@ -3,25 +3,25 @@ import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 
 const slides = [
     {
-        image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-        tagline: "Global Logistics",
-        title: "Shipping Solutions for a Connected World",
-        subtitle: "Experience seamless international trade with our end-to-end import and export services tailored for your growth.",
-        cta: "Discover More",
+        image: "https://www.ppbag.co/assets/uploads/2023/11/productdetil/fibc_1699518900.webp",
+        tagline: "Industrial Packaging",
+        title: "PP Bag and Packaging Solutions",
+        subtitle: "Durable and high-quality woven sacks and industrial packaging for diverse global needs.",
+        cta: "Explore Packaging",
     },
     {
-        image: "https://i.pinimg.com/1200x/f2/32/6a/f2326aad4c4f77beaef072a45fed18ce.jpg",
-        tagline: "Reliable Transport",
-        title: "Efficiency in Every Mile We Travel",
-        subtitle: "Our precision-driven logistics network ensures your cargo reaches its destination safely and on time, every time.",
-        cta: "Get a Quote",
+        image: "https://i.pinimg.com/736x/32/9d/0f/329d0f77909c292e2a5d13a19c3d8384.jpg",
+        tagline: "Sustainable Farming",
+        title: "Agriculture and Fertilizer",
+        subtitle: "High-grade organic fertilizers and agricultural inputs to maximize yield and soil health.",
+        cta: "Explore Agriculture",
     },
     {
-        image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-        tagline: "Warehousing & Storage",
-        title: "Advanced Storage for Modern Supply Chains",
-        subtitle: "Secure, climate-controlled, and digitally managed warehousing solutions to optimize your inventory flow.",
-        cta: "Contact Us",
+        image: "https://i.pinimg.com/1200x/bc/ee/32/bcee32d169283a94850f145ca53cdab5.jpg",
+        tagline: "Healthcare Solutions",
+        title: "Medical and Surgical Supplies",
+        subtitle: "Reliable and sterile medical equipment designed for precision and patient safety.",
+        cta: "Explore Medical",
     },
 ];
 

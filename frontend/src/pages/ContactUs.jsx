@@ -166,7 +166,7 @@ const ContactUs = () => {
             </section>
 
             {/* MAP SECTION */}
-            <section className="h-[400px] w-full bg-slate-200 relative">
+            {/* <section className="h-[400px] w-full bg-slate-200 relative">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.782062402179!2d72.82583831538356!3d19.073216987089497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c91130392c07%3A0x3c47bf391c8de931!2sBandra%20Kurla%20Complex!5e0!3m2!1sen!2sin!4v1677654321098!5m2!1sen!2sin"
                     width="100%"
@@ -177,14 +177,13 @@ const ContactUs = () => {
                     referrerPolicy="no-referrer-when-downgrade"
                     className="filter grayscale contrast-125 opacity-80 hover:opacity-100 transition-opacity duration-500"
                 ></iframe>
-                {/* Overlay Card */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-8 py-4 rounded-full shadow-2xl flex items-center gap-3 animate-bounce">
-                    <MapPin className="text-accent" />
-                    <span className="font-bold text-primary">Find us on Google Maps</span>
-                </div>
-            </section>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-8 py-4 rounded-full shadow-2xl flex items-center gap-3 animate-bounce">
+                <MapPin className="text-accent" />
+                <span className="font-bold text-primary">Find us on Google Maps</span>
+            </div>
+        </section> */}
 
-        </div>
+        </div >
     );
 };
 

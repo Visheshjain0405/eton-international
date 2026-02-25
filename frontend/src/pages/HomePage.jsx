@@ -22,8 +22,8 @@ const HomePage = () => {
             {/* Content Sections */}
             <AboutCompany />
             <ProductCategories />
-            <Capabilities />
-            <WhyChooseUs />
+            {/* <Capabilities /> */}
+            {/* <WhyChooseUs /> */}
             <ExportProcess />
             <GlobalReach />
             <BusinessInquiry />
