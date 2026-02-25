@@ -201,7 +201,6 @@ const ProductDetail = () => {
             <section className="py-12 lg:py-16">
                 <div className="container mx-auto px-4">
                     <div className="flex flex-col lg:flex-row gap-12 xl:gap-20">
-                        {/* LEFT: IMAGE */}
                         <div className="lg:w-1/2">
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.95 }}
@@ -215,7 +214,6 @@ const ProductDetail = () => {
                             </motion.div>
                         </div>
 
-                        {/* RIGHT: CORE INFO */}
                         <div className="lg:w-1/2 flex flex-col justify-center">
                             <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent/10 border border-accent/20 rounded-full text-accent font-bold text-xs uppercase tracking-widest mb-6 w-fit">
                                 <Globe size={12} /> {product.group} Division
@@ -227,7 +225,6 @@ const ProductDetail = () => {
                                 {product.description || product.desc}
                             </p>
 
-                            {/* QUICK SPECS */}
                             <div className="grid grid-cols-2 gap-4 mb-10">
                                 {product.specs?.map((spec, i) => (
                                     <div key={i} className="flex flex-col border-l-2 border-accent/20 pl-4 py-1">
