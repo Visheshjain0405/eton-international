@@ -221,26 +221,57 @@ const ProductDetail = () => {
                             <h1 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6 leading-tight">
                                 {product.name}
                             </h1>
-                            <p className="text-xl text-slate-600 mb-8 leading-relaxed">
-                                {product.description || product.desc}
-                            </p>
-
-                            <div className="grid grid-cols-2 gap-4 mb-10">
-                                {product.specs?.map((spec, i) => (
-                                    <div key={i} className="flex flex-col border-l-2 border-accent/20 pl-4 py-1">
-                                        <span className="text-[10px] uppercase font-bold text-slate-400">{spec.label}</span>
-                                        <span className="text-lg font-bold text-slate-700">{spec.value}</span>
-                                    </div>
-                                ))}
+                            <div className="space-y-4 mb-8">
+                                <h3 className="text-xl font-bold text-slate-800">Brief Overview</h3>
+                                <p className="text-lg text-slate-600 leading-relaxed italic">
+                                    "{product.description || product.desc}"
+                                </p>
                             </div>
 
-                            <button
-                                onClick={openQuoteModal}
-                                className="bg-primary text-white px-10 py-5 rounded-2xl font-bold flex items-center justify-center gap-3 shadow-xl hover:bg-accent transition-all w-full sm:w-fit"
-                            >
-                                <Mail size={20} /> Request Export Inquiry
-                            </button>
+                            <div className="flex flex-wrap gap-4 mb-10">
+                                <button
+                                    onClick={openQuoteModal}
+                                    className="bg-primary text-white px-10 py-5 rounded-2xl font-bold flex items-center justify-center gap-3 shadow-xl hover:bg-accent transition-all w-full sm:w-fit"
+                                >
+                                    <Mail size={20} /> Request Export Inquiry
+                                </button>
+                                <a
+                                    href="#specs"
+                                    className="px-10 py-5 rounded-2xl font-bold border-2 border-primary/20 text-primary hover:bg-primary/5 transition-all text-center"
+                                >
+                                    Technical Specs
+                                </a>
+                            </div>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* TECHNICAL SPECIFICATIONS TABLE */}
+            <section id="specs" className="py-20 bg-white">
+                <div className="container mx-auto px-4">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-5xl font-heading font-bold text-primary mb-4 flex items-center justify-center gap-4">
+                            Technical Specification
+                        </h2>
+                        <div className="w-24 h-1.5 bg-accent mx-auto rounded-full"></div>
+                    </div>
+
+                    <div className="max-w-4xl mx-auto bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-100">
+                        <table className="w-full text-left border-collapse">
+                            <tbody>
+                                {product.specs?.map((spec, i) => (
+                                    <tr key={i} className={`${i % 2 === 0 ? 'bg-slate-50' : 'bg-white'} border-b border-slate-100 hover:bg-accent/5 transition-colors`}>
+                                        <td className="py-6 px-10 font-bold text-primary uppercase text-xs tracking-wider w-1/3 border-r border-slate-100">
+                                            {spec.label}
+                                        </td>
+                                        <td className="py-6 px-10 font-semibold text-slate-700">
+                                            {spec.value}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </section>
@@ -279,32 +310,38 @@ const ProductDetail = () => {
                 <div className="container mx-auto px-4">
                     <div className="flex flex-col lg:flex-row items-center gap-16">
                         <div className="lg:w-1/2">
-                            <h2 className="text-4xl font-heading font-bold text-primary mb-8 leading-tight">
-                                Why Choose Our <br />
-                                <span className="text-accent">{product.name}?</span>
+                            <h2 className="text-4xl font-heading font-bold text-primary mb-8 leading-tight text-center lg:text-left">
+                                Why Choose Our <br className="hidden lg:block" />
+                                <span className="text-accent underline decoration-accent/20 underline-offset-8">
+                                    {product.name}?
+                                </span>
                             </h2>
                             <div className="space-y-6">
                                 {content.whyChoose.map((reason, i) => (
-                                    <div key={i} className="flex gap-4">
-                                        <div className="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center">
-                                            <CheckCircle2 size={14} />
+                                    <div key={i} className="flex gap-5 p-4 rounded-2xl hover:bg-slate-50 transition-colors group">
+                                        <div className="mt-1 flex-shrink-0 w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-white transition-all">
+                                            <CheckCircle2 size={18} />
                                         </div>
                                         <div>
-                                            <h4 className="font-bold text-primary mb-1">{reason.title}</h4>
-                                            <p className="text-slate-500 text-sm">{reason.text}</p>
+                                            <h4 className="text-lg font-bold text-primary mb-1">{reason.title}</h4>
+                                            <p className="text-slate-600">{reason.text}</p>
                                         </div>
                                     </div>
                                 ))}
                             </div>
                         </div>
                         <div className="lg:w-1/2">
-                            <div className="aspect-video lg:aspect-square rounded-[2rem] bg-slate-900 overflow-hidden relative group">
-                                <img src={product.image} alt="" className="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" />
-                                <div className="absolute inset-0 flex items-center justify-center p-6 text-center">
-                                    <div className="space-y-4">
-                                        <div className="w-16 h-1 bg-accent mx-auto rounded-full"></div>
-                                        <span className="text-white font-bold text-2xl md:text-3xl block">Export Quality Guaranteed</span>
-                                        <p className="text-white/60 text-sm max-w-xs mx-auto">Sited and approved for international shipping standards.</p>
+                            <div className="aspect-square rounded-[3rem] bg-slate-900 overflow-hidden relative group shadow-2xl">
+                                <img src={product.image} alt="" className="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-1000" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent flex items-center justify-center p-12 text-center">
+                                    <div className="space-y-6">
+                                        <div className="w-20 h-1.5 bg-accent mx-auto rounded-full"></div>
+                                        <h3 className="text-white font-bold text-3xl md:text-4xl">Certified Export Quality</h3>
+                                        <p className="text-white/80 text-lg max-w-sm mx-auto">Our products are manufactured to exceed international benchmarks for strength and safety.</p>
+                                        <div className="flex justify-center gap-4 pt-4">
+                                            <div className="px-4 py-2 bg-white/10 backdrop-blur rounded-full text-xs font-bold text-white uppercase tracking-widest border border-white/20">ISO Certified</div>
+                                            <div className="px-4 py-2 bg-white/10 backdrop-blur rounded-full text-xs font-bold text-white uppercase tracking-widest border border-white/20">Eco Friendly</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -314,21 +351,30 @@ const ProductDetail = () => {
             </section>
 
             {/* USED BY INDUSTRIES */}
-            <section className="py-20 bg-slate-900 text-white overflow-hidden">
+            <section className="py-20 bg-slate-900 text-white overflow-hidden relative">
+                {/* Decoration */}
+                <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
+
                 <div className="container mx-auto px-4 relative z-10">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4 text-white">Used by Industries</h2>
+                        <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4 text-white">Ideal Applications & Industries</h2>
                         <div className="w-20 h-1.5 bg-accent mx-auto rounded-full"></div>
                     </div>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+                    <div className="flex flex-wrap justify-center gap-6">
                         {content.industries.map((industry, i) => {
                             const IndustryIcon = IconMap[industry.icon] || Factory;
                             return (
-                                <div key={i} className="group p-8 bg-white/5 border border-white/10 rounded-2xl flex flex-col items-center justify-center gap-4 hover:bg-accent hover:border-accent transition-all text-center w-full sm:w-48">
-                                    <IndustryIcon size={32} className="text-white group-hover:scale-110 transition-transform" />
+                                <motion.div
+                                    key={i}
+                                    whileHover={{ scale: 1.05 }}
+                                    className="group p-8 bg-white/5 border border-white/10 rounded-[2rem] flex flex-col items-center justify-center gap-4 hover:bg-accent hover:border-accent transition-all text-center w-full sm:w-52"
+                                >
+                                    <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center text-white mb-2 group-hover:bg-white/20 transition-all">
+                                        <IndustryIcon size={32} />
+                                    </div>
                                     <span className="font-bold text-sm tracking-wide uppercase">{industry.name}</span>
-                                </div>
+                                </motion.div>
                             );
                         })}
                     </div>
@@ -336,22 +382,25 @@ const ProductDetail = () => {
             </section>
 
             {/* FINAL CTA SECTION */}
-            <section className="py-20 bg-primary/5">
+            <section className="py-20 bg-slate-50">
                 <div className="container mx-auto px-4">
-                    <div className="max-w-4xl mx-auto bg-primary rounded-[3rem] p-8 md:p-16 text-center text-white shadow-2xl overflow-hidden relative">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
-                        <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6 relative z-10">Ready to place a Bulk Order?</h2>
-                        <p className="text-white/70 text-lg mb-10 max-w-2xl mx-auto relative z-10">
-                            Our team is ready to assist you with customized solutions, export logistics, and high-volume pricing.
+                    <div className="max-w-5xl mx-auto bg-primary rounded-[4rem] p-10 md:p-20 text-center text-white shadow-2xl overflow-hidden relative">
+                        <div className="absolute top-0 right-0 w-80 h-80 bg-accent/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/10 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl"></div>
+
+                        <h2 className="text-3xl md:text-5xl font-heading font-bold mb-6 relative z-10">Scale Your Business with Premium Supply</h2>
+                        <p className="text-white/70 text-xl mb-12 max-w-2xl mx-auto relative z-10">
+                            Connect with our trade experts for customized volume pricing, shipping logistics, and full technical support.
                         </p>
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
+
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 relative z-10">
                             <button
                                 onClick={openQuoteModal}
-                                className="w-full sm:w-auto bg-accent text-white px-10 py-5 rounded-2xl font-extrabold text-lg shadow-xl hover:shadow-accent/40 hover:scale-105 transition-all"
+                                className="w-full sm:w-auto bg-accent text-white px-12 py-6 rounded-2xl font-extrabold text-xl shadow-xl hover:shadow-accent/40 hover:scale-105 transition-all"
                             >
-                                Get a Custom Quote
+                                Secure a Quote
                             </button>
-                            <Link to="/contact" className="w-full sm:w-auto px-10 py-5 rounded-2xl font-bold text-lg border border-white/20 hover:bg-white/10 transition-all">
+                            <Link to="/contact" className="w-full sm:w-auto px-12 py-6 rounded-2xl font-bold text-xl border border-white/30 hover:bg-white/10 transition-all">
                                 Talk to Expert
                             </Link>
                         </div>
