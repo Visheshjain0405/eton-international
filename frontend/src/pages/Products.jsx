@@ -5,7 +5,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { products } from '../data/products';
 import { Helmet } from 'react-helmet-async';
 
-const categories = ["All", "Packaging", "Agriculture", "Medical"];
+const categories = ["All", "Packaging", "Organic and Cowdung Fertilzer", "Medical"];
 
 const Products = () => {
     const [searchParams] = useSearchParams();

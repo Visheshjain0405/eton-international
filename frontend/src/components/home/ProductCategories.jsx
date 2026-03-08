@@ -111,12 +111,12 @@ const ProductCategories = () => {
         },
         {
             id: 2,
-            title: "Organic and Cowdung Fertilizer",
-            group: "Agriculture",
+            title: "Organic and Cowdung Fertilzer",
+            group: "Organic and Cowdung Fertilzer",
             image: "https://static.vecteezy.com/system/resources/thumbnails/072/890/875/small_2x/sustainable-composting-process-showing-organic-food-scraps-and-garden-waste-nourishing-a-new-plant-photo.jpeg",
             desc: "Organic vermicompost and sustainable manure.",
             icon: Leaf,
-            link: "/products?category=Agriculture"
+            link: "/products?category=Organic and Cowdung Fertilzer"
         },
         {
             id: 3,

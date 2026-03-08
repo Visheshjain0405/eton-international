@@ -12,9 +12,9 @@ const slides = [
     {
         image: "https://static.vecteezy.com/system/resources/thumbnails/072/890/875/small_2x/sustainable-composting-process-showing-organic-food-scraps-and-garden-waste-nourishing-a-new-plant-photo.jpeg",
         tagline: "Sustainable Farming",
-        title: "Organic and Cowdung Fertilizer",
+        title: "Organic and Cowdung Fertilzer",
         subtitle: "High-grade organic fertilizers and agricultural inputs to maximize yield and soil health.",
-        cta: "Explore Agriculture",
+        cta: "Explore Fertilzers",
     },
     {
         image: "https://i.pinimg.com/1200x/bc/ee/32/bcee32d169283a94850f145ca53cdab5.jpg",

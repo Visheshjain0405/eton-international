@@ -123,7 +123,7 @@ const ProductDetail = () => {
                         { name: "Dental Clinics", icon: "ShieldCheck" }
                     ]
                 };
-            case "Agriculture":
+            case "Organic and Cowdung Fertilzer":
                 return {
                     features: [
                         { title: "Nutrient Rich", desc: "Optimized chemical balance for maximum crop yield and soil health.", icon: "Zap" },
