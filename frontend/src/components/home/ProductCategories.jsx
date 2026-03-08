@@ -102,25 +102,25 @@ const ProductCategories = () => {
     const categories = [
         {
             id: 1,
-            title: "PP Bags & Packaging",
+            title: "PP Bag and Packaging Solutions",
             group: "Packaging",
-            image: "https://www.ppbag.co/assets/uploads/2023/11/productdetil/fibc_1699518900.webp",
+            image: "https://salesplastics.com/wp-content/uploads/2025/08/Polypropylene-Bags-A-Versatile-Packaging-Solution.webp",
             desc: "Woven sacks, tarpaulins, and industrial fabrics.",
             icon: Package,
             link: "/products?category=Packaging"
         },
         {
             id: 2,
-            title: "Agriculture & Fertilizers",
+            title: "Organic and Cowdung Fertilizer",
             group: "Agriculture",
-            image: "https://i.pinimg.com/736x/32/9d/0f/329d0f77909c292e2a5d13a19c3d8384.jpg",
+            image: "https://static.vecteezy.com/system/resources/thumbnails/072/890/875/small_2x/sustainable-composting-process-showing-organic-food-scraps-and-garden-waste-nourishing-a-new-plant-photo.jpeg",
             desc: "Organic vermicompost and sustainable manure.",
             icon: Leaf,
             link: "/products?category=Agriculture"
         },
         {
             id: 3,
-            title: "Medical & Surgical",
+            title: "Medical and Surgical Supplies",
             group: "Medical",
             image: "https://i.pinimg.com/1200x/bc/ee/32/bcee32d169283a94850f145ca53cdab5.jpg",
             desc: "Sterile gloves, masks, and hospital disposables.",

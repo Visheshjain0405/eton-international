@@ -54,7 +54,7 @@ const AboutHero = () => {
                 >
                     <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6">
                         <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-                        <span className="text-white text-xs font-bold tracking-widest uppercase">Since 2008</span>
+                        <span className="text-white text-xs font-bold tracking-widest uppercase">Since 2023</span>
                     </motion.div>
 
                     <motion.h1 variants={fadeUp} className="font-heading text-5xl md:text-7xl font-bold text-white mb-6 leading-tight pb-2">

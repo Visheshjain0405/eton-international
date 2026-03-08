@@ -11,7 +11,7 @@ const Navbar = () => {
 
     const categories = [
         { name: "Packaging", slug: "Packaging" },
-        { name: "Agriculture", slug: "Agriculture" },
+        { name: "Organic and Cowdung Fertilizer", slug: "Agriculture" },
         { name: "Medical", slug: "Medical" },
     ];
 

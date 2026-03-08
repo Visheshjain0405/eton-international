@@ -3,16 +3,16 @@ import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 
 const slides = [
     {
-        image: "https://www.ppbag.co/assets/uploads/2023/11/productdetil/fibc_1699518900.webp",
+        image: "https://salesplastics.com/wp-content/uploads/2025/08/Polypropylene-Bags-A-Versatile-Packaging-Solution.webp",
         tagline: "Industrial Packaging",
         title: "PP Bag and Packaging Solutions",
         subtitle: "Durable and high-quality woven sacks and industrial packaging for diverse global needs.",
         cta: "Explore Packaging",
     },
     {
-        image: "https://i.pinimg.com/736x/32/9d/0f/329d0f77909c292e2a5d13a19c3d8384.jpg",
+        image: "https://static.vecteezy.com/system/resources/thumbnails/072/890/875/small_2x/sustainable-composting-process-showing-organic-food-scraps-and-garden-waste-nourishing-a-new-plant-photo.jpeg",
         tagline: "Sustainable Farming",
-        title: "Agriculture and Fertilizer",
+        title: "Organic and Cowdung Fertilizer",
         subtitle: "High-grade organic fertilizers and agricultural inputs to maximize yield and soil health.",
         cta: "Explore Agriculture",
     },

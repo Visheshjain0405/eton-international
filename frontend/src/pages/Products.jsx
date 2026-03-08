@@ -37,7 +37,7 @@ const Products = () => {
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://www.ppbag.co/assets/uploads/2024/08/slider/banner-2_1723178585.webp"
+                        src="https://salesplastics.com/wp-content/uploads/2025/08/Polypropylene-Bags-A-Versatile-Packaging-Solution.webp"
                         alt="Global Trade and Industrial Background"
                         className="w-full h-full object-cover opacity-60"
                     />
