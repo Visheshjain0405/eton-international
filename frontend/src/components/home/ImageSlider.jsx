@@ -47,7 +47,7 @@ const ImageSlider = () => {
         if (isAutoPlaying) {
             interval = setInterval(() => {
                 nextSlide();
-            }, 6000);
+            }, 4000); // reduced from 6s to 4s
         }
         return () => clearInterval(interval);
     }, [current, isAutoPlaying]);
@@ -55,8 +55,7 @@ const ImageSlider = () => {
     return (
         <div
             className="relative w-full h-[500px] lg:h-[600px] overflow-hidden group bg-primary"
-            onMouseEnter={() => setIsAutoPlaying(false)}
-            onMouseLeave={() => setIsAutoPlaying(true)}
+            // Removed onHover pausing to guarantee the slider always functions
         >
             {/* Navigation Arrows - Positioned at absolute edges */}
             <button
@@ -90,8 +89,8 @@ const ImageSlider = () => {
                     </div>
 
                     {/* Professional Overlay: Linear Gradient + vignette */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/70 to-transparent" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-primary/30 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent" />
 
                     {/* Content Container */}
                     <div className="relative h-full container mx-auto px-6 lg:px-12 flex flex-col justify-center">
