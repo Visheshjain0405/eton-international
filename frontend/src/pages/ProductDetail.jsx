@@ -85,9 +85,9 @@ const ProductDetail = () => {
         switch (product.group) {
             case "Packaging":
                 return <PackagingDetail product={product} />;
-            case "Organic and Cowdung Fertilzer":
+            case "Organic and Cowdung Fertilizer":
                 return <FertilizerDetail product={product} />;
-            case "Medical":
+            case "Surgical and Disposable":
                 return <MedicalDetail product={product} />;
             default:
                 return (

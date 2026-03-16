@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const slides = [
     {
@@ -8,20 +9,23 @@ const slides = [
         title: "PP Bag and Packaging Solutions",
         subtitle: "Durable and high-quality woven sacks and industrial packaging for diverse global needs.",
         cta: "Explore Packaging",
+        link: "/products?category=Packaging"
     },
     {
         image: "https://static.vecteezy.com/system/resources/thumbnails/072/890/875/small_2x/sustainable-composting-process-showing-organic-food-scraps-and-garden-waste-nourishing-a-new-plant-photo.jpeg",
         tagline: "Sustainable Farming",
-        title: "Organic and Cowdung Fertilzer",
+        title: "Organic and Cowdung Fertilizer",
         subtitle: "High-grade organic fertilizers and agricultural inputs to maximize yield and soil health.",
-        cta: "Explore Fertilzers",
+        cta: "Explore Fertilizers",
+        link: "/products?category=Organic and Cowdung Fertilizer"
     },
     {
         image: "https://i.pinimg.com/1200x/bc/ee/32/bcee32d169283a94850f145ca53cdab5.jpg",
         tagline: "Healthcare Solutions",
-        title: "Medical and Surgical Supplies",
+        title: "Surgical and Disposable",
         subtitle: "Reliable and sterile medical equipment designed for precision and patient safety.",
         cta: "Explore Medical",
+        link: "/products?category=Surgical and Disposable"
     },
 ];
 
@@ -54,6 +58,22 @@ const ImageSlider = () => {
             onMouseEnter={() => setIsAutoPlaying(false)}
             onMouseLeave={() => setIsAutoPlaying(true)}
         >
+            {/* Navigation Arrows - Positioned at absolute edges */}
+            <button
+                onClick={prevSlide}
+                className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-30 p-2 lg:p-4 rounded-full border border-white/10 bg-black/20 text-white hover:bg-accent hover:border-accent transition-all backdrop-blur-md group"
+                aria-label="Previous Slide"
+            >
+                <ChevronLeft size={28} className="group-hover:-translate-x-0.5 transition-transform" />
+            </button>
+            <button
+                onClick={nextSlide}
+                className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-30 p-2 lg:p-4 rounded-full border border-white/10 bg-black/20 text-white hover:bg-accent hover:border-accent transition-all backdrop-blur-md group"
+                aria-label="Next Slide"
+            >
+                <ChevronRight size={28} className="group-hover:translate-x-0.5 transition-transform" />
+            </button>
+
             {slides.map((slide, index) => (
                 <div
                     key={index}
@@ -70,7 +90,7 @@ const ImageSlider = () => {
                     </div>
 
                     {/* Professional Overlay: Linear Gradient + vignette */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/60 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/70 to-transparent" />
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent" />
 
                     {/* Content Container */}
@@ -102,58 +122,40 @@ const ImageSlider = () => {
 
                             {/* CTA Button */}
                             <div
-                                className={`flex flex-wrap gap-4 transition-all duration-700 delay-300 transform ${index === current ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+                                className={`flex flex-wrap gap-4 transition-all duration-700 delay-300 transform ${index === current ? "translate-y-0 opacity-100 shadow-xl" : "translate-y-8 opacity-0"
                                     }`}
                             >
-                                <button className="bg-accent hover:bg-accent/90 text-white px-8 py-3.5 rounded-lg font-semibold text-base transition-all shadow-lg shadow-accent/25 hover:shadow-accent/40 flex items-center gap-2 group/btn">
+                                <Link to={slide.link} className="bg-accent hover:bg-accent/90 text-white px-8 py-3.5 rounded-lg font-semibold text-base transition-all shadow-lg shadow-accent/25 hover:shadow-accent/40 flex items-center gap-2 group/btn">
                                     {slide.cta}
                                     <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
-                                </button>
-                                <button className="px-8 py-3.5 rounded-lg font-semibold text-base text-white border border-white/20 hover:bg-white/10 backdrop-blur-sm transition-all">
-                                    Our Services
-                                </button>
+                                </Link>
+                                <Link to="/process" className="px-8 py-3.5 rounded-lg font-semibold text-base text-white border border-white/20 hover:bg-white/10 backdrop-blur-sm transition-all">
+                                    Our Process
+                                </Link>
                             </div>
                         </div>
                     </div>
                 </div>
             ))}
 
-            {/* Modern Navigation Controls */}
-            <div className="absolute bottom-8 right-6 lg:right-12 z-20 flex items-center gap-4">
-                <div className="flex gap-2 mr-4">
-                    {slides.map((_, idx) => (
-                        <button
-                            key={idx}
-                            onClick={() => setCurrent(idx)}
-                            className={`h-1.5 rounded-full transition-all duration-300 ${idx === current ? "w-8 bg-accent" : "w-2 bg-white/30 hover:bg-white/50"
-                                }`}
-                        />
-                    ))}
-                </div>
-
-                <div className="flex gap-2">
+            {/* Pagination Indicators */}
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-3">
+                {slides.map((_, idx) => (
                     <button
-                        onClick={prevSlide}
-                        className="p-3 rounded-full border border-white/10 bg-black/20 text-white hover:bg-accent hover:border-accent transition-all backdrop-blur-md group"
-                        aria-label="Previous Slide"
-                    >
-                        <ChevronLeft size={20} className="group-hover:-translate-x-0.5 transition-transform" />
-                    </button>
-                    <button
-                        onClick={nextSlide}
-                        className="p-3 rounded-full border border-white/10 bg-black/20 text-white hover:bg-accent hover:border-accent transition-all backdrop-blur-md group"
-                        aria-label="Next Slide"
-                    >
-                        <ChevronRight size={20} className="group-hover:translate-x-0.5 transition-transform" />
-                    </button>
-                </div>
+                        key={idx}
+                        onClick={() => setCurrent(idx)}
+                        className={`h-2 rounded-full transition-all duration-300 ${idx === current ? "w-10 bg-accent" : "w-2 bg-white/40 hover:bg-white/60"
+                            }`}
+                        aria-label={`Go to slide ${idx + 1}`}
+                    />
+                ))}
             </div>
 
-            {/* Progress Bar (Optional Visual Flair) */}
+            {/* Progress Bar */}
             <div className="absolute bottom-0 left-0 h-1 bg-white/10 w-full z-20">
                 <div
-                    key={current} // Key change forces animation restart
-                    className="h-full bg-accent animate-[progress_6s_linear_forward]"
+                    key={current}
+                    className="h-full bg-accent animate-progress"
                     style={{ width: '100%' }}
                 />
             </div>

@@ -111,21 +111,21 @@ const ProductCategories = () => {
         },
         {
             id: 2,
-            title: "Organic and Cowdung Fertilzer",
-            group: "Organic and Cowdung Fertilzer",
+            title: "Organic and Cowdung Fertilizer",
+            group: "Organic and Cowdung Fertilizer",
             image: "https://static.vecteezy.com/system/resources/thumbnails/072/890/875/small_2x/sustainable-composting-process-showing-organic-food-scraps-and-garden-waste-nourishing-a-new-plant-photo.jpeg",
             desc: "Organic vermicompost and sustainable manure.",
             icon: Leaf,
-            link: "/products?category=Organic and Cowdung Fertilzer"
+            link: "/products?category=Organic and Cowdung Fertilizer"
         },
         {
             id: 3,
-            title: "Medical and Surgical Supplies",
-            group: "Medical",
+            title: "Surgical and Disposable",
+            group: "Surgical and Disposable",
             image: "https://i.pinimg.com/1200x/bc/ee/32/bcee32d169283a94850f145ca53cdab5.jpg",
-            desc: "Sterile gloves, masks, and hospital disposables.",
+            desc: "Sterile gloves, masks, and surgical disposables.",
             icon: Stethoscope,
-            link: "/products?category=Medical"
+            link: "/products?category=Surgical and Disposable"
         }
     ];
 

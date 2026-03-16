@@ -11,8 +11,8 @@ const Navbar = () => {
 
     const categories = [
         { name: "Packaging", slug: "Packaging" },
-        { name: "Organic and Cowdung Fertilzer", slug: "Organic and Cowdung Fertilzer" },
-        { name: "Surgical & Disposable", slug: "Surgical & Disposable" },
+        { name: "Organic and Cowdung Fertilizer", slug: "Organic and Cowdung Fertilizer" },
+        { name: "Surgical and Disposable", slug: "Surgical and Disposable" },
     ];
 
     // Handle scroll effect
