@@ -57,11 +57,16 @@ const Footer = () => {
                     <div>
                         <h3 className="font-bold text-lg mb-6 text-white border-b border-white/10 pb-2 inline-block">Our Products</h3>
                         <ul className="space-y-4">
-                            {["PP Woven Sacks", "FIBC / Jumbo Bags", "Tarpaulins", "Shade Nets", "Vermicompost", "Surgical Items"].map((item) => (
-                                <li key={item}>
-                                    <Link to="/products" className="text-slate-400 hover:text-accent transition-colors flex items-center gap-2 group">
-                                        <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity text-accent" />
-                                        {item}
+                            {[
+                                { name: "Packaging", path: "/products?category=Packaging" },
+                                { name: "Organic and Cowdung Fertilizer", path: "/products?category=Organic and Cowdung Fertilizer" },
+                                { name: "Surgical and Disposable", path: "/products?category=Surgical and Disposable" }
+                            ].map((item) => (
+                                <li key={item.name}>
+                                    <Link to={item.path} className="text-slate-400 hover:text-accent transition-colors flex items-start gap-2 group mt-1">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-accent transition-colors mt-2 shrink-0" />
+                                        <span className="flex-1">{item.name}</span>
+                                        <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity text-accent shrink-0 mt-1" />
                                     </Link>
                                 </li>
                             ))}

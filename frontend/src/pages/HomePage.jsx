@@ -1,7 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import ImageSlider from '../components/home/ImageSlider'
-import AboutCompany from '../components/home/AboutCompany'
 import ProductCategories from '../components/home/ProductCategories'
 import Capabilities from '../components/home/Capabilities'
 import WhyChooseUs from '../components/home/WhyChooseUs'
@@ -20,7 +19,6 @@ const HomePage = () => {
             <ImageSlider />
 
             {/* Content Sections */}
-            <AboutCompany />
             <ProductCategories />
             {/* <Capabilities /> */}
             {/* <WhyChooseUs /> */}

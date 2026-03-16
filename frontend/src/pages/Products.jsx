@@ -13,6 +13,7 @@ const Products = () => {
     const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         const categoryParam = searchParams.get('category');
         if (categoryParam && categories.includes(categoryParam)) {
             setActiveCategory(categoryParam);
