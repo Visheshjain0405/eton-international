@@ -1,5 +1,7 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Menu, X, Globe, Phone, Mail, ChevronDown } from "lucide-react";
 import { useQuote } from "../../context/QuoteContext";
 
@@ -69,7 +71,7 @@ const Navbar = () => {
             >
                 <div className="container mx-auto px-4 flex items-center justify-between">
                     {/* Logo */}
-                    <Link to="/" className="flex items-center gap-2 group">
+                    <Link href="/" className="flex items-center gap-2 group">
                         <div className="bg-primary text-white p-2 rounded-md group-hover:bg-accent transition-colors duration-300">
                             {/* Placeholder Icon for Logo */}
                             <Globe size={24} />
@@ -82,13 +84,13 @@ const Navbar = () => {
                     {/* Desktop Navigation */}
                     <nav className="hidden lg:flex items-center gap-8 font-body font-medium">
                         <Link
-                            to="/"
+                            href="/"
                             className={`text-textSecondary hover:text-accent transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all after:duration-300 hover:after:w-full ${scrolled ? "text-sm" : "text-base"}`}
                         >
                             Home
                         </Link>
                         <Link
-                            to="/about"
+                            href="/about"
                             className={`text-textSecondary hover:text-accent transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all after:duration-300 hover:after:w-full ${scrolled ? "text-sm" : "text-base"}`}
                         >
                             About Us
@@ -112,7 +114,7 @@ const Navbar = () => {
                             >
                                 <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-slate-100 p-2 flex flex-col">
                                     <Link
-                                        to="/products"
+                                        href="/products"
                                         className="px-4 py-2.5 text-sm text-textSecondary hover:bg-slate-50 hover:text-accent rounded-lg transition-colors font-semibold border-b border-slate-50 mb-1"
                                         onClick={() => setShowProductsDropdown(false)}
                                     >
@@ -124,7 +126,7 @@ const Navbar = () => {
                                     {categories.map((cat) => (
                                         <Link
                                             key={cat.slug}
-                                            to={`/products?category=${cat.slug}`}
+                                            href={`/products?category=${cat.slug}`}
                                             className="px-4 py-2 text-sm text-textSecondary hover:bg-slate-50 hover:text-accent rounded-lg transition-colors"
                                             onClick={() => setShowProductsDropdown(false)}
                                         >
@@ -138,7 +140,7 @@ const Navbar = () => {
                         {navLinks.slice(2).map((link) => (
                             <Link
                                 key={link.name}
-                                to={link.href}
+                                href={link.href}
                                 className={`text-textSecondary hover:text-accent transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all after:duration-300 hover:after:w-full ${scrolled ? "text-sm" : "text-base"
                                     }`}
                             >
@@ -175,14 +177,14 @@ const Navbar = () => {
                 >
                     <div className="container mx-auto px-4 py-6 flex flex-col gap-2">
                         <Link
-                            to="/"
+                            href="/"
                             className="text-textPrimary font-medium text-lg py-2 hover:text-accent transition-all"
                             onClick={() => setIsOpen(false)}
                         >
                             Home
                         </Link>
                         <Link
-                            to="/about"
+                            href="/about"
                             className="text-textPrimary font-medium text-lg py-2 hover:text-accent transition-all"
                             onClick={() => setIsOpen(false)}
                         >
@@ -200,7 +202,7 @@ const Navbar = () => {
                             </button>
                             <div className={`pl-4 flex flex-col gap-2 overflow-hidden transition-all duration-300 ${showProductsDropdown ? "max-h-60 mt-2 opacity-100" : "max-h-0 opacity-0"}`}>
                                 <Link
-                                    to="/products"
+                                    href="/products"
                                     className="text-textSecondary font-medium py-1.5 hover:text-accent text-base"
                                     onClick={() => setIsOpen(false)}
                                 >
@@ -209,7 +211,7 @@ const Navbar = () => {
                                 {categories.map((cat) => (
                                     <Link
                                         key={cat.slug}
-                                        to={`/products?category=${cat.slug}`}
+                                        href={`/products?category=${cat.slug}`}
                                         className="text-textSecondary py-1.5 hover:text-accent text-base"
                                         onClick={() => setIsOpen(false)}
                                     >
@@ -222,7 +224,7 @@ const Navbar = () => {
                         {navLinks.slice(2).map((link) => (
                             <Link
                                 key={link.name}
-                                to={link.href}
+                                href={link.href}
                                 className="text-textPrimary font-medium text-lg py-2 hover:text-accent transition-all"
                                 onClick={() => setIsOpen(false)}
                             >

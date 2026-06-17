@@ -1,7 +1,9 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Send, CheckCircle2, Package, Globe, User, Mail, Building2, MessageSquare, ShieldCheck, ArrowRight, ChevronDown } from "lucide-react";
+import { X, CheckCircle2, Package, Globe, ShieldCheck, ArrowRight, ChevronDown } from "lucide-react";
 import { products } from "../../data/products";
 
 const QuoteModal = ({ isOpen, onClose }) => {
@@ -169,9 +171,9 @@ const QuoteModal = ({ isOpen, onClose }) => {
                                                 <label className="text-xs font-bold text-primary uppercase tracking-widest ml-1">Specific Product</label>
                                                 <div className="relative">
                                                     <select className="w-full bg-white border-2 border-slate-100 rounded-2xl px-6 py-4 text-base font-black text-primary focus:outline-none focus:border-accent transition-all appearance-none cursor-pointer shadow-sm">
-                                                        {subProducts[mainCategory].map(product => (
+                                                        {subProducts[mainCategory]?.map(product => (
                                                             <option key={product} value={product}>{product}</option>
-                                                        ))}
+                                                        )) || <option value="General Sourcing Inquiry">General Sourcing Inquiry</option>}
                                                     </select>
                                                     <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" size={20} />
                                                 </div>

@@ -1,6 +1,8 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const slides = [
     {
@@ -124,11 +126,11 @@ const ImageSlider = () => {
                                 className={`flex flex-wrap gap-4 transition-all duration-700 delay-300 transform ${index === current ? "translate-y-0 opacity-100 shadow-xl" : "translate-y-8 opacity-0"
                                     }`}
                             >
-                                <Link to={slide.link} className="bg-accent hover:bg-accent/90 text-white px-8 py-3.5 rounded-lg font-semibold text-base transition-all shadow-lg shadow-accent/25 hover:shadow-accent/40 flex items-center gap-2 group/btn">
+                                <Link href={slide.link} className="bg-accent hover:bg-accent/90 text-white px-8 py-3.5 rounded-lg font-semibold text-base transition-all shadow-lg shadow-accent/25 hover:shadow-accent/40 flex items-center gap-2 group/btn">
                                     {slide.cta}
                                     <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
                                 </Link>
-                                <Link to="/process" className="px-8 py-3.5 rounded-lg font-semibold text-base text-white border border-white/20 hover:bg-white/10 backdrop-blur-sm transition-all">
+                                <Link href="/process" className="px-8 py-3.5 rounded-lg font-semibold text-base text-white border border-white/20 hover:bg-white/10 backdrop-blur-sm transition-all">
                                     Our Process
                                 </Link>
                             </div>

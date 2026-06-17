@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
 
 const Footer = () => {
@@ -44,7 +44,7 @@ const Footer = () => {
                                 { name: "Contact", path: "/contact" }
                             ].map((link) => (
                                 <li key={link.name}>
-                                    <Link to={link.path} className="text-slate-400 hover:text-accent transition-colors flex items-center gap-2 group">
+                                    <Link href={link.path} className="text-slate-400 hover:text-accent transition-colors flex items-center gap-2 group">
                                         <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-accent transition-colors" />
                                         {link.name}
                                     </Link>
@@ -63,7 +63,7 @@ const Footer = () => {
                                 { name: "Surgical and Disposable", path: "/products?category=Surgical and Disposable" }
                             ].map((item) => (
                                 <li key={item.name}>
-                                    <Link to={item.path} className="text-slate-400 hover:text-accent transition-colors flex items-start gap-2 group mt-1">
+                                    <Link href={item.path} className="text-slate-400 hover:text-accent transition-colors flex items-start gap-2 group mt-1">
                                         <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-accent transition-colors mt-2 shrink-0" />
                                         <span className="flex-1">{item.name}</span>
                                         <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity text-accent shrink-0 mt-1" />
@@ -115,9 +115,9 @@ const Footer = () => {
                         © {new Date().getFullYear()} Eteon International. All rights reserved.
                     </p>
                     <div className="flex gap-6 text-sm text-slate-500">
-                        <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
-                        <Link to="/terms-conditions" className="hover:text-white transition-colors">Terms of Service</Link>
-                        <Link to="/cookies-policy" className="hover:text-white transition-colors">Cookies Policy</Link>
+                        <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+                        <Link href="/terms-conditions" className="hover:text-white transition-colors">Terms of Service</Link>
+                        <Link href="/cookies-policy" className="hover:text-white transition-colors">Cookies Policy</Link>
                     </div>
                 </div>
             </div>

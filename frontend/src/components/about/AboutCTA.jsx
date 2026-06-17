@@ -1,5 +1,6 @@
+"use client";
+
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { ArrowRight, Phone, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useQuote } from '../../context/QuoteContext';

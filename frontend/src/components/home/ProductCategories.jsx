@@ -1,7 +1,9 @@
+"use client";
+
 import React, { useRef, useState } from "react";
 import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
 import { ArrowRight, Leaf, Stethoscope, Package } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { products as categories } from "../../data/products";
 
 // Advanced 3D Tilt Card Component
@@ -146,7 +148,7 @@ const ProductCategories = () => {
                         </p>
                     </div>
 
-                    <Link to="/products" className="hidden md:flex items-center gap-2 text-primary font-medium hover:text-accent transition-colors group">
+                    <Link href="/products" className="hidden md:flex items-center gap-2 text-primary font-medium hover:text-accent transition-colors group">
                         View Full Catalog <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                     </Link>
                 </div>
@@ -167,7 +169,7 @@ const ProductCategories = () => {
                             whileHover={{ y: -10 }}
                             className="rounded-3xl overflow-hidden relative group cursor-pointer h-[450px]"
                         >
-                            <Link to={category.link}>
+                            <Link href={category.link}>
                                 <div className="absolute inset-0">
                                     <img
                                         src={category.image}
