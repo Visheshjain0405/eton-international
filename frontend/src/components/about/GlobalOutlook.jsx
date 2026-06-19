@@ -15,17 +15,36 @@ const GlobalOutlook = () => {
 
                     {/* Left: Text Content */}
                     <div className="lg:w-1/2">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-wider mb-6 border border-blue-100">
+                        <motion.div
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: false, amount: 0.2 }}
+                            transition={{ duration: 0.6 }}
+                            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-wider mb-6 border border-blue-100"
+                        >
                             <Globe size={14} />
                             <span>International Reach</span>
-                        </div>
+                        </motion.div>
 
-                        <h2 className="font-heading text-4xl lg:text-5xl font-bold text-primary mb-6">
+                        <motion.h2
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: false, amount: 0.2 }}
+                            transition={{ duration: 0.7, delay: 0.1 }}
+                            className="font-heading text-4xl lg:text-5xl font-bold text-primary mb-6"
+                        >
                             Borderless <span className="text-accent">Ambition.</span>
-                        </h2>
-                        <p className="text-textSecondary text-lg leading-relaxed mb-10">
+                        </motion.h2>
+
+                        <motion.p
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: false, amount: 0.2 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            className="text-textSecondary text-lg leading-relaxed mb-10"
+                        >
                             We view the world as a single, interconnected marketplace. Our network spans across key strategic trade routes, ensuring that your goods move seamlessly across borders, time zones, and jurisdictions.
-                        </p>
+                        </motion.p>
 
                         {/* Region Grid - Light Mode */}
                         <div className="grid grid-cols-2 gap-8">
@@ -35,10 +54,17 @@ const GlobalOutlook = () => {
                                 { title: "Europe", desc: "Compliance & Trade Partners", color: "border-purple-500" },
                                 { title: "Americas", desc: "Logistics & Supply Chain", color: "border-orange-500" }
                             ].map((item, i) => (
-                                <div key={i} className={`pl-4 border-l-2 ${item.color}`}>
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: false, amount: 0.15 }}
+                                    transition={{ duration: 0.5, delay: i * 0.1 + 0.3 }}
+                                    className={`pl-4 border-l-2 ${item.color}`}
+                                >
                                     <h4 className="font-bold text-primary text-lg mb-1">{item.title}</h4>
                                     <p className="text-sm text-slate-500">{item.desc}</p>
-                                </div>
+                                </motion.div>
                             ))}
                         </div>
                     </div>
@@ -62,8 +88,8 @@ const GlobalOutlook = () => {
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.2 }}
+                                viewport={{ once: false, amount: 0.1 }}
+                                transition={{ delay: 0.2, duration: 0.6 }}
                                 className="absolute top-[10%] right-[0%] bg-white p-4 rounded-xl border border-slate-100 shadow-xl flex items-center gap-3"
                             >
                                 <div className="w-10 h-10 rounded-lg bg-blue-50 text-blue-500 flex items-center justify-center">
@@ -78,8 +104,8 @@ const GlobalOutlook = () => {
                             <motion.div
                                 initial={{ opacity: 0, y: -20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.4 }}
+                                viewport={{ once: false, amount: 0.1 }}
+                                transition={{ delay: 0.4, duration: 0.6 }}
                                 className="absolute bottom-[20%] left-[0%] bg-white p-4 rounded-xl border border-slate-100 shadow-xl flex items-center gap-3"
                             >
                                 <div className="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-500 flex items-center justify-center">

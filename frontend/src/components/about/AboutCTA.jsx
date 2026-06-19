@@ -16,51 +16,87 @@ const AboutCTA = () => {
 
                         {/* Left: Content */}
                         <div className="lg:w-1/2 lg:p-16">
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                            >
-                                <span className="text-accent font-bold tracking-widest text-sm uppercase mb-4 block">Next Steps</span>
-                                <h2 className="font-heading text-4xl lg:text-5xl font-bold text-primary mb-6 leading-tight">
+                            <div>
+                                <motion.span
+                                    initial={{ opacity: 0, x: -30 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: false, amount: 0.2 }}
+                                    transition={{ duration: 0.5 }}
+                                    className="text-accent font-bold tracking-widest text-sm uppercase mb-4 block"
+                                >
+                                    Next Steps
+                                </motion.span>
+                                
+                                <motion.h2
+                                    initial={{ opacity: 0, x: -30 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: false, amount: 0.2 }}
+                                    transition={{ duration: 0.6, delay: 0.1 }}
+                                    className="font-heading text-4xl lg:text-5xl font-bold text-primary mb-6 leading-tight"
+                                >
                                     Partner with <br />
                                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-slate-500">Industry Leaders.</span>
-                                </h2>
-                                <p className="text-textSecondary text-lg mb-8 leading-relaxed">
-                                    Ready to optimize your supply chain with a partner that prioritizes compliance and quality? Let's discuss your specific requirements today.
-                                </p>
+                                </motion.h2>
 
-                                <div className="flex flex-wrap gap-4 mb-8">
+                                <motion.p
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: false, amount: 0.2 }}
+                                    transition={{ duration: 0.7, delay: 0.2 }}
+                                    className="text-textSecondary text-lg mb-8 leading-relaxed"
+                                >
+                                    Ready to optimize your supply chain with a partner that prioritizes compliance and quality? Let's discuss your specific requirements today.
+                                </motion.p>
+
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: false, amount: 0.2 }}
+                                    transition={{ duration: 0.7, delay: 0.3 }}
+                                    className="flex flex-wrap gap-4 mb-8"
+                                >
                                     <button
                                         onClick={openQuoteModal}
-                                        className="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-full font-bold transition-all hover:bg-primary/90 hover:scale-105 shadow-lg shadow-primary/20"
+                                        className="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-full font-bold transition-all hover:bg-primary/90 hover:scale-105 shadow-lg shadow-primary/20 cursor-pointer"
                                     >
                                         Get a Quote <ArrowRight size={18} />
                                     </button>
                                     <a
-                                        href="mailto:contact@eteon.com"
+                                        href="mailto:info@eteoninternational.com"
                                         className="inline-flex items-center gap-2 bg-white text-primary border border-slate-200 px-8 py-4 rounded-full font-bold transition-all hover:bg-slate-50 hover:border-slate-300"
                                     >
                                         <Mail size={18} /> Email Us
                                     </a>
-                                </div>
+                                </motion.div>
 
-                                <div className="flex items-center gap-2 text-sm text-slate-400 font-medium">
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    whileInView={{ opacity: 1 }}
+                                    viewport={{ once: false, amount: 0.2 }}
+                                    transition={{ duration: 0.5, delay: 0.4 }}
+                                    className="flex items-center gap-2 text-sm text-slate-400 font-medium"
+                                >
                                     <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                                     Currently accepting new partners for FY 2024-25
-                                </div>
-                            </motion.div>
+                                </motion.div>
+                            </div>
                         </div>
 
                         {/* Right: Image */}
-                        <div className="lg:w-1/2 h-full min-h-[400px] w-full relative group">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 1.05 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: false, amount: 0.2 }}
+                            transition={{ duration: 0.8 }}
+                            className="lg:w-1/2 h-full min-h-[400px] w-full relative group overflow-hidden"
+                        >
                             <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-500 z-10 mix-blend-multiply pointer-events-none"></div>
                             <img
                                 src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2670&auto=format&fit=crop"
                                 alt="Business Team"
                                 className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700"
                             />
-                        </div>
+                        </motion.div>
 
                     </div>
                 </div>

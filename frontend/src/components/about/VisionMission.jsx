@@ -10,10 +10,16 @@ const VisionMission = () => {
             <div className="container mx-auto px-4">
 
                 {/* Section Header */}
-                <div className="text-center max-w-2xl mx-auto mb-16">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.2 }}
+                    transition={{ duration: 0.7 }}
+                    className="text-center max-w-2xl mx-auto mb-16"
+                >
                     <span className="text-accent font-bold tracking-widest text-sm uppercase mb-3 block">Corporate Purpose</span>
                     <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary">Driving Global Commerce</h2>
-                </div>
+                </motion.div>
 
                 <div className="grid md:grid-cols-2 gap-12 lg:gap-24 relative">
                     {/* Center Divider Line (Desktop Only) */}
@@ -21,10 +27,10 @@ const VisionMission = () => {
 
                     {/* VISION COLUMN */}
                     <motion.div
-                        initial={{ opacity: 0, x: -20 }}
+                        initial={{ opacity: 0, x: -40 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
+                        viewport={{ once: false, amount: 0.15 }}
+                        transition={{ duration: 0.7 }}
                         className="flex flex-col items-center text-center"
                     >
                         <div className="w-20 h-20 rounded-2xl bg-primary/5 flex items-center justify-center text-primary mb-8 relative group">
@@ -41,10 +47,10 @@ const VisionMission = () => {
 
                     {/* MISSION COLUMN */}
                     <motion.div
-                        initial={{ opacity: 0, x: 20 }}
+                        initial={{ opacity: 0, x: 40 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
+                        viewport={{ once: false, amount: 0.15 }}
+                        transition={{ duration: 0.7 }}
                         className="flex flex-col items-center text-center"
                     >
                         <div className="w-20 h-20 rounded-2xl bg-accent/10 flex items-center justify-center text-accent mb-8 relative group">

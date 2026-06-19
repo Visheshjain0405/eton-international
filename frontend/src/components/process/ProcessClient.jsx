@@ -203,7 +203,8 @@ const ProcessClient = () => {
                         <motion.div
                             initial={{ opacity: 0, x: -50 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: false, amount: 0.2 }}
+                            transition={{ duration: 0.7 }}
                             className="lg:w-1/2 relative"
                         >
                             <div className="rounded-[3rem] overflow-hidden shadow-2xl shadow-blue-900/10 transform -rotate-3 hover:rotate-0 transition-all duration-700">
@@ -231,29 +232,61 @@ const ProcessClient = () => {
 
                         {/* Content */}
                         <div className="lg:w-1/2">
-                            <span className="text-blue-600 font-bold tracking-widest uppercase mb-4 block">01. Infrastructure</span>
-                            <h2 className="text-5xl font-heading font-bold text-slate-900 mb-8 leading-tight">
+                            <motion.span
+                                initial={{ opacity: 0, x: 30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: false, amount: 0.2 }}
+                                transition={{ duration: 0.5 }}
+                                className="text-blue-600 font-bold tracking-widest uppercase mb-4 block"
+                            >
+                                01. Infrastructure
+                            </motion.span>
+                            <motion.h2
+                                initial={{ opacity: 0, x: 30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: false, amount: 0.2 }}
+                                transition={{ duration: 0.6, delay: 0.1 }}
+                                className="text-5xl font-heading font-bold text-slate-900 mb-8 leading-tight"
+                            >
                                 Logistics & <br /> Shipping Mastery
-                            </h2>
-                            <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+                            </motion.h2>
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: false, amount: 0.2 }}
+                                transition={{ duration: 0.7, delay: 0.2 }}
+                                className="text-lg text-slate-600 mb-8 leading-relaxed"
+                            >
                                 We treat logistics as a precise science. Our dedicated team manages the entire multimodal transport chain—from factory floor to your port of destination.
-                            </p>
+                            </motion.p>
 
                             <div className="space-y-6">
-                                <div className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-lg transition-all">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: false, amount: 0.15 }}
+                                    transition={{ duration: 0.6, delay: 0.3 }}
+                                    className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-lg transition-all"
+                                >
                                     <PackageCheck className="text-blue-600 shrink-0 mt-1" size={24} />
                                     <div>
                                         <h4 className="font-bold text-slate-900 mb-1">Export-Grade Packing</h4>
                                         <p className="text-sm text-slate-500">Reinforced palletization and climate-proof packaging.</p>
                                     </div>
-                                </div>
-                                <div className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-lg transition-all">
+                                </motion.div>
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: false, amount: 0.15 }}
+                                    transition={{ duration: 0.6, delay: 0.4 }}
+                                    className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-lg transition-all"
+                                >
                                     <Globe className="text-blue-600 shrink-0 mt-1" size={24} />
                                     <div>
                                         <h4 className="font-bold text-slate-900 mb-1">Strategic Routing</h4>
                                         <p className="text-sm text-slate-500">Direct vessel bookings to minimize transit time.</p>
                                     </div>
-                                </div>
+                                </motion.div>
                             </div>
                         </div>
                     </div>
@@ -268,7 +301,8 @@ const ProcessClient = () => {
                         <motion.div
                             initial={{ opacity: 0, x: 50 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: false, amount: 0.2 }}
+                            transition={{ duration: 0.7 }}
                             className="lg:w-1/2 relative"
                         >
                             <div className="rounded-[3rem] overflow-hidden shadow-2xl shadow-slate-200 transform rotate-3 hover:rotate-0 transition-all duration-700 border-4 border-white">
@@ -297,36 +331,74 @@ const ProcessClient = () => {
 
                         {/* Content */}
                         <div className="lg:w-1/2">
-                            <span className="text-blue-600 font-bold tracking-widest uppercase mb-4 block">02. Accountability</span>
-                            <h2 className="text-5xl font-heading font-bold text-primary mb-8 leading-tight">
+                            <motion.span
+                                initial={{ opacity: 0, x: -30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: false, amount: 0.2 }}
+                                transition={{ duration: 0.5 }}
+                                className="text-blue-600 font-bold tracking-widest uppercase mb-4 block"
+                            >
+                                02. Accountability
+                            </motion.span>
+                            <motion.h2
+                                initial={{ opacity: 0, x: -30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: false, amount: 0.2 }}
+                                transition={{ duration: 0.6, delay: 0.1 }}
+                                className="text-5xl font-heading font-bold text-primary mb-8 leading-tight"
+                            >
                                 Constant <br /> Coordination
-                            </h2>
-                            <p className="text-lg text-slate-500 mb-8 leading-relaxed">
+                            </motion.h2>
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: false, amount: 0.2 }}
+                                transition={{ duration: 0.7, delay: 0.2 }}
+                                className="text-lg text-slate-500 mb-8 leading-relaxed"
+                            >
                                 Distance doesn't mean silence. We serve as your eyes and ears on the ground, keeping you informed at every critical milestone.
-                            </p>
+                            </motion.p>
 
                             <div className="grid grid-cols-1 gap-4">
-                                <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: false, amount: 0.15 }}
+                                    transition={{ duration: 0.6, delay: 0.3 }}
+                                    className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all"
+                                >
                                     <h4 className="font-bold text-primary mb-2 flex items-center gap-2">
                                         <span className="w-2 h-2 rounded-full bg-blue-500"></span>
                                         Real-time Updates
                                     </h4>
                                     <p className="text-sm text-slate-500 pl-4">Production and dispatch alerts sent directly to your inbox.</p>
-                                </div>
-                                <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                                </motion.div>
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: false, amount: 0.15 }}
+                                    transition={{ duration: 0.6, delay: 0.4 }}
+                                    className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all"
+                                >
                                     <h4 className="font-bold text-primary mb-2 flex items-center gap-2">
                                         <span className="w-2 h-2 rounded-full bg-blue-500"></span>
                                         Dedicated Manager
                                     </h4>
                                     <p className="text-sm text-slate-500 pl-4">Single point of contact for clear, consistent answers.</p>
-                                </div>
-                                <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                                </motion.div>
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: false, amount: 0.15 }}
+                                    transition={{ duration: 0.6, delay: 0.5 }}
+                                    className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all"
+                                >
                                     <h4 className="font-bold text-primary mb-2 flex items-center gap-2">
                                         <span className="w-2 h-2 rounded-full bg-blue-500"></span>
                                         Post-Shipment Care
                                     </h4>
                                     <p className="text-sm text-slate-500 pl-4">We don't stop at dispatch. We assist until goods are in your warehouse.</p>
-                                </div>
+                                </motion.div>
                             </div>
                         </div>
                     </div>
@@ -336,13 +408,28 @@ const ProcessClient = () => {
             {/* CTA */}
             <section className="py-24 bg-white text-center border-t border-slate-100">
                 <div className="container mx-auto px-4">
-                    <h2 className="font-heading text-4xl font-bold text-primary mb-6">Ready to Experience Reliability?</h2>
-                    <Link
-                        href="/contact"
-                        className="inline-flex items-center gap-3 bg-primary text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-slate-800 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1"
+                    <motion.h2
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: false, amount: 0.2 }}
+                        transition={{ duration: 0.6 }}
+                        className="font-heading text-4xl font-bold text-primary mb-6"
                     >
-                        Start Your Order <ArrowRight size={20} />
-                    </Link>
+                        Ready to Experience Reliability?
+                    </motion.h2>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: false, amount: 0.2 }}
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                    >
+                        <Link
+                            href="/contact"
+                            className="inline-flex items-center gap-3 bg-primary text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-slate-800 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1"
+                        >
+                            Start Your Order <ArrowRight size={20} />
+                        </Link>
+                    </motion.div>
                 </div>
             </section>
 

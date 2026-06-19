@@ -27,11 +27,18 @@ export const medicalProducts = [
             "Secure with medical tape or bandages as per protocol."
         ],
         specs: [
-            { label: "Material", value: "100% Cotton Cheese Cloth" },
-            { label: "Mesh Density", value: "19x15, 20x12, 26x18" },
-            { label: "Dimensions", value: "30x30cm, 40x40cm, 40x50cm" },
-            { label: "Size (Yards)", value: "36\"x5\", 36\"x1\", 36\"x2\" yards" },
-            { label: "Certificates", value: "CE, ISO 9001:2015, GMP" }
+            { label: "Feature", value: "Eco-Friendly / Stocked" },
+            { label: "Material", value: "Cotton" },
+            { label: "Product Type", value: "100% Cotton Cheese Cloth" },
+            { label: "Color", value: "Bleached or unbleached" },
+            { label: "Features", value: "soft, absorbent, reuseable" },
+            { label: "Layer", value: "Single layer" },
+            { label: "Size", value: "36\"x5\" yards\n36\"x1\" yards\n36\"x2\" yards etc." },
+            { label: "Yarn & Mesh", value: "19x15\n20x12\n26x18" },
+            { label: "Dimensions", value: "30x30cm\n40x40cm\n40x50cm" },
+            { label: "Quality Control", value: "100% checked" },
+            { label: "Application", value: "Hospital, Operation theater, Clinic" },
+            { label: "Certificates", value: "CE, ISO 9001: 2015, GMP" }
         ],
         features: [
             { title: "Ultra Absorbent", desc: "Cotton matrix designed for rapid and high-volume fluid uptake.", icon: "Activity" },

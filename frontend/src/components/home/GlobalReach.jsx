@@ -40,7 +40,13 @@ const GlobalReach = () => {
             <div className="container mx-auto px-4 relative z-10">
 
                 {/* Header */}
-                <div className="text-center mb-16">
+                <motion.div 
+                    initial={{ opacity: 0, x: -100 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: false }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="text-center mb-16"
+                >
                     <span className="text-accent font-bold uppercase tracking-widest text-sm mb-3 block">
                         Global Presence
                     </span>
@@ -56,10 +62,16 @@ const GlobalReach = () => {
                     <p className="text-textSecondary text-lg max-w-2xl mx-auto">
                         From our headquarters to your doorstep. We have established strong logistics channels in key markets across 5 continents.
                     </p>
-                </div>
+                </motion.div>
 
                 {/* Map Visual Area */}
-                <div className="relative w-full aspect-[16/9] md:aspect-[2/1] bg-slate-50 rounded-3xl border border-slate-100 mb-12 overflow-hidden group">
+                <motion.div 
+                    initial={{ opacity: 0, y: 55 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false }}
+                    transition={{ duration: 1, ease: "easeOut", delay: 0.1 }}
+                    className="relative w-full aspect-[16/9] md:aspect-[2/1] bg-slate-50 rounded-3xl border border-slate-100 mb-12 overflow-hidden group"
+                >
 
                     {/* Abstract Dot Map Background */}
                     <div className="absolute inset-0 opacity-20"
@@ -113,7 +125,7 @@ const GlobalReach = () => {
                             </motion.div>
                         </div>
                     ))}
-                </div>
+                </motion.div>
 
                 {/* Stats Grid Removed per user request */}
 

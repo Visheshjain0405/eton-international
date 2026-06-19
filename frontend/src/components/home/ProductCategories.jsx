@@ -135,8 +135,14 @@ const ProductCategories = () => {
         <section className="py-section bg-surface">
             <div className="container mx-auto px-4">
                 {/* Header */}
-                <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
-                    <div className="max-w-xl">
+                <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8 overflow-hidden">
+                    <motion.div 
+                        initial={{ opacity: 0, x: -60 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: false }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="max-w-xl"
+                    >
                         <div className="inline-block px-3 py-1 mb-4 border border-accent/20 bg-accent/5 rounded-full text-accent font-medium text-sm tracking-wide uppercase">
                             Our Offerings
                         </div>
@@ -146,11 +152,18 @@ const ProductCategories = () => {
                         <p className="text-textSecondary text-lg">
                             Explore our specialized divisions serving global industries.
                         </p>
-                    </div>
+                    </motion.div>
 
-                    <Link href="/products" className="hidden md:flex items-center gap-2 text-primary font-medium hover:text-accent transition-colors group">
-                        View Full Catalog <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                    </Link>
+                    <motion.div
+                        initial={{ opacity: 0, x: 60 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: false }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                    >
+                        <Link href="/products" className="hidden md:flex items-center gap-2 text-primary font-medium hover:text-accent transition-colors group">
+                            View Full Catalog <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                    </motion.div>
                 </div>
 
                 {/* Grid */}
@@ -160,7 +173,7 @@ const ProductCategories = () => {
                             key={category.id}
                             initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, amount: 0.2 }}
+                            viewport={{ once: false, amount: 0.2 }}
                             transition={{
                                 duration: 0.8,
                                 delay: index * 0.1,

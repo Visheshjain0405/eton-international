@@ -11,12 +11,16 @@ import {
     Mail
 } from 'lucide-react';
 import { useQuote } from '../../context/QuoteContext';
-import PackagingDetail from './PackagingDetail';
-import FertilizerDetail from './FertilizerDetail';
-import MedicalDetail from './MedicalDetail';
-
 const ProductDetailClient = ({ product }) => {
     const { openQuoteModal } = useQuote();
+
+    const specRows = [];
+    if (product) {
+        // Map specs directly from the product's defined data
+        product.specs?.forEach(s => {
+            specRows.push({ label: s.label, value: s.value });
+        });
+    }
 
     if (!product) {
         return (
@@ -34,23 +38,6 @@ const ProductDetailClient = ({ product }) => {
         );
     }
 
-    // Helper to render category-specific content
-    const renderCategoryDetail = () => {
-        switch (product.group) {
-            case "Packaging":
-                return <PackagingDetail product={product} />;
-            case "Organic and Cowdung Fertilizer":
-                return <FertilizerDetail product={product} />;
-            case "Surgical and Disposable":
-                return <MedicalDetail product={product} />;
-            default:
-                return (
-                    <section className="py-20 text-center">
-                        <p className="text-slate-500">Additional details are being updated for this category.</p>
-                    </section>
-                );
-        }
-    };
 
     return (
         <div className="bg-white min-h-screen font-body">
@@ -67,93 +54,86 @@ const ProductDetailClient = ({ product }) => {
                 </div>
             </div>
 
-            {/* PRODUCT HERO SECTION */}
-            <section className="py-12 lg:py-16">
+            {/* PRODUCT TITLE BANNER */}
+            <div className="bg-slate-50 border-y border-slate-200/60 py-12 text-center">
                 <div className="container mx-auto px-4">
-                    <div className="flex flex-col lg:flex-row gap-12 xl:gap-20">
-                        <div className="lg:w-1/2">
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                className="relative aspect-square rounded-[2rem] overflow-hidden bg-slate-100 border border-slate-200 shadow-2xl"
-                            >
-                                <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+                    <h1 className="text-4xl md:text-5xl font-heading font-semibold text-primary tracking-tight">
+                        {product.name}
+                    </h1>
+                </div>
+            </div>
+
+            {/* PRODUCT HERO / DETAILS SECTION */}
+            <section className="py-16">
+                <div className="container mx-auto px-4">
+                    <div className="flex flex-col lg:flex-row gap-12 xl:gap-20 items-start">
+                        {/* LEFT COLUMN: PRODUCT IMAGE */}
+                        <motion.div 
+                            initial={{ opacity: 0, x: -60 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: false, amount: 0.1 }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            className="w-full lg:w-1/2"
+                        >
+                            <div className="relative rounded-[2rem] overflow-hidden bg-slate-50 border border-slate-200 p-8 flex items-center justify-center shadow-sm">
+                                <img 
+                                    src={product.image} 
+                                    alt={product.name} 
+                                    className="w-full h-auto object-contain max-h-[500px] rounded-2xl" 
+                                />
                                 <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest text-primary border border-white/20">
                                     Premium Product
                                 </div>
-                            </motion.div>
-                        </div>
-
-                        <div className="lg:w-1/2 flex flex-col justify-center">
-                            <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent/10 border border-accent/20 rounded-full text-accent font-bold text-xs uppercase tracking-widest mb-6 w-fit">
-                                <Globe size={12} /> {product.group} Division
                             </div>
-                            <h1 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6 leading-tight">
-                                {product.name}
-                            </h1>
-                            <div className="space-y-4 mb-8">
-                                <h3 className="text-xl font-bold text-slate-800">Brief Overview</h3>
-                                <p className="text-lg text-slate-600 leading-relaxed">
-                                    {product.description || product.desc}
-                                </p>
+                        </motion.div>
 
-                                {product.highlights && (
-                                    <div className="pt-4 space-y-3">
-                                        {product.highlights.map((h, i) => (
-                                            <div key={i} className="flex items-center gap-3 group">
-                                                <div className="w-2.5 h-2.5 bg-accent rotate-45 group-hover:scale-125 transition-transform"></div>
-                                                <span className="font-bold text-sm tracking-wider text-slate-800">{h}</span>
-                                            </div>
+                        {/* RIGHT COLUMN: TECHNICAL SPECIFICATIONS TABLE */}
+                        <motion.div 
+                            initial={{ opacity: 0, x: 60 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: false, amount: 0.1 }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            className="w-full lg:w-1/2"
+                        >
+                            <div className="w-full border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm">
+                                <table className="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr className="border-b border-slate-200 bg-white">
+                                            <th colSpan="2" className="py-5 px-8 text-center text-xl font-bold text-slate-800 border-b border-slate-200">
+                                                {product.name}
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {specRows.map((row, i) => (
+                                            <tr 
+                                                key={i} 
+                                                className={`${
+                                                    i % 2 === 0 ? 'bg-slate-50/50' : 'bg-white'
+                                                } border-b border-slate-200/60 hover:bg-slate-50 transition-colors`}
+                                            >
+                                                <td className="py-4 px-8 font-bold text-slate-700 text-sm w-1/3 border-r border-slate-200/60">
+                                                    {row.label}
+                                                </td>
+                                                <td className="py-4 px-8 text-slate-600 text-sm whitespace-pre-line font-medium">
+                                                    {row.value}
+                                                </td>
+                                            </tr>
                                         ))}
-                                    </div>
-                                )}
+                                    </tbody>
+                                </table>
                             </div>
 
-                            <div className="flex flex-wrap gap-4 mb-10">
+                            {/* Export Inquiry CTA Button directly below Table */}
+                            <div className="mt-8 flex flex-wrap gap-4">
                                 <button
                                     onClick={openQuoteModal}
                                     className="bg-primary text-white px-10 py-5 rounded-2xl font-bold flex items-center justify-center gap-3 shadow-xl hover:bg-accent transition-all w-full sm:w-fit"
                                 >
                                     <Mail size={20} /> Request Export Inquiry
                                 </button>
-                                <a
-                                    href="#specs"
-                                    className="px-10 py-5 rounded-2xl font-bold border-2 border-primary/20 text-primary hover:bg-primary/5 transition-all text-center"
-                                >
-                                    Technical Specs
-                                </a>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* CATEGORY SPECIFIC CONTENT */}
-            {renderCategoryDetail()}
-
-            {/* FINAL CTA SECTION */}
-            <section className="py-20 bg-slate-50">
-                <div className="container mx-auto px-4">
-                    <div className="max-w-5xl mx-auto bg-primary rounded-[4rem] p-10 md:p-20 text-center text-white shadow-2xl overflow-hidden relative">
-                        <div className="absolute top-0 right-0 w-80 h-80 bg-accent/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
-                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/10 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl"></div>
-
-                        <h2 className="text-3xl md:text-5xl font-heading font-bold mb-6 relative z-10">Scale Your Business with Premium Supply</h2>
-                        <p className="text-white/70 text-xl mb-12 max-w-2xl mx-auto relative z-10">
-                            Connect with our trade experts for customized volume pricing, shipping logistics, and full technical support.
-                        </p>
-
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 relative z-10">
-                            <button
-                                onClick={openQuoteModal}
-                                className="w-full sm:w-auto bg-accent text-white px-12 py-6 rounded-2xl font-extrabold text-xl shadow-xl hover:shadow-accent/40 hover:scale-105 transition-all"
-                            >
-                                Secure a Quote
-                            </button>
-                            <Link href="/contact" className="w-full sm:w-auto px-12 py-6 rounded-2xl font-bold text-xl border border-white/30 hover:bg-white/10 transition-all">
-                                Talk to Expert
-                            </Link>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>

@@ -58,7 +58,13 @@ const ExportProcess = () => {
         <section className="py-24 bg-surface relative overflow-hidden">
             <div className="container mx-auto px-4">
 
-                <div className="text-center mb-16">
+                <motion.div 
+                    initial={{ opacity: 0, x: -100 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: false }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="text-center mb-16"
+                >
                     <span className="text-accent font-bold uppercase tracking-widest text-sm mb-3 block">
                         How We Work
                     </span>
@@ -74,7 +80,7 @@ const ExportProcess = () => {
                     <p className="text-textSecondary mt-4 text-lg max-w-2xl mx-auto">
                         Precision, compliance, and speed. See how we deliver excellence at every step.
                     </p>
-                </div>
+                </motion.div>
 
                 <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
 

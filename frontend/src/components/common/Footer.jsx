@@ -101,7 +101,9 @@ const Footer = () => {
                                 </div>
                                 <div>
                                     <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Email</p>
-                                    <p className="text-slate-300 text-sm font-semibold">info@eteon-international.com</p>
+                                    <p className="text-slate-300 text-sm font-semibold">
+                                        <a href="mailto:info@eteoninternational.com" className="hover:text-accent transition-colors">info@eteoninternational.com</a>
+                                    </p>
                                 </div>
                             </li>
                         </ul>

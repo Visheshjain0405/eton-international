@@ -38,9 +38,10 @@ const ContactClient = () => {
                         <div className="lg:w-1/3 space-y-6">
                             {/* Card 1: Main Office */}
                             <motion.div
-                                initial={{ opacity: 0, x: -20 }}
+                                initial={{ opacity: 0, x: -30 }}
                                 whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: false, amount: 0.15 }}
+                                transition={{ duration: 0.6 }}
                                 className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200"
                             >
                                 <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-6">
@@ -56,10 +57,10 @@ const ContactClient = () => {
 
                             {/* Card 2: Communication */}
                             <motion.div
-                                initial={{ opacity: 0, x: -20 }}
+                                initial={{ opacity: 0, x: -30 }}
                                 whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.1 }}
+                                viewport={{ once: false, amount: 0.15 }}
+                                transition={{ duration: 0.6, delay: 0.1 }}
                                 className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200"
                             >
                                 <div className="w-12 h-12 bg-green-50 text-green-600 rounded-xl flex items-center justify-center mb-6">
@@ -73,17 +74,17 @@ const ContactClient = () => {
                                     </div>
                                     <div className="flex items-center gap-4">
                                         <Mail size={18} className="text-slate-400" />
-                                        <span className="text-primary font-medium">contact@eteon.com</span>
+                                        <span className="text-primary font-medium">info@eteoninternational.com</span>
                                     </div>
                                 </div>
                             </motion.div>
 
                             {/* Card 3: Hours */}
                             <motion.div
-                                initial={{ opacity: 0, x: -20 }}
+                                initial={{ opacity: 0, x: -30 }}
                                 whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.2 }}
+                                viewport={{ once: false, amount: 0.15 }}
+                                transition={{ duration: 0.6, delay: 0.2 }}
                                 className="bg-primary text-white p-8 rounded-2xl shadow-xl relative overflow-hidden"
                             >
                                 {/* Bg Graphic */}
@@ -110,9 +111,10 @@ const ContactClient = () => {
 
                         {/* RIGHT: CONTACT FORM */}
                         <motion.div
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: false, amount: 0.15 }}
+                            transition={{ duration: 0.7 }}
                             className="lg:w-2/3"
                         >
                             <div className="bg-white p-8 lg:p-12 rounded-[2rem] shadow-xl shadow-slate-200/50 border border-slate-100">

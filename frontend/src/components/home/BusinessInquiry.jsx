@@ -34,7 +34,13 @@ const BusinessInquiry = () => {
             <div className="container mx-auto px-4">
 
                 {/* Header */}
-                <div className="text-center mb-16">
+                <motion.div 
+                    initial={{ opacity: 0, x: -100 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: false }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="text-center mb-16"
+                >
                     <span className="text-accent font-bold uppercase tracking-widest text-sm mb-3 block">
                         Contact Us
                     </span>
@@ -50,13 +56,19 @@ const BusinessInquiry = () => {
                     <p className="text-textSecondary text-lg max-w-2xl mx-auto">
                         Connect with our export specialists today. We provide competitive pricing and tailored logistics solutions for your business.
                     </p>
-                </div>
+                </motion.div>
 
                 <div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100">
                     <div className="grid lg:grid-cols-5 min-h-[600px]">
 
                         {/* Left Side: Info & Value Prop */}
-                        <div className="lg:col-span-2 bg-primary text-white p-10 md:p-12 relative overflow-hidden flex flex-col justify-between">
+                        <motion.div 
+                            initial={{ opacity: 0, x: -60 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: false }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            className="lg:col-span-2 bg-primary text-white p-10 md:p-12 relative overflow-hidden flex flex-col justify-between"
+                        >
                             {/* Decor */}
                             <div className="absolute top-0 right-0 w-64 h-64 bg-accent opacity-10 rounded-fullblur-3xl -translate-y-1/2 translate-x-1/2" />
                             <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-500 opacity-10 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2" />
@@ -79,7 +91,7 @@ const BusinessInquiry = () => {
                                         </div>
                                         <div>
                                             <p className="text-sm text-slate-400 mb-1">Email for Inquiries</p>
-                                            <a href="mailto:exim@eteon.com" className="font-semibold hover:text-accent transition-colors">exim@eteon.com</a>
+                                            <a href="mailto:info@eteoninternational.com" className="font-semibold hover:text-accent transition-colors">info@eteoninternational.com</a>
                                         </div>
                                     </div>
 
@@ -116,10 +128,16 @@ const BusinessInquiry = () => {
                                     </span>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
 
                         {/* Right Side: Inquiry Form */}
-                        <div className="lg:col-span-3 p-10 md:p-12 bg-white relative">
+                        <motion.div 
+                            initial={{ opacity: 0, x: 60 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: false }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            className="lg:col-span-3 p-10 md:p-12 bg-white relative"
+                        >
                             {isSuccess ? (
                                 <motion.div
                                     initial={{ opacity: 0, scale: 0.9 }}
@@ -234,7 +252,7 @@ const BusinessInquiry = () => {
                                     </form>
                                 </>
                             )}
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
 

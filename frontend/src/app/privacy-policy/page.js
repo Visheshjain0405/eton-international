@@ -57,7 +57,7 @@ export default function PrivacyPolicyPage() {
                             <h2 className="text-xl font-bold text-primary mb-3">5. Contact Us</h2>
                             <p>
                                 If you have any questions about this privacy policy or our privacy practices, please contact us at:
-                                <a href="mailto:info@eteon-international.com" className="text-accent font-medium ml-1">info@eteon-international.com</a>
+                                <a href="mailto:info@eteoninternational.com" className="text-accent font-medium ml-1">info@eteoninternational.com</a>
                             </p>
                         </section>
                     </div>

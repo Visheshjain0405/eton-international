@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 
 const slides = [
     {
@@ -49,95 +50,105 @@ const ImageSlider = () => {
         if (isAutoPlaying) {
             interval = setInterval(() => {
                 nextSlide();
-            }, 4000); // reduced from 6s to 4s
+            }, 5000);
         }
         return () => clearInterval(interval);
     }, [current, isAutoPlaying]);
 
     return (
-        <div
-            className="relative w-full h-[500px] lg:h-[600px] overflow-hidden group bg-primary"
-            // Removed onHover pausing to guarantee the slider always functions
-        >
+        <div className="relative w-full h-[500px] lg:h-[600px] overflow-hidden group bg-primary">
             {/* Navigation Arrows - Positioned at absolute edges */}
             <button
                 onClick={prevSlide}
-                className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-30 p-2 lg:p-4 rounded-full border border-white/10 bg-black/20 text-white hover:bg-accent hover:border-accent transition-all backdrop-blur-md group"
+                className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-30 p-2 lg:p-4 rounded-full border border-white/10 bg-black/20 text-white hover:bg-accent hover:border-accent transition-all backdrop-blur-md group cursor-pointer"
                 aria-label="Previous Slide"
             >
                 <ChevronLeft size={28} className="group-hover:-translate-x-0.5 transition-transform" />
             </button>
             <button
                 onClick={nextSlide}
-                className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-30 p-2 lg:p-4 rounded-full border border-white/10 bg-black/20 text-white hover:bg-accent hover:border-accent transition-all backdrop-blur-md group"
+                className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-30 p-2 lg:p-4 rounded-full border border-white/10 bg-black/20 text-white hover:bg-accent hover:border-accent transition-all backdrop-blur-md group cursor-pointer"
                 aria-label="Next Slide"
             >
                 <ChevronRight size={28} className="group-hover:translate-x-0.5 transition-transform" />
             </button>
 
-            {slides.map((slide, index) => (
-                <div
-                    key={index}
-                    className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === current ? "opacity-100 z-10" : "opacity-0 z-0"
-                        }`}
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={current}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.7 }}
+                    className="absolute inset-0"
                 >
                     {/* Background Image with Ken Burns Effect */}
                     <div className="absolute inset-0 overflow-hidden">
-                        <div
-                            className={`w-full h-full bg-cover bg-center transition-transform duration-[8000ms] ease-out ${index === current ? "scale-110" : "scale-100"
-                                }`}
-                            style={{ backgroundImage: `url(${slide.image})` }}
+                        <motion.div
+                            initial={{ scale: 1 }}
+                            animate={{ scale: 1.08 }}
+                            transition={{ duration: 5, ease: "easeOut" }}
+                            className="w-full h-full bg-cover bg-center"
+                            style={{ backgroundImage: `url(${slides[current].image})` }}
                         />
                     </div>
 
                     {/* Professional Overlay: Linear Gradient + vignette */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-primary/30 to-transparent" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/45 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent" />
 
                     {/* Content Container */}
                     <div className="relative h-full container mx-auto px-6 lg:px-12 flex flex-col justify-center">
                         <div className="max-w-3xl">
                             {/* Tagline Badge */}
-                            <div
-                                className={`inline-block px-3 py-1 mb-4 border border-accent/50 bg-accent/10 rounded-full text-accent font-medium text-sm tracking-wide uppercase backdrop-blur-sm transition-all duration-700 transform ${index === current ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-                                    }`}
+                            <motion.div
+                                initial={{ opacity: 0, x: -30 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
+                                className="inline-block px-3 py-1 mb-4 border border-accent/50 bg-accent/10 rounded-full text-accent font-medium text-sm tracking-wide uppercase backdrop-blur-sm"
                             >
-                                {slide.tagline}
-                            </div>
+                                {slides[current].tagline}
+                            </motion.div>
 
                             {/* Title */}
-                            <h1
-                                className={`font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-white mb-6 leading-tight transition-all duration-700 delay-100 transform ${index === current ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-                                    }`}
+                            <motion.h1
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
+                                className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-white mb-6 leading-tight"
                             >
-                                {slide.title}
-                            </h1>
+                                {slides[current].title}
+                            </motion.h1>
 
                             {/* Subtitle */}
-                            <p
-                                className={`font-body text-lg text-slate-300 mb-8 max-w-xl leading-relaxed transition-all duration-700 delay-200 transform ${index === current ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-                                    }`}
+                            <motion.p
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
+                                className="font-body text-lg text-slate-300 mb-8 max-w-xl leading-relaxed"
                             >
-                                {slide.subtitle}
-                            </p>
+                                {slides[current].subtitle}
+                            </motion.p>
 
                             {/* CTA Button */}
-                            <div
-                                className={`flex flex-wrap gap-4 transition-all duration-700 delay-300 transform ${index === current ? "translate-y-0 opacity-100 shadow-xl" : "translate-y-8 opacity-0"
-                                    }`}
+                            <motion.div
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
+                                className="flex flex-wrap gap-4"
                             >
-                                <Link href={slide.link} className="bg-accent hover:bg-accent/90 text-white px-8 py-3.5 rounded-lg font-semibold text-base transition-all shadow-lg shadow-accent/25 hover:shadow-accent/40 flex items-center gap-2 group/btn">
-                                    {slide.cta}
+                                <Link href={slides[current].link} className="bg-accent hover:bg-accent/90 text-white px-8 py-3.5 rounded-lg font-semibold text-base transition-all shadow-lg shadow-accent/25 hover:shadow-accent/40 flex items-center gap-2 group/btn">
+                                    {slides[current].cta}
                                     <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
                                 </Link>
                                 <Link href="/process" className="px-8 py-3.5 rounded-lg font-semibold text-base text-white border border-white/20 hover:bg-white/10 backdrop-blur-sm transition-all">
                                     Our Process
                                 </Link>
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
-                </div>
-            ))}
+                </motion.div>
+            </AnimatePresence>
 
             {/* Pagination Indicators */}
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-3">
@@ -145,7 +156,7 @@ const ImageSlider = () => {
                     <button
                         key={idx}
                         onClick={() => setCurrent(idx)}
-                        className={`h-2 rounded-full transition-all duration-300 ${idx === current ? "w-10 bg-accent" : "w-2 bg-white/40 hover:bg-white/60"
+                        className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${idx === current ? "w-10 bg-accent" : "w-2 bg-white/40 hover:bg-white/60"
                             }`}
                         aria-label={`Go to slide ${idx + 1}`}
                     />

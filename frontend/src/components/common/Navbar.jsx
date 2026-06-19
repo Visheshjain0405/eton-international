@@ -44,9 +44,9 @@ const Navbar = () => {
             <div className="bg-primary text-white text-small py-2 hidden lg:block border-b border-secondary/30">
                 <div className="container mx-auto flex justify-between items-center px-4">
                     <div className="flex items-center gap-6">
-                        <a href="mailto:info@eteon-international.com" className="flex items-center gap-2 hover:text-accent transition-colors">
+                        <a href="mailto:info@eteoninternational.com" className="flex items-center gap-2 hover:text-accent transition-colors">
                             <Mail size={14} />
-                            <span>info@eteon-international.com</span>
+                            <span>info@eteoninternational.com</span>
                         </a>
                         <a href="tel:+1234567890" className="flex items-center gap-2 hover:text-accent transition-colors">
                             <Phone size={14} />
@@ -64,20 +64,25 @@ const Navbar = () => {
 
             {/* Main Navbar */}
             <header
-                className={`w-full z-50 transition-all duration-300 ${scrolled
-                    ? "fixed top-0 bg-white/95 backdrop-blur-sm shadow-soft py-3"
-                    : "relative bg-white py-5"
+                className={`sticky top-0 w-full z-50 transition-all duration-300 bg-white ${scrolled
+                    ? "bg-white/95 backdrop-blur-sm shadow-soft py-3"
+                    : "py-5"
                     }`}
             >
                 <div className="container mx-auto px-4 flex items-center justify-between">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-2 group">
-                        <div className="bg-primary text-white p-2 rounded-md group-hover:bg-accent transition-colors duration-300">
+                    <Link href="/" className="flex items-center gap-3 group">
+                        <div className="bg-primary text-white p-2.5 rounded-2xl group-hover:bg-accent transition-colors duration-300 shadow-sm shrink-0">
                             {/* Placeholder Icon for Logo */}
                             <Globe size={24} />
                         </div>
-                        <div className="font-heading font-bold text-2xl tracking-tight text-primary">
-                            Eteon<span className="text-accent">.</span>International
+                        <div className="flex flex-col justify-center select-none">
+                            <span className="font-heading font-black text-2xl leading-none tracking-wider text-primary">
+                                ETEON
+                            </span>
+                            <span className="font-body font-bold text-[9px] leading-none tracking-[0.3em] text-[#D24D3D] mt-1.5">
+                                INTERNATIONAL
+                            </span>
                         </div>
                     </Link>
 
@@ -242,8 +247,8 @@ const Navbar = () => {
                                 Get a Quote
                             </button>
                             <div className="flex flex-col gap-3 text-textMuted text-sm pt-4 border-t border-slate-100">
-                                <a href="mailto:info@eteon-international.com" className="flex items-center gap-2">
-                                    <Mail size={16} /> info@eteon-international.com
+                                <a href="mailto:info@eteoninternational.com" className="flex items-center gap-2">
+                                    <Mail size={16} /> info@eteoninternational.com
                                 </a>
                                 <a href="tel:+1234567890" className="flex items-center gap-2">
                                     <Phone size={16} /> +1 (234) 567-890
