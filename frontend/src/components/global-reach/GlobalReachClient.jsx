@@ -37,7 +37,7 @@ const GlobalReachClient = () => {
         <div className="bg-slate-50 min-h-screen">
 
             {/* --- Hero Section --- */}
-            <section className="relative h-[60vh] flex items-center overflow-hidden">
+            <section className="relative pt-[180px] lg:pt-[240px] pb-[80px] lg:pb-[120px] flex items-center overflow-hidden">
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0 z-0">
                     <img
@@ -55,12 +55,12 @@ const GlobalReachClient = () => {
                         transition={{ duration: 0.8 }}
                         className="max-w-3xl"
                     >
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/20 border border-accent/30 text-accent text-sm font-bold uppercase tracking-wider mb-6">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white text-sm font-bold uppercase tracking-wider mb-6">
                             <Globe size={16} /> Global Logistics Network
                         </div>
                         <h1 className="text-5xl md:text-7xl font-bold font-heading mb-6 leading-tight">
                             Bridging Borders, <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-white">Connecting Markets.</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-white">Connecting Markets.</span>
                         </h1>
                         <p className="text-xl text-slate-200 leading-relaxed max-w-2xl mb-8">
                             We simplify international trade by building robust supply chain bridges between emerging markets and global hubs.
@@ -227,7 +227,7 @@ const GlobalReachClient = () => {
                                         transition={{ duration: 0.5, delay: i * 0.1 + 0.3 }}
                                         className="flex items-center gap-3"
                                     >
-                                        <div className="bg-accent/20 p-1 rounded-full text-accent">
+                                        <div className="bg-white/10 p-1 rounded-full text-white">
                                             <ShieldCheck size={18} />
                                         </div>
                                         <span className="font-medium">{item}</span>
@@ -241,7 +241,7 @@ const GlobalReachClient = () => {
                                 viewport={{ once: false, amount: 0.2 }}
                                 transition={{ duration: 0.6, delay: 0.3 }}
                             >
-                                <Link href="/contact" className="inline-block mt-8 bg-accent text-primary px-8 py-4 rounded-lg font-bold hover:bg-white transition-colors">
+                                <Link href="/contact" className="inline-block mt-8 bg-white text-primary px-8 py-4 rounded-lg font-bold hover:bg-white/90 transition-colors">
                                     Partner With Us
                                 </Link>
                             </motion.div>

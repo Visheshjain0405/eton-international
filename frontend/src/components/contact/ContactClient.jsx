@@ -8,7 +8,7 @@ const ContactClient = () => {
     return (
         <div className="w-full overflow-hidden bg-slate-50 font-body">
             {/* HERO SECTION */}
-            <section className="relative py-20 lg:py-28 bg-white overflow-hidden">
+            <section className="relative pt-[180px] lg:pt-[240px] pb-20 lg:pb-28 bg-white overflow-hidden">
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-40 bg-[size:40px_40px] bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)]"></div>
 
@@ -44,7 +44,7 @@ const ContactClient = () => {
                                 transition={{ duration: 0.6 }}
                                 className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200"
                             >
-                                <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-6">
+                                <div className="w-12 h-12 bg-accent/10 text-accent rounded-xl flex items-center justify-center mb-6">
                                     <MapPin size={24} />
                                 </div>
                                 <h3 className="text-xl font-bold text-primary mb-2">Headquarters</h3>
@@ -63,7 +63,7 @@ const ContactClient = () => {
                                 transition={{ duration: 0.6, delay: 0.1 }}
                                 className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200"
                             >
-                                <div className="w-12 h-12 bg-green-50 text-green-600 rounded-xl flex items-center justify-center mb-6">
+                                <div className="w-12 h-12 bg-accent/10 text-accent rounded-xl flex items-center justify-center mb-6">
                                     <MessageSquare size={24} />
                                 </div>
                                 <h3 className="text-xl font-bold text-primary mb-4">Direct Lines</h3>

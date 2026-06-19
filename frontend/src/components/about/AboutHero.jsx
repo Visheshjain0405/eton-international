@@ -29,7 +29,7 @@ const AboutHero = () => {
     };
 
     return (
-        <section ref={containerRef} className="relative h-[70vh] flex items-center justify-center overflow-hidden bg-primary">
+        <section ref={containerRef} className="relative pt-[180px] lg:pt-[240px] pb-[80px] lg:pb-[120px] flex items-center justify-center overflow-hidden bg-primary">
             {/* Background with Scale Parallax */}
             <motion.div
                 style={{ scale: heroScale }}

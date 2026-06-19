@@ -18,14 +18,14 @@ const Footer = () => {
                     {/* Brand Info */}
                     <div className="lg:col-span-1">
                         <h2 className="text-3xl font-bold mb-6">
-                            ETEON <span className="text-accent">.</span>
+                            ETEON <span className="text-white">.</span>
                         </h2>
                         <p className="text-slate-400 mb-8 leading-relaxed">
                             Connecting markets globally with premium quality exports. Reliable, compliant, and efficient trade solutions from India to the world.
                         </p>
                         <div className="flex gap-4">
                             {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
-                                <a key={i} href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-all duration-300 group">
+                                <a key={i} href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-primary transition-all duration-300 group">
                                     <Icon size={18} className="group-hover:scale-110 transition-transform" />
                                 </a>
                             ))}
@@ -44,8 +44,8 @@ const Footer = () => {
                                 { name: "Contact", path: "/contact" }
                             ].map((link) => (
                                 <li key={link.name}>
-                                    <Link href={link.path} className="text-slate-400 hover:text-accent transition-colors flex items-center gap-2 group">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-accent transition-colors" />
+                                    <Link href={link.path} className="text-slate-400 hover:text-white transition-colors flex items-center gap-2 group">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-white transition-colors" />
                                         {link.name}
                                     </Link>
                                 </li>
@@ -63,10 +63,10 @@ const Footer = () => {
                                 { name: "Surgical and Disposable", path: "/products?category=Surgical and Disposable" }
                             ].map((item) => (
                                 <li key={item.name}>
-                                    <Link href={item.path} className="text-slate-400 hover:text-accent transition-colors flex items-start gap-2 group mt-1">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-accent transition-colors mt-2 shrink-0" />
+                                    <Link href={item.path} className="text-slate-400 hover:text-white transition-colors flex items-start gap-2 group mt-1">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-white transition-colors mt-2 shrink-0" />
                                         <span className="flex-1">{item.name}</span>
-                                        <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity text-accent shrink-0 mt-1" />
+                                        <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity text-white shrink-0 mt-1" />
                                     </Link>
                                 </li>
                             ))}
@@ -78,7 +78,7 @@ const Footer = () => {
                         <h3 className="font-bold text-lg mb-6 text-white border-b border-white/10 pb-2 inline-block">Get in Touch</h3>
                         <ul className="space-y-6">
                             <li className="flex items-start gap-4 group">
-                                <div className="w-10 h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center shrink-0 group-hover:bg-accent group-hover:text-white transition-colors">
+                                <div className="w-10 h-10 rounded-full bg-white text-primary flex items-center justify-center shrink-0 group-hover:bg-white/90 transition-colors">
                                     <MapPin size={18} />
                                 </div>
                                 <div>
@@ -87,7 +87,7 @@ const Footer = () => {
                                 </div>
                             </li>
                             <li className="flex items-start gap-4 group">
-                                <div className="w-10 h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center shrink-0 group-hover:bg-accent group-hover:text-white transition-colors">
+                                <div className="w-10 h-10 rounded-full bg-white text-primary flex items-center justify-center shrink-0 group-hover:bg-white/90 transition-colors">
                                     <Phone size={18} />
                                 </div>
                                 <div>
@@ -96,13 +96,13 @@ const Footer = () => {
                                 </div>
                             </li>
                             <li className="flex items-start gap-4 group">
-                                <div className="w-10 h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center shrink-0 group-hover:bg-accent group-hover:text-white transition-colors">
+                                <div className="w-10 h-10 rounded-full bg-white text-primary flex items-center justify-center shrink-0 group-hover:bg-white/90 transition-colors">
                                     <Mail size={18} />
                                 </div>
                                 <div>
                                     <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Email</p>
                                     <p className="text-slate-300 text-sm font-semibold">
-                                        <a href="mailto:info@eteoninternational.com" className="hover:text-accent transition-colors">info@eteoninternational.com</a>
+                                        <a href="mailto:info@eteoninternational.com" className="hover:text-white transition-colors">info@eteoninternational.com</a>
                                     </p>
                                 </div>
                             </li>

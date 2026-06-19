@@ -72,9 +72,9 @@ const Capabilities = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: false }}
-                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-accent text-sm font-medium uppercase tracking-wider mb-6 backdrop-blur-sm"
+                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-white text-sm font-medium uppercase tracking-wider mb-6 backdrop-blur-sm"
                     >
-                        <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                        <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
                         Our Expertise
                     </motion.div>
 
@@ -127,7 +127,7 @@ const Capabilities = () => {
                                     {/* Top: Icon & Index */}
                                     <div className="flex justify-between items-start">
                                         <div className={`w-12 h-12 rounded-xl flex items-center justify-center backdrop-blur-md border border-white/20 transition-all duration-500
-                                            ${isActive ? "bg-accent/90 text-white rotate-0" : "bg-white/10 text-white/50 -rotate-12"}
+                                            ${isActive ? "bg-white text-primary rotate-0" : "bg-white/10 text-white/50 -rotate-12"}
                                         `}>
                                             <item.icon size={24} />
                                         </div>
@@ -149,13 +149,13 @@ const Capabilities = () => {
                                             </motion.h3>
 
                                             <div className={`space-y-4 transition-all duration-500 ${isActive ? "opacity-100 max-h-48 mt-4" : "opacity-0 max-h-0"}`}>
-                                                <p className="text-slate-300 text-base lg:text-lg leading-relaxed border-l-2 border-accent pl-4">
+                                                <p className="text-slate-300 text-base lg:text-lg leading-relaxed border-l-2 border-white pl-4">
                                                     {item.desc}
                                                 </p>
 
                                                 <div className="flex items-center justify-between pt-4 border-t border-white/10">
-                                                    <span className="text-accent font-bold tracking-wider uppercase text-sm">{item.stats}</span>
-                                                    <button className="flex items-center gap-2 text-white text-sm font-medium hover:text-accent transition-colors group">
+                                                    <span className="text-white font-bold tracking-wider uppercase text-sm">{item.stats}</span>
+                                                    <button className="flex items-center gap-2 text-white text-sm font-medium hover:text-slate-300 transition-colors group">
                                                         Learn More <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                                                     </button>
                                                 </div>
@@ -173,7 +173,7 @@ const Capabilities = () => {
                                 {isActive && (
                                     <motion.div
                                         layoutId="outline"
-                                        className="absolute inset-0 border-2 border-accent/50 rounded-3xl pointer-events-none"
+                                        className="absolute inset-0 border-2 border-white/50 rounded-3xl pointer-events-none"
                                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                     />
                                 )}

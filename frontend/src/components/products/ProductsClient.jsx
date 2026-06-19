@@ -29,9 +29,9 @@ const ProductsContent = () => {
     });
 
     return (
-        <div className="bg-slate-50 min-h-screen font-body text-slate-800">
+        <div className="bg-white min-h-screen font-body text-slate-800">
             {/* HERO WITH IMAGE BACKGROUND */}
-            <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden bg-slate-900 border-b border-slate-100">
+            <section className="relative pt-[180px] lg:pt-[240px] pb-[80px] lg:pb-[120px] flex items-center justify-center overflow-hidden bg-slate-900 border-b border-slate-100">
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
                     <img
@@ -118,56 +118,35 @@ const ProductsContent = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: 20 }}
                                 transition={{ duration: 0.4 }}
-                                className="group bg-white rounded-3xl overflow-hidden border border-slate-200/60 hover:border-accent/30 hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-500 flex flex-col h-full"
+                                className="group flex flex-col h-full bg-transparent border-0 shadow-none transition-all duration-300"
                             >
                                 {/* Image Container */}
-                                <div className="relative h-72 overflow-hidden">
+                                <div className="relative aspect-square overflow-hidden bg-slate-50 border border-slate-100/60 rounded-lg flex items-center justify-center">
                                     <img
                                         src={product.image}
                                         alt={product.name}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                     />
                                     {/* Glass Category Badge */}
-                                    <div className="absolute top-3 left-3 bg-white/70 backdrop-blur-md border border-white/20 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-widest text-primary shadow-sm">
+                                    <div className="absolute top-3 left-3 bg-white/80 backdrop-blur-md border border-slate-100/50 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-widest text-primary shadow-sm">
                                         {product.group}
                                     </div>
-
-                                    {/* Hover Overlay */}
-                                    <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                 </div>
-
+ 
                                 {/* Content Body */}
-                                <div className="p-4 flex flex-col flex-grow">
-                                    <div className="mb-3">
-                                        <h3 className="text-lg font-heading font-bold text-primary mb-1 group-hover:text-accent transition-colors line-clamp-1">
-                                            {product.name}
-                                        </h3>
-                                        <p className="text-textSecondary text-xs leading-relaxed line-clamp-2">
-                                            {product.desc}
-                                        </p>
-                                    </div>
-
-                                    {/* Features / Specs */}
-                                    <div className="mt-auto space-y-3">
-                                        <div className="flex flex-wrap gap-1.5">
-                                            <div className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-slate-50 text-[9px] font-bold text-slate-500 uppercase tracking-tighter border border-slate-100">
-                                                <Box size={10} className="text-accent" />
-                                                <span>Bulk</span>
-                                            </div>
-                                            <div className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-50 text-[9px] font-bold text-emerald-600 uppercase tracking-tighter border border-emerald-100">
-                                                <div className="w-1 h-1 rounded-full bg-emerald-500" />
-                                                <span>Stock</span>
-                                            </div>
-                                        </div>
-
-                                        <Link
-                                            href={`/products/${product.slug}`}
-                                            className="flex items-center justify-center gap-2 w-full py-2.5 bg-slate-50 hover:bg-primary hover:text-white text-primary rounded-lg font-bold text-xs transition-all duration-300 group/btn"
-                                        >
-                                            View Details
-                                            <ArrowUpRight size={14} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-                                        </Link>
-                                    </div>
+                                <div className="pt-6 pb-4 flex flex-col items-center flex-grow text-center">
+                                    <h3 className="font-heading font-bold text-slate-800 text-lg md:text-xl mb-4 group-hover:text-primary transition-colors line-clamp-2 px-2">
+                                        {product.name}
+                                    </h3>
+                                    <p className="text-textSecondary text-xs leading-relaxed line-clamp-2 mb-6 hidden">
+                                        {product.desc}
+                                    </p>
+                                    <Link
+                                        href={`/products/${product.slug}`}
+                                        className="mt-auto inline-flex items-center justify-center px-8 py-2.5 border-2 border-primary text-primary hover:bg-primary hover:text-white rounded-md font-bold text-xs uppercase tracking-wider transition-all duration-300"
+                                    >
+                                        READ MORE
+                                    </Link>
                                 </div>
                             </motion.div>
                         ))}

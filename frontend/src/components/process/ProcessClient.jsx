@@ -81,7 +81,7 @@ const ProcessClient = () => {
         <div className="bg-white min-h-screen font-body text-slate-800">
 
             {/* 1. HERO SECTION */}
-            <section className="relative h-[70vh] flex items-center justify-center overflow-hidden bg-[#0f172a] text-white">
+            <section className="relative pt-[180px] lg:pt-[240px] pb-[80px] lg:pb-[120px] flex items-center justify-center overflow-hidden bg-[#0f172a] text-white">
                 <div className="absolute inset-0 z-0">
                     <img
                         src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2600&auto=format&fit=crop"

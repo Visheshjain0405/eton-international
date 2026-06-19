@@ -86,8 +86,8 @@ const BusinessInquiry = () => {
 
                                 <div className="space-y-6">
                                     <div className="flex items-start gap-4">
-                                        <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                                            <Mail size={18} className="text-accent" />
+                                        <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0">
+                                            <Mail size={18} className="text-primary" />
                                         </div>
                                         <div>
                                             <p className="text-sm text-slate-400 mb-1">Email for Inquiries</p>
@@ -96,8 +96,8 @@ const BusinessInquiry = () => {
                                     </div>
 
                                     <div className="flex items-start gap-4">
-                                        <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                                            <Phone size={18} className="text-accent" />
+                                        <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0">
+                                            <Phone size={18} className="text-primary" />
                                         </div>
                                         <div>
                                             <p className="text-sm text-slate-400 mb-1">Chat / Call</p>
@@ -106,8 +106,8 @@ const BusinessInquiry = () => {
                                     </div>
 
                                     <div className="flex items-start gap-4">
-                                        <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                                            <MapPin size={18} className="text-accent" />
+                                        <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0">
+                                            <MapPin size={18} className="text-primary" />
                                         </div>
                                         <div>
                                             <p className="text-sm text-slate-400 mb-1">Headquarters</p>

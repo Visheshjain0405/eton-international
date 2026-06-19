@@ -56,7 +56,7 @@ const ImageSlider = () => {
     }, [current, isAutoPlaying]);
 
     return (
-        <div className="relative w-full h-[500px] lg:h-[600px] overflow-hidden group bg-primary">
+        <div className="relative w-full h-[580px] lg:h-[750px] overflow-hidden group bg-primary">
             {/* Navigation Arrows - Positioned at absolute edges */}
             <button
                 onClick={prevSlide}
@@ -105,7 +105,7 @@ const ImageSlider = () => {
                                 initial={{ opacity: 0, x: -30 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
-                                className="inline-block px-3 py-1 mb-4 border border-accent/50 bg-accent/10 rounded-full text-accent font-medium text-sm tracking-wide uppercase backdrop-blur-sm"
+                                className="inline-block px-3 py-1 mb-4 border border-white/20 bg-white/10 rounded-full text-white font-medium text-sm tracking-wide uppercase backdrop-blur-sm"
                             >
                                 {slides[current].tagline}
                             </motion.div>
@@ -137,7 +137,7 @@ const ImageSlider = () => {
                                 transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
                                 className="flex flex-wrap gap-4"
                             >
-                                <Link href={slides[current].link} className="bg-accent hover:bg-accent/90 text-white px-8 py-3.5 rounded-lg font-semibold text-base transition-all shadow-lg shadow-accent/25 hover:shadow-accent/40 flex items-center gap-2 group/btn">
+                                <Link href={slides[current].link} className="bg-white hover:bg-white/90 text-primary px-8 py-3.5 rounded-lg font-semibold text-base transition-all shadow-lg shadow-black/10 flex items-center gap-2 group/btn">
                                     {slides[current].cta}
                                     <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
                                 </Link>
@@ -156,7 +156,7 @@ const ImageSlider = () => {
                     <button
                         key={idx}
                         onClick={() => setCurrent(idx)}
-                        className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${idx === current ? "w-10 bg-accent" : "w-2 bg-white/40 hover:bg-white/60"
+                        className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${idx === current ? "w-10 bg-white" : "w-2 bg-white/40 hover:bg-white/60"
                             }`}
                         aria-label={`Go to slide ${idx + 1}`}
                     />
@@ -167,7 +167,7 @@ const ImageSlider = () => {
             <div className="absolute bottom-0 left-0 h-1 bg-white/10 w-full z-20">
                 <div
                     key={current}
-                    className="h-full bg-accent animate-progress"
+                    className="h-full bg-white/60 animate-progress"
                     style={{ width: '100%' }}
                 />
             </div>
