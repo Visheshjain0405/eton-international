@@ -174,7 +174,7 @@ const Navbar = () => {
                                     <div className="bg-white rounded-sm shadow-xl border border-slate-100 p-1.5 flex flex-col">
                                         <Link
                                             href="/products"
-                                            className={`px-4 py-2 text-xs font-semibold rounded-sm border-b border-slate-50 mb-1 transition-colors ${pathname === "/products" && !window.location.search ? "bg-slate-50 text-[#D24D3D]" : "text-[#043C8C] hover:bg-slate-50 hover:text-[#D24D3D]"
+                                            className={`px-4 py-2 text-xs font-semibold rounded-sm border-b border-slate-50 mb-1 transition-colors ${pathname === "/products" && (typeof window !== 'undefined' && !window.location.search) ? "bg-slate-50 text-[#D24D3D]" : "text-[#043C8C] hover:bg-slate-50 hover:text-[#D24D3D]"
                                                 }`}
                                         >
                                             ALL PRODUCTS
