@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Globe, Phone, Mail, ChevronDown, Search, Facebook, Linkedin, Instagram } from "lucide-react";
+import { Menu, X, Globe, Phone, Mail, ChevronDown, Facebook, Linkedin, Instagram } from "lucide-react";
 import { useQuote } from "../../context/QuoteContext";
 
 const Navbar = () => {
@@ -13,8 +13,6 @@ const Navbar = () => {
     const [showCompanyDropdown, setShowCompanyDropdown] = useState(false);
     const [showProductsDropdown, setShowProductsDropdown] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    const [searchOpen, setSearchOpen] = useState(false);
-    const [searchQuery, setSearchQuery] = useState("");
 
     const categories = [
         { name: "Packaging", slug: "Packaging" },
@@ -40,7 +38,6 @@ const Navbar = () => {
         setIsOpen(false);
         setShowCompanyDropdown(false);
         setShowProductsDropdown(false);
-        setSearchOpen(false);
     }, [pathname]);
 
     const isLinkActive = (href) => {
@@ -48,13 +45,6 @@ const Navbar = () => {
             return pathname === "/";
         }
         return pathname.startsWith(href);
-    };
-
-    const handleSearchSubmit = (e) => {
-        e.preventDefault();
-        if (searchQuery.trim()) {
-            window.location.href = `/products?search=${encodeURIComponent(searchQuery)}`;
-        }
     };
 
     return (

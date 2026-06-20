@@ -1,19 +1,87 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
 import { Mail, Phone, MapPin, Send, ArrowRight, CheckCircle2 } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 const BusinessInquiry = () => {
     const [formState, setFormState] = useState({
         name: "",
         email: "",
-        company: "",
-        interest: "General Inquiry",
+        phone: "",
         message: ""
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+
+    const sectionRef = useRef(null);
+    const headerRef = useRef(null);
+    const leftColRef = useRef(null);
+    const rightColRef = useRef(null);
+
+    useEffect(() => {
+        if (!sectionRef.current) return;
+
+        // Header animation
+        gsap.fromTo(headerRef.current,
+            { opacity: 0, x: -100 },
+            {
+                opacity: 1,
+                x: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: headerRef.current,
+                    start: "top 90%",
+                    end: "bottom 10%",
+                    toggleActions: "play reverse play reverse"
+                }
+            }
+        );
+
+        // Left Column animation
+        gsap.fromTo(leftColRef.current,
+            { opacity: 0, x: -60 },
+            {
+                opacity: 1,
+                x: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: leftColRef.current,
+                    start: "top 90%",
+                    end: "bottom 10%",
+                    toggleActions: "play reverse play reverse"
+                }
+            }
+        );
+
+        // Right Column animation
+        gsap.fromTo(rightColRef.current,
+            { opacity: 0, x: 60 },
+            {
+                opacity: 1,
+                x: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: rightColRef.current,
+                    start: "top 90%",
+                    end: "bottom 10%",
+                    toggleActions: "play reverse play reverse"
+                }
+            }
+        );
+
+        return () => {
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        };
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -30,16 +98,13 @@ const BusinessInquiry = () => {
     };
 
     return (
-        <section className="py-24 bg-surface relative" id="contact">
+        <section ref={sectionRef} className="py-24 bg-surface relative" id="contact">
             <div className="container mx-auto px-4">
 
                 {/* Header */}
-                <motion.div 
-                    initial={{ opacity: 0, x: -100 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: false }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="text-center mb-16"
+                <div 
+                    ref={headerRef}
+                    className="text-center mb-16 opacity-0"
                 >
                     <span className="text-accent font-bold uppercase tracking-widest text-sm mb-3 block">
                         Contact Us
@@ -56,25 +121,22 @@ const BusinessInquiry = () => {
                     <p className="text-textSecondary text-lg max-w-2xl mx-auto">
                         Connect with our export specialists today. We provide competitive pricing and tailored logistics solutions for your business.
                     </p>
-                </motion.div>
+                </div>
 
                 <div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100">
                     <div className="grid lg:grid-cols-5 min-h-[600px]">
 
                         {/* Left Side: Info & Value Prop */}
-                        <motion.div 
-                            initial={{ opacity: 0, x: -60 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: false }}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
-                            className="lg:col-span-2 bg-primary text-white p-10 md:p-12 relative overflow-hidden flex flex-col justify-between"
+                        <div 
+                            ref={leftColRef}
+                            className="lg:col-span-2 bg-primary text-white p-10 md:p-12 relative overflow-hidden flex flex-col justify-between opacity-0"
                         >
                             {/* Decor */}
                             <div className="absolute top-0 right-0 w-64 h-64 bg-accent opacity-10 rounded-fullblur-3xl -translate-y-1/2 translate-x-1/2" />
                             <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-500 opacity-10 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2" />
 
                             <div className="relative z-10">
-                                <span className="text-accent font-bold uppercase tracking-widest text-xs mb-4 block">
+                                <span className="text-white font-bold uppercase tracking-widest text-xs mb-4 block">
                                     Let's collaborate
                                 </span>
                                 <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
@@ -117,33 +179,25 @@ const BusinessInquiry = () => {
                                 </div>
                             </div>
 
-                            {/* Trust Badges */}
                             <div className="relative z-10 mt-12 pt-8 border-t border-white/10">
                                 <div className="flex items-center gap-4 text-xs font-medium text-slate-300">
                                     <span className="flex items-center gap-1.5">
-                                        <CheckCircle2 size={14} className="text-accent" /> Licensed Exporter
+                                        <CheckCircle2 size={14} className="text-white" /> Licensed Exporter
                                     </span>
                                     <span className="flex items-center gap-1.5">
-                                        <CheckCircle2 size={14} className="text-accent" /> 24/7 Support
+                                        <CheckCircle2 size={14} className="text-white" /> 24/7 Support
                                     </span>
                                 </div>
                             </div>
-                        </motion.div>
+                        </div>
 
                         {/* Right Side: Inquiry Form */}
-                        <motion.div 
-                            initial={{ opacity: 0, x: 60 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: false }}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
-                            className="lg:col-span-3 p-10 md:p-12 bg-white relative"
+                        <div 
+                            ref={rightColRef}
+                            className="lg:col-span-3 p-10 md:p-12 bg-white relative opacity-0"
                         >
                             {isSuccess ? (
-                                <motion.div
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    className="h-full flex flex-col items-center justify-center text-center p-8"
-                                >
+                                <div className="h-full flex flex-col items-center justify-center text-center p-8">
                                     <div className="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center mb-6">
                                         <CheckCircle2 size={40} />
                                     </div>
@@ -157,7 +211,7 @@ const BusinessInquiry = () => {
                                     >
                                         Send another message <ArrowRight size={16} />
                                     </button>
-                                </motion.div>
+                                </div>
                             ) : (
                                 <>
                                     <div className="mb-8">
@@ -180,7 +234,7 @@ const BusinessInquiry = () => {
                                                 />
                                             </div>
                                             <div className="space-y-2">
-                                                <label className="text-sm font-bold text-primary ml-1">Work Email</label>
+                                                <label className="text-sm font-bold text-primary ml-1">Email</label>
                                                 <input
                                                     type="email"
                                                     name="email"
@@ -194,41 +248,24 @@ const BusinessInquiry = () => {
                                         </div>
 
                                         <div className="space-y-2">
-                                            <label className="text-sm font-bold text-primary ml-1">Company / Organization</label>
+                                            <label className="text-sm font-bold text-primary ml-1">Phone Number</label>
                                             <input
-                                                type="text"
-                                                name="company"
-                                                value={formState.company}
+                                                type="tel"
+                                                name="phone"
+                                                required
+                                                value={formState.phone}
                                                 onChange={handleChange}
                                                 className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all placeholder:text-slate-400"
-                                                placeholder="Company Name Ltd."
+                                                placeholder="+91 98765 43210"
                                             />
                                         </div>
 
                                         <div className="space-y-2">
-                                            <label className="text-sm font-bold text-primary ml-1">I'm interested in</label>
-                                            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                                                {["PP Bags", "Organic Fertilizer", "Cow Dung Fertilizer", "Surgical Items", "Disposable Items", "Custom Sourcing"].map((opt) => (
-                                                    <button
-                                                        key={opt}
-                                                        type="button"
-                                                        onClick={() => setFormState({ ...formState, interest: opt })}
-                                                        className={`text-xs font-semibold px-3 py-2.5 rounded-lg border transition-all ${formState.interest === opt
-                                                            ? "bg-primary text-white border-primary"
-                                                            : "bg-white text-slate-500 border-slate-200 hover:border-primary/50"
-                                                            }`}
-                                                    >
-                                                        {opt}
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        </div>
-
-                                        <div className="space-y-2">
-                                            <label className="text-sm font-bold text-primary ml-1">Message / Requirements</label>
+                                            <label className="text-sm font-bold text-primary ml-1">Message</label>
                                             <textarea
                                                 name="message"
-                                                rows="3"
+                                                rows="4"
+                                                required
                                                 value={formState.message}
                                                 onChange={handleChange}
                                                 className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all placeholder:text-slate-400 resize-none"
@@ -252,7 +289,7 @@ const BusinessInquiry = () => {
                                     </form>
                                 </>
                             )}
-                        </motion.div>
+                        </div>
                     </div>
                 </div>
 
@@ -262,3 +299,4 @@ const BusinessInquiry = () => {
 };
 
 export default BusinessInquiry;
+

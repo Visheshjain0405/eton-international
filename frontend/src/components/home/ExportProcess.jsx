@@ -1,8 +1,14 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageSquare, FileText, Globe, Package, Plane, ChevronRight, ArrowRight } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 const steps = [
     {
@@ -44,7 +50,8 @@ const steps = [
 
 const ExportProcess = () => {
     const [activeStep, setActiveStep] = useState(0);
-    const [progress, setProgress] = useState(0);
+    const headerRef = useRef(null);
+    const containerRef = useRef(null);
 
     // Auto-rotate steps every 5 seconds
     useEffect(() => {
@@ -54,16 +61,57 @@ const ExportProcess = () => {
         return () => clearInterval(timer);
     }, []);
 
+    useEffect(() => {
+        // Header animation
+        gsap.fromTo(headerRef.current,
+            { opacity: 0, x: -100 },
+            {
+                opacity: 1,
+                x: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: headerRef.current,
+                    start: "top 90%",
+                    end: "bottom 10%",
+                    toggleActions: "play reverse play reverse"
+                }
+            }
+        );
+
+        // Step cards animation
+        const cards = containerRef.current.querySelectorAll(".process-step-card");
+        cards.forEach((card, idx) => {
+            const isLeft = idx % 2 === 0;
+            gsap.fromTo(card,
+                { opacity: 0, x: isLeft ? -50 : 50 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.6,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 90%",
+                        end: "bottom 10%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                }
+            );
+        });
+
+        return () => {
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        };
+    }, []);
+
     return (
         <section className="py-24 bg-surface relative overflow-hidden">
             <div className="container mx-auto px-4">
 
-                <motion.div 
-                    initial={{ opacity: 0, x: -100 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: false }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="text-center mb-16"
+                <div 
+                    ref={headerRef}
+                    className="text-center mb-16 opacity-0"
                 >
                     <span className="text-accent font-bold uppercase tracking-widest text-sm mb-3 block">
                         How We Work
@@ -80,29 +128,18 @@ const ExportProcess = () => {
                     <p className="text-textSecondary mt-4 text-lg max-w-2xl mx-auto">
                         Precision, compliance, and speed. See how we deliver excellence at every step.
                     </p>
-                </motion.div>
+                </div>
 
                 <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
 
                     {/* Left Side: Navigation List */}
-                    <div className="lg:col-span-5 flex flex-col gap-3">
+                    <div ref={containerRef} className="lg:col-span-5 flex flex-col gap-3">
                         {steps.map((step, idx) => {
-                            const isLeft = idx % 2 === 0;
-                            const variants = {
-                                hidden: { opacity: 0, x: isLeft ? -50 : 50 },
-                                visible: { opacity: 1, x: 0 }
-                            };
-
                             return (
-                                <motion.div
+                                <div
                                     key={step.id}
                                     onClick={() => setActiveStep(idx)}
-                                    initial="hidden"
-                                    whileInView="visible"
-                                    viewport={{ once: false, amount: 0.4 }}
-                                    variants={variants}
-                                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                    className={`group cursor-pointer p-4 rounded-xl border transition-all duration-300 items-center flex gap-4 ${activeStep === idx
+                                    className={`process-step-card opacity-0 group cursor-pointer p-4 rounded-xl border transition-all duration-300 items-center flex gap-4 ${activeStep === idx
                                         ? "bg-white border-transparent shadow-xl z-10 scale-[1.02]"
                                         : "bg-transparent border-transparent hover:bg-slate-50"
                                         }`}
@@ -135,7 +172,7 @@ const ExportProcess = () => {
                                         <ChevronRight size={20} className={`transition-transform duration-300 ${activeStep === idx ? "text-accent translate-x-1" : "group-hover:translate-x-1"
                                             }`} />
                                     </div>
-                                </motion.div>
+                                </div>
                             );
                         })}
                     </div>

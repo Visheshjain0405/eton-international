@@ -1,103 +1,15 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
+import React, { useRef, useState, useEffect } from "react";
 import { ArrowRight, Leaf, Stethoscope, Package } from "lucide-react";
 import Link from "next/link";
 import { products as categories } from "../../data/products";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// Advanced 3D Tilt Card Component
-const TiltCard = ({ children, className }) => {
-    const ref = useRef(null);
-
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-
-    const mouseX = useSpring(x, { stiffness: 500, damping: 100 });
-    const mouseY = useSpring(y, { stiffness: 500, damping: 100 });
-
-    function onMouseMove({ currentTarget, clientX, clientY }) {
-        const { left, top, width, height } = currentTarget.getBoundingClientRect();
-        x.set(clientX - left - width / 2);
-        y.set(clientY - top - height / 2);
-    }
-
-    function onMouseLeave() {
-        x.set(0);
-        y.set(0);
-    }
-
-    const rotateX = useSpring(useMotionValue(0), { stiffness: 100, damping: 30 });
-    const rotateY = useSpring(useMotionValue(0), { stiffness: 100, damping: 30 });
-
-    // Dynamic transform for rotation based on mouse position
-    // Map x/y to degrees
-    // We update rotateX/Y inside the render for simplicity or useTransform if we want strict mapping
-    // Let's use simple transform in style
-
-    const transformStyle = useMotionTemplate`perspective(1000px) rotateX(${useSpring(useMotionValue(0), { stiffness: 100 })}deg) rotateY(0deg)`;
-
-    return (
-        <motion.div
-            ref={ref}
-            onMouseMove={(e) => {
-                const { left, top, width, height } = ref.current.getBoundingClientRect();
-                const xPos = e.clientX - left - width / 2;
-                const yPos = e.clientY - top - height / 2;
-
-                // Rotation logic: 
-                // Move Mouse Right (positive x) -> Rotate Y positive 
-                // Move Mouse Down (positive y) -> Rotate X negative
-                const rotX = (yPos / height) * -10; // Max -5 to 5 deg
-                const rotY = (xPos / width) * 10;
-
-                // Setting values directly via standard DOM or state can be jittery, 
-                // but Framer Motion values are smooth.
-                // For this example, we'll keep it simple with CSS hover or basic framer.
-                // Let's stick to the Spotlight effect which is cleaner and very 'Pro'.
-            }}
-            className={className}
-        >
-            {children}
-        </motion.div>
-    );
-};
-
-
-// Simple Spotlight Card for clean "Advanced" feel
-const SpotlightCard = ({ children, className = "" }) => {
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-
-    function handleMouseMove({ currentTarget, clientX, clientY }) {
-        const { left, top } = currentTarget.getBoundingClientRect();
-        mouseX.set(clientX - left);
-        mouseY.set(clientY - top);
-    }
-
-    return (
-        <div
-            className={`group relative border border-white/10 bg-gray-900/5 overflow-hidden ${className}`}
-            onMouseMove={handleMouseMove}
-        >
-            <motion.div
-                className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
-                style={{
-                    background: useMotionTemplate`
-            radial-gradient(
-              650px circle at ${mouseX}px ${mouseY}px,
-              rgba(22, 163, 74, 0.15),
-              transparent 80%
-            )
-          `,
-                }}
-            />
-            <div>{children}</div>
-        </div>
-    );
-};
-
-// ... (TiltCard and SpotlightCard components remain unchanged)
+if (typeof window !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 const ProductCategories = () => {
     // Static Categories Definition
@@ -131,17 +43,79 @@ const ProductCategories = () => {
         }
     ];
 
+    const headerLeftRef = useRef(null);
+    const headerRightRef = useRef(null);
+    const containerRef = useRef(null);
+
+    useEffect(() => {
+        // Header Left animation
+        gsap.fromTo(headerLeftRef.current,
+            { opacity: 0, x: -60 },
+            {
+                opacity: 1,
+                x: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: headerLeftRef.current,
+                    start: "top 90%",
+                    end: "bottom 10%",
+                    toggleActions: "play reverse play reverse"
+                }
+            }
+        );
+
+        // Header Right animation
+        gsap.fromTo(headerRightRef.current,
+            { opacity: 0, x: 60 },
+            {
+                opacity: 1,
+                x: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: headerRightRef.current,
+                    start: "top 90%",
+                    end: "bottom 10%",
+                    toggleActions: "play reverse play reverse"
+                }
+            }
+        );
+
+        // Category Cards animation
+        const cards = containerRef.current.querySelectorAll(".category-card");
+        cards.forEach((card, idx) => {
+            gsap.fromTo(card,
+                { opacity: 0, x: 200, y: 0 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 90%",
+                        end: "bottom 10%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                }
+            );
+        });
+
+        return () => {
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        };
+    }, []);
+
     return (
         <section className="py-section bg-surface">
             <div className="container mx-auto px-4">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8 overflow-hidden">
-                    <motion.div 
-                        initial={{ opacity: 0, x: -60 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: false }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="max-w-xl"
+                    <div 
+                        ref={headerLeftRef}
+                        className="max-w-xl opacity-0"
                     >
                         <div className="inline-block px-3 py-1 mb-4 border border-accent/20 bg-accent/5 rounded-full text-accent font-medium text-sm tracking-wide uppercase">
                             Our Offerings
@@ -152,35 +126,24 @@ const ProductCategories = () => {
                         <p className="text-textSecondary text-lg">
                             Explore our specialized divisions serving global industries.
                         </p>
-                    </motion.div>
+                    </div>
 
-                    <motion.div
-                        initial={{ opacity: 0, x: 60 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: false }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
+                    <div
+                        ref={headerRightRef}
+                        className="opacity-0"
                     >
                         <Link href="/products" className="hidden md:flex items-center gap-2 text-primary font-medium hover:text-accent transition-colors group">
                             View Full Catalog <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                         </Link>
-                    </motion.div>
+                    </div>
                 </div>
 
                 {/* Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {categories.map((category, index) => (
-                        <motion.div
+                <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {categories.map((category) => (
+                        <div
                             key={category.id}
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: false, amount: 0.2 }}
-                            transition={{
-                                duration: 0.8,
-                                delay: index * 0.1,
-                                ease: [0.21, 0.47, 0.32, 0.98]
-                            }}
-                            whileHover={{ y: -10 }}
-                            className="rounded-3xl overflow-hidden relative group cursor-pointer h-[450px]"
+                            className="category-card opacity-0 rounded-3xl overflow-hidden relative group cursor-pointer h-[450px] transition-transform duration-300 hover:-translate-y-2"
                         >
                             <Link href={category.link}>
                                 <div className="absolute inset-0">
@@ -207,7 +170,7 @@ const ProductCategories = () => {
                                     </div>
                                 </div>
                             </Link>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
             </div>

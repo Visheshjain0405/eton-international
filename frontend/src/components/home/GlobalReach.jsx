@@ -1,8 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Globe2, MapPin, TrendingUp, Users } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 const regions = [
     {
@@ -34,18 +40,57 @@ const regions = [
 
 const GlobalReach = () => {
     const [activeRegion, setActiveRegion] = useState(null);
+    const headerRef = useRef(null);
+    const mapRef = useRef(null);
+
+    useEffect(() => {
+        // Header animation
+        gsap.fromTo(headerRef.current,
+            { opacity: 0, x: -100 },
+            {
+                opacity: 1,
+                x: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: headerRef.current,
+                    start: "top 90%",
+                    end: "bottom 10%",
+                    toggleActions: "play reverse play reverse"
+                }
+            }
+        );
+
+        // Map visual area animation
+        gsap.fromTo(mapRef.current,
+            { opacity: 0, y: 55 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: mapRef.current,
+                    start: "top 90%",
+                    end: "bottom 10%",
+                    toggleActions: "play reverse play reverse"
+                }
+            }
+        );
+
+        return () => {
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        };
+    }, []);
 
     return (
         <section className="py-24 bg-white relative overflow-hidden">
             <div className="container mx-auto px-4 relative z-10">
 
                 {/* Header */}
-                <motion.div 
-                    initial={{ opacity: 0, x: -100 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: false }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="text-center mb-16"
+                <div 
+                    ref={headerRef}
+                    className="text-center mb-16 opacity-0"
                 >
                     <span className="text-accent font-bold uppercase tracking-widest text-sm mb-3 block">
                         Global Presence
@@ -62,15 +107,12 @@ const GlobalReach = () => {
                     <p className="text-textSecondary text-lg max-w-2xl mx-auto">
                         From our headquarters to your doorstep. We have established strong logistics channels in key markets across 5 continents.
                     </p>
-                </motion.div>
+                </div>
 
                 {/* Map Visual Area */}
-                <motion.div 
-                    initial={{ opacity: 0, y: 55 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false }}
-                    transition={{ duration: 1, ease: "easeOut", delay: 0.1 }}
-                    className="relative w-full aspect-[16/9] md:aspect-[2/1] bg-slate-50 rounded-3xl border border-slate-100 mb-12 overflow-hidden group"
+                <div 
+                    ref={mapRef}
+                    className="relative w-full aspect-[16/9] md:aspect-[2/1] bg-slate-50 rounded-3xl border border-slate-100 mb-12 overflow-hidden group opacity-0"
                 >
 
                     {/* Abstract Dot Map Background */}
@@ -125,9 +167,7 @@ const GlobalReach = () => {
                             </motion.div>
                         </div>
                     ))}
-                </motion.div>
-
-                {/* Stats Grid Removed per user request */}
+                </div>
 
             </div>
         </section>
