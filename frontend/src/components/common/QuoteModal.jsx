@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, CheckCircle2, Package, Globe, ShieldCheck, ArrowRight, ChevronDown } from "lucide-react";
 import { products } from "../../data/products";
+import api from "../../utils/api";
 
 const QuoteModal = ({ isOpen, onClose }) => {
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -36,14 +37,28 @@ const QuoteModal = ({ isOpen, onClose }) => {
         };
     }, [isOpen]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        // Simulate API call
-        setTimeout(() => {
-            setLoading(false);
+        const formData = new FormData(e.target);
+        
+        const payload = {
+            name: formData.get("fullName"),
+            company: formData.get("company"),
+            email: formData.get("email"),
+            phone: "",
+            interest: `${formData.get("product")} (${formData.get("quantity") || "Any Quantity"}). Notes: ${formData.get("requirements") || "None"}`
+        };
+
+        try {
+            await api.post("/inquiries", payload);
             setIsSubmitted(true);
-        }, 1500);
+        } catch (error) {
+            console.error("Quote inquiry failed: ", error);
+            alert("Failed to submit inquiry. Please try again.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     if (!isOpen && !isSubmitted) return null;
@@ -115,7 +130,7 @@ const QuoteModal = ({ isOpen, onClose }) => {
                                     </div>
 
                                     <div className="mt-12 pt-8 border-t border-white/10">
-                                        <div className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.4em] mb-1">Entity</div>
+                                        <div className="text-slate-505 text-[10px] font-bold uppercase tracking-[0.4em] mb-1">Entity</div>
                                         <div className="text-white font-extrabold text-sm">ETEON INTERNATIONAL</div>
                                     </div>
                                 </div>
@@ -134,17 +149,17 @@ const QuoteModal = ({ isOpen, onClose }) => {
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                                             <div className="space-y-2.5">
                                                 <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Full Name *</label>
-                                                <input required type="text" placeholder="e.g. Robert Smith" className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 text-base font-bold text-primary focus:outline-none focus:border-accent focus:bg-white transition-all placeholder:text-slate-300 shadow-sm" />
+                                                <input required name="fullName" type="text" placeholder="e.g. Robert Smith" className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 text-base font-bold text-primary focus:outline-none focus:border-accent focus:bg-white transition-all placeholder:text-slate-300 shadow-sm" />
                                             </div>
                                             <div className="space-y-2.5">
                                                 <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Work Email *</label>
-                                                <input required type="email" placeholder="robert@company.com" className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 text-base font-bold text-primary focus:outline-none focus:border-accent focus:bg-white transition-all placeholder:text-slate-300 shadow-sm" />
+                                                <input required name="email" type="email" placeholder="robert@company.com" className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 text-base font-bold text-primary focus:outline-none focus:border-accent focus:bg-white transition-all placeholder:text-slate-300 shadow-sm" />
                                             </div>
                                         </div>
 
                                         <div className="space-y-2.5">
                                             <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Company / Organization</label>
-                                            <input required type="text" placeholder="Your Organization Name" className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 text-base font-bold text-primary focus:outline-none focus:border-accent focus:bg-white transition-all placeholder:text-slate-300 shadow-sm" />
+                                            <input required name="company" type="text" placeholder="Your Organization Name" className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 text-base font-bold text-primary focus:outline-none focus:border-accent focus:bg-white transition-all placeholder:text-slate-300 shadow-sm" />
                                         </div>
 
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-slate-50 p-7 rounded-[2rem] border border-slate-100 shadow-inner">
@@ -170,7 +185,7 @@ const QuoteModal = ({ isOpen, onClose }) => {
                                             <div className="space-y-2.5">
                                                 <label className="text-xs font-bold text-primary uppercase tracking-widest ml-1">Specific Product</label>
                                                 <div className="relative">
-                                                    <select className="w-full bg-white border-2 border-slate-100 rounded-2xl px-6 py-4 text-base font-black text-primary focus:outline-none focus:border-accent transition-all appearance-none cursor-pointer shadow-sm">
+                                                    <select name="product" className="w-full bg-white border-2 border-slate-100 rounded-2xl px-6 py-4 text-base font-black text-primary focus:outline-none focus:border-accent transition-all appearance-none cursor-pointer shadow-sm">
                                                         {subProducts[mainCategory]?.map(product => (
                                                             <option key={product} value={product}>{product}</option>
                                                         )) || <option value="General Sourcing Inquiry">General Sourcing Inquiry</option>}
@@ -183,11 +198,11 @@ const QuoteModal = ({ isOpen, onClose }) => {
                                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                             <div className="md:col-span-1 space-y-2.5">
                                                 <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Est. Quantity</label>
-                                                <input type="text" placeholder="e.g. 5000 MT" className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 text-base font-bold text-primary focus:outline-none focus:border-accent focus:bg-white transition-all shadow-sm" />
+                                                <input name="quantity" type="text" placeholder="e.g. 5000 MT" className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 text-base font-bold text-primary focus:outline-none focus:border-accent focus:bg-white transition-all shadow-sm" />
                                             </div>
                                             <div className="md:col-span-2 space-y-2.5">
                                                 <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Special Requirements</label>
-                                                <textarea rows="2" placeholder="Tell us about specific sizes, destinations, colors, or deadlines..." className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 text-base font-bold text-primary focus:outline-none focus:border-accent focus:bg-white transition-all resize-none shadow-sm"></textarea>
+                                                <textarea name="requirements" rows="2" placeholder="Tell us about specific sizes, destinations, colors, or deadlines..." className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 text-base font-bold text-primary focus:outline-none focus:border-accent focus:bg-white transition-all resize-none shadow-sm"></textarea>
                                             </div>
                                         </div>
 

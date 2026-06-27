@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Mail, Phone, MapPin, Send, ArrowRight, CheckCircle2 } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import api from "../../utils/api";
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
@@ -83,14 +84,24 @@ const BusinessInquiry = () => {
         };
     }, []);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
-        // Simulate submission
-        setTimeout(() => {
-            setIsSubmitting(false);
+        try {
+            const payload = {
+                name: formState.name,
+                email: formState.email,
+                phone: formState.phone,
+                interest: formState.message
+            };
+            await api.post("/inquiries", payload);
             setIsSuccess(true);
-        }, 1500);
+        } catch (error) {
+            console.error("Inquiry submission failed: ", error);
+            alert("Failed to submit inquiry. Please try again.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const handleChange = (e) => {

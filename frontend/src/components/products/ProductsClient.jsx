@@ -6,6 +6,7 @@ import { Box } from 'lucide-react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { products } from '../../data/products';
+import api from '../../utils/api';
 
 const categories = ["All", "Packaging", "Organic and Cowdung Fertilizer", "Surgical and Disposable"];
 
@@ -24,6 +25,19 @@ const formatProductName = (name) => {
 const ProductsContent = () => {
     const searchParams = useSearchParams();
     const [activeCategory, setActiveCategory] = useState("All");
+    const [dbProducts, setDbProducts] = useState(products);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const res = await api.get("/products");
+                setDbProducts(res.data);
+            } catch (error) {
+                console.error("Failed to fetch products from backend, using local fallback data: ", error);
+            }
+        };
+        fetchProducts();
+    }, []);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -35,8 +49,9 @@ const ProductsContent = () => {
         }
     }, [searchParams]);
 
-    const filteredProducts = products.filter(product => {
-        return activeCategory === "All" || product.group === activeCategory;
+    const filteredProducts = dbProducts.filter(product => {
+        const group = product.group || product.category;
+        return activeCategory === "All" || group === activeCategory;
     });
 
     return (
