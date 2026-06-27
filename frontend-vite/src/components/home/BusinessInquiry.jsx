@@ -87,7 +87,7 @@ const BusinessInquiry = () => {
                                         </div>
                                         <div>
                                             <p className="text-sm text-slate-400 mb-1">Chat / Call</p>
-                                            <a href="tel:+1234567890" className="font-semibold hover:text-accent transition-colors">+91 98765 43210</a>
+                                            <a href="tel:+919558555447" className="font-semibold hover:text-accent transition-colors">+91 95585 55447</a>
                                         </div>
                                     </div>
 

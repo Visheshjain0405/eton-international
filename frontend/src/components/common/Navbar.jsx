@@ -53,9 +53,9 @@ const Navbar = () => {
             <div className="text-white text-[13px] pt-3 pb-2 hidden lg:block border-b border-white/10 bg-[#032e6b] pointer-events-auto px-4 lg:px-6">
                 <div className="max-w-[80%] mx-auto flex justify-between items-center px-8">
                     <div className="flex items-center gap-4">
-                        <a href="tel:+1234567890" className="flex items-center gap-1.5 hover:text-[#D24D3D] transition-colors">
+                        <a href="tel:+919558555447" className="flex items-center gap-1.5 hover:text-[#D24D3D] transition-colors">
                             <Phone size={14} />
-                            <span>+1 (234) 567-890</span>
+                            <span>+91 95585 55447</span>
                         </a>
                         <span className="text-white/30">|</span>
                         <a href="mailto:info@eteoninternational.com" className="flex items-center gap-1.5 hover:text-[#D24D3D] transition-colors">

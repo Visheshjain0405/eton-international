@@ -83,7 +83,7 @@ const Footer = () => {
                                 </div>
                                 <div>
                                     <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Head Office</p>
-                                    <p className="text-slate-300 text-sm">International Trade Tower,<br />New Delhi, India</p>
+                                    <p className="text-slate-300 text-sm">13 Dayalji Park, Parvat Patiya,<br />Surat - 395010, Gujarat, India</p>
                                 </div>
                             </li>
                             <li className="flex items-start gap-4 group">
@@ -92,7 +92,7 @@ const Footer = () => {
                                 </div>
                                 <div>
                                     <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Phone</p>
-                                    <p className="text-slate-300 text-sm font-semibold">+91 98765 00000</p>
+                                    <p className="text-slate-300 text-sm font-semibold"><a href="tel:+919558555447" className="hover:text-accent transition-colors">+91 95585 55447</a></p>
                                 </div>
                             </li>
                             <li className="flex items-start gap-4 group">

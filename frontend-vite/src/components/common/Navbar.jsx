@@ -46,9 +46,9 @@ const Navbar = () => {
                             <Mail size={14} />
                             <span>info@eteon-international.com</span>
                         </a>
-                        <a href="tel:+1234567890" className="flex items-center gap-2 hover:text-accent transition-colors">
+                        <a href="tel:+919558555447" className="flex items-center gap-2 hover:text-accent transition-colors">
                             <Phone size={14} />
-                            <span>+1 (234) 567-890</span>
+                            <span>+91 95585 55447</span>
                         </a>
                     </div>
                     <div className="flex items-center gap-4">
@@ -243,8 +243,8 @@ const Navbar = () => {
                                 <a href="mailto:info@eteon-international.com" className="flex items-center gap-2">
                                     <Mail size={16} /> info@eteon-international.com
                                 </a>
-                                <a href="tel:+1234567890" className="flex items-center gap-2">
-                                    <Phone size={16} /> +1 (234) 567-890
+                                <a href="tel:+919558555447" className="flex items-center gap-2">
+                                    <Phone size={16} /> +91 95585 55447
                                 </a>
                             </div>
                         </div>

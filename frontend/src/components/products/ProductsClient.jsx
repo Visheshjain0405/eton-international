@@ -1,17 +1,11 @@
 "use client";
 
-import React, { useState, useEffect, Suspense, useRef } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Box } from 'lucide-react';
+import { Box } from 'lucide-react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { products } from '../../data/products';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-if (typeof window !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
-}
 
 const categories = ["All", "Packaging", "Organic and Cowdung Fertilizer", "Surgical and Disposable"];
 
@@ -30,56 +24,20 @@ const formatProductName = (name) => {
 const ProductsContent = () => {
     const searchParams = useSearchParams();
     const [activeCategory, setActiveCategory] = useState("All");
-    const containerRef = useRef(null);
 
     useEffect(() => {
         window.scrollTo(0, 0);
         const categoryParam = searchParams.get('category');
         if (categoryParam && categories.includes(categoryParam)) {
             setActiveCategory(categoryParam);
+        } else {
+            setActiveCategory("All");
         }
     }, [searchParams]);
 
     const filteredProducts = products.filter(product => {
         return activeCategory === "All" || product.group === activeCategory;
     });
-
-    useEffect(() => {
-        if (!containerRef.current) return;
-
-        const cards = containerRef.current.querySelectorAll('.product-card');
-        
-        // Clean up previous ScrollTriggers to avoid duplicates
-        const activeTriggers = ScrollTrigger.getAll();
-        activeTriggers.forEach(trigger => trigger.kill());
-
-        cards.forEach((card) => {
-            gsap.fromTo(card,
-                {
-                    opacity: 0,
-                    x: -200
-                },
-                {
-                    opacity: 1,
-                    x: 0,
-                    duration: 0.8,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top 95%',
-                        end: 'bottom 5%',
-                        toggleActions: 'play reverse play reverse',
-                    }
-                }
-            );
-        });
-
-        ScrollTrigger.refresh();
-
-        return () => {
-            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-        };
-    }, [filteredProducts]);
 
     return (
         <div className="bg-white min-h-screen font-body text-slate-800">
@@ -115,16 +73,21 @@ const ProductsContent = () => {
             <section className="py-20 max-w-6xl mx-auto px-8 md:px-16 xl:px-24">
 
                 <motion.div
-                    ref={containerRef}
                     layout
                     className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-12"
                 >
-                    <AnimatePresence>
+                    <AnimatePresence mode="popLayout">
                         {filteredProducts.map((product) => {
                             return (
-                                <div
+                                <motion.div
+                                    layout
                                     key={product.id}
-                                    className="product-card group flex flex-col h-full bg-transparent border-0 shadow-none opacity-0 transition-all duration-300"
+                                    initial={{ opacity: 0, x: -100 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true, amount: 0.15 }}
+                                    exit={{ opacity: 0, x: 100 }}
+                                    transition={{ duration: 0.6, ease: "easeOut" }}
+                                    className="product-card group flex flex-col h-full bg-transparent border-0 shadow-none"
                                 >
                                     {/* Image Container */}
                                     <div className="relative aspect-square overflow-hidden bg-[#EBEBEB] rounded-none flex items-center justify-center">
@@ -150,7 +113,7 @@ const ProductsContent = () => {
                                             READ MORE
                                         </Link>
                                     </div>
-                                </div>
+                                </motion.div>
                             );
                         })}
                     </AnimatePresence>

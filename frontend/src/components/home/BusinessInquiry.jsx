@@ -163,7 +163,7 @@ const BusinessInquiry = () => {
                                         </div>
                                         <div>
                                             <p className="text-sm text-slate-400 mb-1">Chat / Call</p>
-                                            <a href="tel:+1234567890" className="font-semibold hover:text-accent transition-colors">+91 98765 43210</a>
+                                            <a href="tel:+919558555447" className="font-semibold hover:text-accent transition-colors">+91 95585 55447</a>
                                         </div>
                                     </div>
 
@@ -256,7 +256,7 @@ const BusinessInquiry = () => {
                                                 value={formState.phone}
                                                 onChange={handleChange}
                                                 className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all placeholder:text-slate-400"
-                                                placeholder="+91 98765 43210"
+                                                placeholder="+91 95585 55447"
                                             />
                                         </div>
 

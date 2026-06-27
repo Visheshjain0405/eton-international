@@ -52,8 +52,8 @@ const ContactUs = () => {
                                 </div>
                                 <h3 className="text-xl font-bold text-primary mb-2">Headquarters</h3>
                                 <p className="text-slate-500 leading-relaxed">
-                                    123 Trade Tower, Financial District,<br />
-                                    Mumbai, Maharashtra 400051<br />
+                                    13 Dayalji Park, Parvat Patiya,<br />
+                                    Surat - 395010, Gujarat,<br />
                                     India
                                 </p>
                             </motion.div>
@@ -73,7 +73,7 @@ const ContactUs = () => {
                                 <div className="space-y-4">
                                     <div className="flex items-center gap-4">
                                         <Phone size={18} className="text-slate-400" />
-                                        <span className="text-primary font-medium">+91 98765 43210</span>
+                                        <a href="tel:+919558555447" className="text-primary font-medium hover:text-accent transition-colors">+91 95585 55447</a>
                                     </div>
                                     <div className="flex items-center gap-4">
                                         <Mail size={18} className="text-slate-400" />
