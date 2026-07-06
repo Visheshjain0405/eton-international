@@ -10,6 +10,24 @@ if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 }
 
+const countryCodes = [
+    { code: "+91", label: "🇮🇳 +91" },
+    { code: "+1", label: "🇺🇸 +1" },
+    { code: "+44", label: "🇬🇧 +44" },
+    { code: "+61", label: "🇦🇺 +61" },
+    { code: "+971", label: "🇦🇪 +971" },
+    { code: "+65", label: "🇸🇬 +65" },
+    { code: "+49", label: "🇩🇪 +49" },
+    { code: "+33", label: "🇫🇷 +33" },
+    { code: "+81", label: "🇯🇵 +81" },
+    { code: "+86", label: "🇨🇳 +86" },
+    { code: "+966", label: "🇸🇦 +966" },
+    { code: "+968", label: "🇴🇲 +968" },
+    { code: "+965", label: "🇰🇼 +965" },
+    { code: "+974", label: "🇶🇦 +974" },
+    { code: "+973", label: "🇧🇭 +973" },
+];
+
 const BusinessInquiry = () => {
     const [formState, setFormState] = useState({
         name: "",
@@ -17,6 +35,7 @@ const BusinessInquiry = () => {
         phone: "",
         message: ""
     });
+    const [countryCode, setCountryCode] = useState("+91");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
 
@@ -91,11 +110,17 @@ const BusinessInquiry = () => {
             const payload = {
                 name: formState.name,
                 email: formState.email,
-                phone: formState.phone,
+                phone: `${countryCode} ${formState.phone}`,
                 interest: formState.message
             };
             await api.post("/inquiries", payload);
             setIsSuccess(true);
+            setFormState({
+                name: "",
+                email: "",
+                phone: "",
+                message: ""
+            });
         } catch (error) {
             console.error("Inquiry submission failed: ", error);
             alert("Failed to submit inquiry. Please try again.");
@@ -260,15 +285,28 @@ const BusinessInquiry = () => {
 
                                         <div className="space-y-2">
                                             <label className="text-sm font-bold text-primary ml-1">Phone Number</label>
-                                            <input
-                                                type="tel"
-                                                name="phone"
-                                                required
-                                                value={formState.phone}
-                                                onChange={handleChange}
-                                                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all placeholder:text-slate-400"
-                                                placeholder="+91 95585 55447"
-                                            />
+                                            <div className="flex gap-2">
+                                                <select
+                                                    value={countryCode}
+                                                    onChange={(e) => setCountryCode(e.target.value)}
+                                                    className="px-3 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all text-slate-700 font-medium text-sm"
+                                                >
+                                                    {countryCodes.map((item) => (
+                                                        <option key={item.code} value={item.code}>
+                                                            {item.label}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                                <input
+                                                    type="tel"
+                                                    name="phone"
+                                                    required
+                                                    value={formState.phone}
+                                                    onChange={handleChange}
+                                                    className="flex-1 px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all placeholder:text-slate-400"
+                                                    placeholder="95585 55447"
+                                                />
+                                            </div>
                                         </div>
 
                                         <div className="space-y-2">

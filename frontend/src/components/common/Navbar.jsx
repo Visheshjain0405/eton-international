@@ -33,11 +33,14 @@ const Navbar = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    const [isCatalogActive, setIsCatalogActive] = useState(false);
+
     // Close mobile menu or dropdowns on path change
     useEffect(() => {
         setIsOpen(false);
         setShowCompanyDropdown(false);
         setShowProductsDropdown(false);
+        setIsCatalogActive(pathname === "/products" && typeof window !== "undefined" && !window.location.search);
     }, [pathname]);
 
     const isLinkActive = (href) => {
@@ -45,6 +48,16 @@ const Navbar = () => {
             return pathname === "/";
         }
         return pathname.startsWith(href);
+    };
+
+    const handleQuoteClick = (e) => {
+        if (pathname === "/") {
+            e.preventDefault();
+            const contactSection = document.getElementById("contact");
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: "smooth" });
+            }
+        }
     };
 
     return (
@@ -164,7 +177,7 @@ const Navbar = () => {
                                     <div className="bg-white rounded-sm shadow-xl border border-slate-100 p-1.5 flex flex-col">
                                         <Link
                                             href="/products"
-                                            className={`px-4 py-2 text-xs font-semibold rounded-sm border-b border-slate-50 mb-1 transition-colors ${pathname === "/products" && (typeof window !== 'undefined' && !window.location.search) ? "bg-slate-50 text-[#D24D3D]" : "text-[#043C8C] hover:bg-slate-50 hover:text-[#D24D3D]"
+                                            className={`px-4 py-2 text-xs font-semibold rounded-sm border-b border-slate-50 mb-1 transition-colors ${isCatalogActive ? "bg-slate-50 text-[#D24D3D]" : "text-[#043C8C] hover:bg-slate-50 hover:text-[#D24D3D]"
                                                 }`}
                                         >
                                             ALL PRODUCTS
@@ -204,13 +217,14 @@ const Navbar = () => {
                         {/* Search and Mobile Actions */}
                         <div className="flex items-center gap-4">
 
-                            {/* Get a Quote Button */}
-                            <button
-                                onClick={openQuoteModal}
-                                className="hidden xl:block bg-[#D24D3D] hover:bg-opacity-90 text-white text-[12px] font-bold tracking-wider px-4 py-2 rounded-sm transition-all shadow-sm"
+                            {/* Get a Quote Link */}
+                            <Link
+                                href="/#contact"
+                                onClick={handleQuoteClick}
+                                className="hidden xl:block bg-[#D24D3D] hover:bg-opacity-90 text-white text-[12px] font-bold tracking-wider px-4 py-2 rounded-sm transition-all shadow-sm text-center"
                             >
                                 GET A QUOTE
-                            </button>
+                            </Link>
 
                             {/* Mobile Hamburger Toggle */}
                             <button
@@ -315,15 +329,16 @@ const Navbar = () => {
                         </Link>
 
 
-                        <button
-                            onClick={() => {
+                        <Link
+                            href="/#contact"
+                            onClick={(e) => {
                                 setIsOpen(false);
-                                openQuoteModal();
+                                handleQuoteClick(e);
                             }}
                             className="bg-[#D24D3D] text-white text-center py-2.5 rounded-sm font-bold text-xs tracking-wider mt-4"
                         >
                             GET A QUOTE
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </header>

@@ -54,3 +54,18 @@ exports.deleteProduct = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+// Get a product by slug
+exports.getProductBySlug = async (req, res) => {
+  try {
+    const { slug } = req.params;
+    const product = await Product.findOne({ slug });
+    if (!product) {
+      return res.status(404).json({ error: "Product not found" });
+    }
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+

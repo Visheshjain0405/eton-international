@@ -1,5 +1,5 @@
 const Inquiry = require("../models/Inquiry");
-const { sendInquiryEmail } = require("../utils/mailer");
+const { sendInquiryEmail, sendThankYouEmail } = require("../utils/mailer");
 
 // Get all inquiries
 exports.getInquiries = async (req, res) => {
@@ -34,6 +34,7 @@ exports.createInquiry = async (req, res) => {
 
     // Trigger Nodemailer dispatch
     await sendInquiryEmail(savedInquiry);
+    await sendThankYouEmail(savedInquiry);
 
     res.status(201).json(savedInquiry);
   } catch (error) {
@@ -76,3 +77,5 @@ exports.deleteInquiry = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+

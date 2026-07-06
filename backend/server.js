@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const helmet = require("helmet");
 
 const productController = require("./controllers/productController");
 const inquiryController = require("./controllers/inquiryController");
@@ -10,13 +11,30 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 
 // Middleware
-app.use(cors());
+app.use(helmet());
+
+const allowedOrigins = process.env.ALLOWED_ORIGINS 
+  ? process.env.ALLOWED_ORIGINS.split(",") 
+  : ["http://localhost:3000", "http://localhost:3001"];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1 || allowedOrigins.includes("*")) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+}));
 app.use(express.json());
 
 // Routes
 // Products
 app.get("/api/products", productController.getProducts);
 app.post("/api/products", productController.createProduct);
+app.get("/api/products/slug/:slug", productController.getProductBySlug);
 app.delete("/api/products/:id", productController.deleteProduct);
 
 // Inquiries

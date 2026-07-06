@@ -1,28 +1,43 @@
 import ProductDetailClient from "@/components/products/ProductDetailClient";
-import { getProductBySlug, products } from "@/data/products";
+import api from "@/utils/api";
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const product = getProductBySlug(id);
-  if (!product) {
+  try {
+    const res = await api.get(`/products/slug/${id}`);
+    const product = res.data;
+    return {
+      title: `${product.name} | Eteon International`,
+      description: product.description || product.desc,
+    };
+  } catch (err) {
     return {
       title: "Product Not Found | Eteon International",
     };
   }
-  return {
-    title: `${product.name} | Eteon International`,
-    description: product.description || product.desc,
-  };
 }
 
 export async function generateStaticParams() {
-  return products.map((product) => ({
-    id: product.slug,
-  }));
+  try {
+    const res = await api.get("/products");
+    return res.data.map((product) => ({
+      id: product.slug,
+    }));
+  } catch (error) {
+    console.error("Failed to fetch products for static generation: ", error);
+    return [];
+  }
 }
 
 export default async function ProductDetailPage({ params }) {
   const { id } = await params;
-  const product = getProductBySlug(id);
+  let product = null;
+  try {
+    const res = await api.get(`/products/slug/${id}`);
+    product = res.data;
+  } catch (err) {
+    console.error("Failed to load product from database: ", err);
+  }
+
   return <ProductDetailClient product={product} />;
 }

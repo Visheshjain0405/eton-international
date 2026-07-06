@@ -1,10 +1,52 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Send, MessageSquare } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, MessageSquare, CheckCircle2 } from 'lucide-react';
+import api from '../../utils/api';
 
 const ContactClient = () => {
+    const [formState, setFormState] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "General Inquiry",
+        message: ""
+    });
+    const [countryCode, setCountryCode] = useState("+91");
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
+
+    const handleChange = (e) => {
+        setFormState({ ...formState, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        try {
+            const payload = {
+                name: formState.name,
+                email: formState.email,
+                phone: `${countryCode} ${formState.phone}`,
+                interest: `[${formState.subject}] ${formState.message}`
+            };
+            await api.post("/inquiries", payload);
+            setIsSuccess(true);
+            setFormState({
+                name: "",
+                email: "",
+                phone: "",
+                subject: "General Inquiry",
+                message: ""
+            });
+        } catch (error) {
+            console.error("Contact submission failed:", error);
+            alert("Failed to send message. Please try again.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
     return (
         <div className="w-full overflow-hidden bg-slate-50 font-body">
             {/* HERO SECTION */}
@@ -118,45 +160,135 @@ const ContactClient = () => {
                             className="lg:w-2/3"
                         >
                             <div className="bg-white p-8 lg:p-12 rounded-[2rem] shadow-xl shadow-slate-200/50 border border-slate-100">
-                                <h2 className="text-3xl font-heading font-bold text-primary mb-8">Send us a Message</h2>
-
-                                <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-                                    <div className="grid md:grid-cols-2 gap-6">
-                                        <div className="space-y-2">
-                                            <label className="text-sm font-bold text-primary ml-1">Full Name</label>
-                                            <input type="text" placeholder="John Doe" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-5 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all" />
+                                {isSuccess ? (
+                                    <div className="h-full flex flex-col items-center justify-center text-center py-12 px-6">
+                                        <div className="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center mb-6">
+                                            <CheckCircle2 size={40} />
                                         </div>
-                                        <div className="space-y-2">
-                                            <label className="text-sm font-bold text-primary ml-1">Email Address</label>
-                                            <input type="email" placeholder="john@company.com" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-5 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all" />
-                                        </div>
+                                        <h3 className="text-2xl font-bold text-primary mb-2">Message Sent!</h3>
+                                        <p className="text-slate-500 mb-8 max-w-md leading-relaxed">
+                                            Thank you for contacting us. Our team will review your message and get back to you shortly.
+                                        </p>
+                                        <button
+                                            onClick={() => setIsSuccess(false)}
+                                            className="text-primary font-bold hover:text-accent transition-colors flex items-center gap-2"
+                                        >
+                                            Send another message <Send size={16} />
+                                        </button>
                                     </div>
+                                ) : (
+                                    <>
+                                        <h2 className="text-3xl font-heading font-bold text-primary mb-8">Send us a Message</h2>
 
-                                    <div className="grid md:grid-cols-2 gap-6">
-                                        <div className="space-y-2">
-                                            <label className="text-sm font-bold text-primary ml-1">Phone Number</label>
-                                            <input type="tel" placeholder="+1 (555) 000-0000" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-5 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all" />
-                                        </div>
-                                        <div className="space-y-2">
-                                            <label className="text-sm font-bold text-primary ml-1">Subject</label>
-                                            <select className="w-full bg-slate-50 border border-slate-200 rounded-xl px-5 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all text-slate-500">
-                                                <option>General Inquiry</option>
-                                                <option>Import/Export Quote</option>
-                                                <option>Partnership</option>
-                                                <option>Compliance Support</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                        <form className="space-y-6" onSubmit={handleSubmit}>
+                                            <div className="grid md:grid-cols-2 gap-6">
+                                                <div className="space-y-2">
+                                                    <label className="text-sm font-bold text-primary ml-1">Full Name</label>
+                                                    <input
+                                                        type="text"
+                                                        name="name"
+                                                        required
+                                                        value={formState.name}
+                                                        onChange={handleChange}
+                                                        placeholder="John Doe"
+                                                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-5 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all"
+                                                    />
+                                                </div>
+                                                <div className="space-y-2">
+                                                    <label className="text-sm font-bold text-primary ml-1">Email Address</label>
+                                                    <input
+                                                        type="email"
+                                                        name="email"
+                                                        required
+                                                        value={formState.email}
+                                                        onChange={handleChange}
+                                                        placeholder="john@company.com"
+                                                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-5 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all"
+                                                    />
+                                                </div>
+                                            </div>
 
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-bold text-primary ml-1">Message</label>
-                                        <textarea rows="5" placeholder="Tell us about your requirements..." className="w-full bg-slate-50 border border-slate-200 rounded-xl px-5 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all"></textarea>
-                                    </div>
+                                            <div className="grid md:grid-cols-2 gap-6">
+                                                <div className="space-y-2">
+                                                    <label className="text-sm font-bold text-primary ml-1">Phone Number</label>
+                                                    <div className="flex gap-2">
+                                                        <select
+                                                            value={countryCode}
+                                                            onChange={(e) => setCountryCode(e.target.value)}
+                                                            className="bg-slate-50 border border-slate-200 rounded-xl px-3 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all text-slate-700 font-medium text-sm"
+                                                        >
+                                                            <option value="+91">🇮🇳 +91</option>
+                                                            <option value="+1">🇺🇸 +1</option>
+                                                            <option value="+44">🇬🇧 +44</option>
+                                                            <option value="+61">🇦🇺 +61</option>
+                                                            <option value="+971">🇦🇪 +971</option>
+                                                            <option value="+65">🇸🇬 +65</option>
+                                                            <option value="+49">🇩🇪 +49</option>
+                                                            <option value="+33">🇫🇷 +33</option>
+                                                            <option value="+81">🇯🇵 +81</option>
+                                                            <option value="+86">🇨🇳 +86</option>
+                                                            <option value="+966">🇸🇦 +966</option>
+                                                            <option value="+968">🇴🇲 +968</option>
+                                                            <option value="+965">🇰🇼 +965</option>
+                                                            <option value="+974">🇶🇦 +974</option>
+                                                            <option value="+973">🇧🇭 +973</option>
+                                                        </select>
+                                                        <input
+                                                            type="tel"
+                                                            name="phone"
+                                                            required
+                                                            value={formState.phone}
+                                                            onChange={handleChange}
+                                                            placeholder="95585 55447"
+                                                            className="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-5 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="space-y-2">
+                                                    <label className="text-sm font-bold text-primary ml-1">Subject</label>
+                                                    <select
+                                                        name="subject"
+                                                        value={formState.subject}
+                                                        onChange={handleChange}
+                                                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-5 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all text-slate-700 font-medium"
+                                                    >
+                                                        <option value="General Inquiry">General Inquiry</option>
+                                                        <option value="Import/Export Quote">Import/Export Quote</option>
+                                                        <option value="Partnership">Partnership</option>
+                                                        <option value="Compliance Support">Compliance Support</option>
+                                                    </select>
+                                                </div>
+                                            </div>
 
-                                    <button className="w-full bg-primary text-white font-bold text-lg py-4 rounded-xl hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
-                                        <Send size={20} /> Send Message
-                                    </button>
-                                </form>
+                                            <div className="space-y-2">
+                                                <label className="text-sm font-bold text-primary ml-1">Message</label>
+                                                <textarea
+                                                    name="message"
+                                                    rows="5"
+                                                    required
+                                                    value={formState.message}
+                                                    onChange={handleChange}
+                                                    placeholder="Tell us about your requirements..."
+                                                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-5 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all resize-none"
+                                                ></textarea>
+                                            </div>
+
+                                            <button
+                                                type="submit"
+                                                disabled={isSubmitting}
+                                                className="w-full bg-primary text-white font-bold text-lg py-4 rounded-xl hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2 disabled:opacity-75 disabled:cursor-not-allowed"
+                                            >
+                                                {isSubmitting ? (
+                                                    <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                                ) : (
+                                                    <>
+                                                        <Send size={20} /> Send Message
+                                                    </>
+                                                )}
+                                            </button>
+                                        </form>
+                                    </>
+                                )}
                             </div>
                         </motion.div>
                     </div>
