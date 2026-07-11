@@ -36,6 +36,7 @@ app.use(express.json());
 
 // Routes
 // Authentication
+app.post("/api/auth/register", authController.register);
 app.post("/api/auth/login", authController.login);
 app.post("/api/auth/logout", authController.logout);
 app.get("/api/auth/me", authenticateToken, authController.checkAuth);
