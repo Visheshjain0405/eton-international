@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { 
   Users, 
   Layers, 
@@ -19,7 +20,67 @@ import ProductDetailsModal from "../components/ProductDetailsModal";
 import api from "../utils/api";
 
 export default function AdminDashboard() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState("inquiries");
+
+  const handleLogout = async () => {
+    try {
+      await api.post("/auth/logout");
+    } catch (error) {
+      console.error("Logout on server failed: ", error);
+    }
+    router.push("/login");
+  };
+
+  const exportToCSV = (data, filename) => {
+    if (!data || data.length === 0) {
+      alert("No data available to export.");
+      return;
+    }
+    const headers = Object.keys(data[0]);
+    const csvRows = [];
+    csvRows.push(headers.join(","));
+    for (const row of data) {
+      const values = headers.map(header => {
+        const escaped = ("" + (row[header] || "")).replace(/"/g, '\\"');
+        return `"${escaped}"`;
+      });
+      csvRows.push(values.join(","));
+    }
+    const csvContent = "data:text/csv;charset=utf-8," + csvRows.join("\n");
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleExportInquiries = () => {
+    const dataToExport = inquiries.map(inq => ({
+      ID: inq.id,
+      Name: inq.name,
+      Company: inq.company || "N/A",
+      Email: inq.email,
+      Phone: inq.phone || "N/A",
+      Interest: inq.interest || "General",
+      Status: inq.status,
+      Date: inq.date || inq.createdAt || ""
+    }));
+    exportToCSV(dataToExport, "eteon_inquiries.csv");
+  };
+
+  const handleExportProducts = () => {
+    const dataToExport = products.map(p => ({
+      ID: p.id,
+      Slug: p.slug,
+      Name: p.name,
+      Category: p.category,
+      Description: p.desc || p.description || ""
+    }));
+    exportToCSV(dataToExport, "eteon_products.csv");
+  };
 
   // Fetched data state
   const [inquiries, setInquiries] = useState([]);
@@ -42,6 +103,9 @@ export default function AdminDashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Authenticate session first
+        await api.get("/auth/me");
+
         const [prodRes, inqRes] = await Promise.all([
           api.get("/products"),
           api.get("/inquiries")
@@ -51,13 +115,14 @@ export default function AdminDashboard() {
         setInquiries(inqRes.data);
       } catch (error) {
         console.error("Failed to fetch data from backend: ", error);
+        router.push("/login");
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchData();
-  }, []);
+  }, [router]);
 
   const handleStatusChange = async (id, newStatus) => {
     try {
@@ -123,7 +188,10 @@ export default function AdminDashboard() {
               <h2 className="text-2xl font-extrabold text-slate-900 tracking-tight">Inquiries Inbox</h2>
               <p className="text-slate-505 text-sm mt-1">Review live exporter inquiries, follow up on requests, and manage client leads.</p>
             </div>
-            <button className="flex items-center gap-2 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-sm font-semibold px-4 py-2.5 rounded-xl transition-all shadow-sm self-start sm:self-auto">
+            <button 
+              onClick={handleExportInquiries}
+              className="flex items-center gap-2 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-sm font-semibold px-4 py-2.5 rounded-xl transition-all shadow-sm self-start sm:self-auto"
+            >
               <Download size={16} /> Export CSV
             </button>
           </div>
@@ -135,7 +203,10 @@ export default function AdminDashboard() {
               <h2 className="text-2xl font-extrabold text-slate-900 tracking-tight">Products Catalog</h2>
               <p className="text-slate-550 text-sm mt-1">Manage product showcases, descriptions, and specifications featured on the main site.</p>
             </div>
-            <button className="flex items-center gap-2 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-sm font-semibold px-4 py-2.5 rounded-xl transition-all shadow-sm self-start sm:self-auto">
+            <button 
+              onClick={handleExportProducts}
+              className="flex items-center gap-2 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-sm font-semibold px-4 py-2.5 rounded-xl transition-all shadow-sm self-start sm:self-auto"
+            >
               <Download size={16} /> Export CSV
             </button>
           </div>
@@ -152,12 +223,13 @@ export default function AdminDashboard() {
         activeTab={activeTab} 
         setActiveTab={setActiveTab} 
         productsCount={products.length} 
+        handleLogout={handleLogout}
       />
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0 h-screen overflow-y-auto">
         {/* Navbar Component */}
-        <Navbar activeTab={activeTab} />
+        <Navbar activeTab={activeTab} handleLogout={handleLogout} />
 
         {/* Scrollable Body */}
         <main className="flex-grow p-8 max-w-7xl w-full mx-auto pb-24">

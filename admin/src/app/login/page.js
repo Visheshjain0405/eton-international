@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Mail, Lock, Eye, EyeOff, Layers, ArrowRight } from "lucide-react";
+import api from "../../utils/api";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -12,7 +13,7 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
@@ -23,12 +24,14 @@ export default function LoginPage() {
 
     setIsLoading(true);
 
-    // Simulate authentication
-    setTimeout(() => {
-      setIsLoading(false);
-      // Let's accept any login for development purposes
+    try {
+      await api.post("/auth/login", { email, password });
       router.push("/");
-    }, 1500);
+    } catch (err) {
+      setError(err.response?.data?.error || "Invalid email or password");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

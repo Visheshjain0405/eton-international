@@ -1,7 +1,7 @@
 import React from "react";
-import { ChevronRight, Settings } from "lucide-react";
+import { ChevronRight, LogOut } from "lucide-react";
 
-export default function Navbar({ activeTab }) {
+export default function Navbar({ activeTab, handleLogout }) {
   const getTabLabel = () => {
     switch (activeTab) {
       case "inquiries":
@@ -27,9 +27,13 @@ export default function Navbar({ activeTab }) {
         <span className="text-xs bg-slate-100 text-slate-600 font-semibold px-3 py-1.5 rounded-full border border-slate-200">
           v1.0.0
         </span>
-        <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300 shadow-sm hover:shadow transition-all cursor-pointer">
-          <Settings size={18} />
-        </div>
+        <button 
+          onClick={handleLogout}
+          title="Log Out"
+          className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-rose-600 hover:text-rose-700 border border-slate-200 hover:border-rose-250 hover:bg-rose-50/50 shadow-sm hover:shadow transition-all cursor-pointer"
+        >
+          <LogOut size={18} />
+        </button>
       </div>
     </header>
   );

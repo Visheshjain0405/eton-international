@@ -1,7 +1,7 @@
 import React from "react";
-import { Users, Layers, TrendingUp, Settings } from "lucide-react";
+import { Users, Layers, LogOut } from "lucide-react";
 
-export default function Sidebar({ activeTab, setActiveTab, productsCount }) {
+export default function Sidebar({ activeTab, setActiveTab, productsCount, handleLogout }) {
   return (
     <aside className="w-64 bg-slate-900 text-slate-100 flex flex-col border-r border-slate-800 shrink-0 h-screen sticky top-0 z-40">
       {/* Brand/Logo Area */}
@@ -53,8 +53,12 @@ export default function Sidebar({ activeTab, setActiveTab, productsCount }) {
             <p className="text-xs font-bold text-slate-200 truncate">Administrator</p>
             <p className="text-[10px] text-slate-500 font-semibold truncate">admin@eteon.com</p>
           </div>
-          <button className="text-slate-505 hover:text-slate-300 transition-colors">
-            <Settings size={16} />
+          <button 
+            onClick={handleLogout}
+            title="Log Out"
+            className="text-rose-500 hover:text-rose-400 transition-colors"
+          >
+            <LogOut size={16} />
           </button>
         </div>
       </div>
