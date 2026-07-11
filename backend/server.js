@@ -19,7 +19,7 @@ app.use(cookieParser());
 
 const allowedOrigins = process.env.ALLOWED_ORIGINS 
   ? process.env.ALLOWED_ORIGINS.split(",") 
-  : ["http://localhost:3000", "http://localhost:3001"];
+  : ["http://localhost:3000", "http://localhost:3001", "https://admin.eteoninternational.com", "https://eton-international.vercel.app"];
 
 app.use(cors({
   origin: function (origin, callback) {
